@@ -28,13 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcClientes = new ReaLTaiizor.Controls.HopeTabPage();
             this.tabConsultar = new System.Windows.Forms.TabPage();
+            this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
+            this.lblNombreConsulta = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.txtNombreConsulta = new Guna.UI.WinForms.GunaTextBox();
             this.dgvClientes = new Guna.UI.WinForms.GunaDataGridView();
             this.tabRegistrar = new System.Windows.Forms.TabPage();
+            this.btnRegistrar = new Guna.UI.WinForms.GunaButton();
             this.pb = new Guna.UI.WinForms.GunaTransfarantPictureBox();
             this.pb1 = new Guna.UI.WinForms.GunaPictureBox();
             this.lblIdentificacion = new ReaLTaiizor.Controls.DungeonHeaderLabel();
@@ -46,7 +50,6 @@
             this.txtNombre = new Guna.UI.WinForms.GunaTextBox();
             this.tabModificar = new System.Windows.Forms.TabPage();
             this.tabEliminar = new System.Windows.Forms.TabPage();
-            this.btnRegistrar = new Guna.UI.WinForms.GunaButton();
             this.tcClientes.SuspendLayout();
             this.tabConsultar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
@@ -83,6 +86,9 @@
             // 
             // tabConsultar
             // 
+            this.tabConsultar.Controls.Add(this.gunaButton1);
+            this.tabConsultar.Controls.Add(this.lblNombreConsulta);
+            this.tabConsultar.Controls.Add(this.txtNombreConsulta);
             this.tabConsultar.Controls.Add(this.dgvClientes);
             this.tabConsultar.Location = new System.Drawing.Point(0, 40);
             this.tabConsultar.Name = "tabConsultar";
@@ -91,40 +97,97 @@
             this.tabConsultar.TabIndex = 0;
             this.tabConsultar.Text = "Consultar";
             this.tabConsultar.UseVisualStyleBackColor = true;
+            this.tabConsultar.Click += new System.EventHandler(this.tabConsultar_Click);
+            // 
+            // gunaButton1
+            // 
+            this.gunaButton1.AnimationHoverSpeed = 0.07F;
+            this.gunaButton1.AnimationSpeed = 0.03F;
+            this.gunaButton1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaButton1.BorderColor = System.Drawing.Color.Black;
+            this.gunaButton1.BorderSize = 1;
+            this.gunaButton1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaButton1.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaButton1.ForeColor = System.Drawing.Color.White;
+            this.gunaButton1.Image = null;
+            this.gunaButton1.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaButton1.Location = new System.Drawing.Point(339, 37);
+            this.gunaButton1.Name = "gunaButton1";
+            this.gunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.gunaButton1.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaButton1.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaButton1.OnHoverImage = null;
+            this.gunaButton1.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaButton1.Radius = 10;
+            this.gunaButton1.Size = new System.Drawing.Size(124, 42);
+            this.gunaButton1.TabIndex = 30;
+            this.gunaButton1.Text = "Consultar";
+            this.gunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblNombreConsulta
+            // 
+            this.lblNombreConsulta.AutoSize = true;
+            this.lblNombreConsulta.BackColor = System.Drawing.Color.Transparent;
+            this.lblNombreConsulta.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblNombreConsulta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
+            this.lblNombreConsulta.Location = new System.Drawing.Point(68, 49);
+            this.lblNombreConsulta.Name = "lblNombreConsulta";
+            this.lblNombreConsulta.Size = new System.Drawing.Size(71, 20);
+            this.lblNombreConsulta.TabIndex = 24;
+            this.lblNombreConsulta.Text = "Nombre:";
+            // 
+            // txtNombreConsulta
+            // 
+            this.txtNombreConsulta.BaseColor = System.Drawing.Color.White;
+            this.txtNombreConsulta.BorderColor = System.Drawing.Color.Silver;
+            this.txtNombreConsulta.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNombreConsulta.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtNombreConsulta.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txtNombreConsulta.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtNombreConsulta.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtNombreConsulta.Location = new System.Drawing.Point(145, 44);
+            this.txtNombreConsulta.Name = "txtNombreConsulta";
+            this.txtNombreConsulta.PasswordChar = '\0';
+            this.txtNombreConsulta.SelectedText = "";
+            this.txtNombreConsulta.Size = new System.Drawing.Size(160, 30);
+            this.txtNombreConsulta.TabIndex = 21;
+            this.txtNombreConsulta.TextChanged += new System.EventHandler(this.txtNombreConsulta_TextChanged);
             // 
             // dgvClientes
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvClientes.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvClientes.BackgroundColor = System.Drawing.Color.White;
             this.dgvClientes.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvClientes.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvClientes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvClientes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvClientes.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvClientes.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvClientes.EnableHeadersVisualStyles = false;
             this.dgvClientes.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvClientes.Location = new System.Drawing.Point(12, 49);
+            this.dgvClientes.Location = new System.Drawing.Point(12, 97);
             this.dgvClientes.Name = "dgvClientes";
             this.dgvClientes.RowHeadersVisible = false;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientes.Size = new System.Drawing.Size(243, 146);
+            this.dgvClientes.Size = new System.Drawing.Size(555, 246);
             this.dgvClientes.TabIndex = 20;
             this.dgvClientes.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvClientes.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -148,6 +211,7 @@
             this.dgvClientes.ThemeStyle.RowsStyle.Height = 22;
             this.dgvClientes.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvClientes.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // tabRegistrar
             // 
@@ -168,6 +232,34 @@
             this.tabRegistrar.TabIndex = 1;
             this.tabRegistrar.Text = "Registrar";
             this.tabRegistrar.UseVisualStyleBackColor = true;
+            // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.AnimationHoverSpeed = 0.07F;
+            this.btnRegistrar.AnimationSpeed = 0.03F;
+            this.btnRegistrar.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegistrar.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.btnRegistrar.BorderColor = System.Drawing.Color.Black;
+            this.btnRegistrar.BorderSize = 1;
+            this.btnRegistrar.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnRegistrar.FocusedColor = System.Drawing.Color.Empty;
+            this.btnRegistrar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrar.Image = null;
+            this.btnRegistrar.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnRegistrar.Location = new System.Drawing.Point(219, 234);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnRegistrar.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnRegistrar.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnRegistrar.OnHoverImage = null;
+            this.btnRegistrar.OnPressedColor = System.Drawing.Color.Black;
+            this.btnRegistrar.Radius = 10;
+            this.btnRegistrar.Size = new System.Drawing.Size(124, 42);
+            this.btnRegistrar.TabIndex = 29;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // pb
             // 
@@ -306,34 +398,6 @@
             this.tabEliminar.Text = "Eliminar";
             this.tabEliminar.UseVisualStyleBackColor = true;
             // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.AnimationHoverSpeed = 0.07F;
-            this.btnRegistrar.AnimationSpeed = 0.03F;
-            this.btnRegistrar.BackColor = System.Drawing.Color.Transparent;
-            this.btnRegistrar.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.btnRegistrar.BorderColor = System.Drawing.Color.Black;
-            this.btnRegistrar.BorderSize = 1;
-            this.btnRegistrar.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnRegistrar.FocusedColor = System.Drawing.Color.Empty;
-            this.btnRegistrar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.Image = null;
-            this.btnRegistrar.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRegistrar.Location = new System.Drawing.Point(219, 234);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.btnRegistrar.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnRegistrar.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.OnHoverImage = null;
-            this.btnRegistrar.OnPressedColor = System.Drawing.Color.Black;
-            this.btnRegistrar.Radius = 10;
-            this.btnRegistrar.Size = new System.Drawing.Size(124, 42);
-            this.btnRegistrar.TabIndex = 29;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
             // formClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,6 +410,7 @@
             this.Load += new System.EventHandler(this.formClientes_Load);
             this.tcClientes.ResumeLayout(false);
             this.tabConsultar.ResumeLayout(false);
+            this.tabConsultar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.tabRegistrar.ResumeLayout(false);
             this.tabRegistrar.PerformLayout();
@@ -373,5 +438,8 @@
         private Guna.UI.WinForms.GunaTextBox txtNombre;
         private Guna.UI.WinForms.GunaTransfarantPictureBox pb;
         private Guna.UI.WinForms.GunaButton btnRegistrar;
+        private Guna.UI.WinForms.GunaButton gunaButton1;
+        private ReaLTaiizor.Controls.DungeonHeaderLabel lblNombreConsulta;
+        private Guna.UI.WinForms.GunaTextBox txtNombreConsulta;
     }
 }

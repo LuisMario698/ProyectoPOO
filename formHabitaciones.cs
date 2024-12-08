@@ -35,14 +35,14 @@ namespace Proyecto
 
             
 
-            CargarDatos();
+            //CargarDatos();
         }
 
         private void formHabitaciones_Load(object sender, EventArgs e)
         {
 
         }
-
+        /*
         private void CargarDatos()
         {
             miConexion = new Conexion();
@@ -77,7 +77,8 @@ namespace Proyecto
             {
                 MessageBox.Show(m.Message);
             }
-
+          
         }
+        */
     }
 }

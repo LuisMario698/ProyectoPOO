@@ -13,11 +13,20 @@ namespace Proyecto
         private MySqlConnection conexion;
         public string cadenaConexion = $"Server=localhost;Database=cooking;Uid=root;Pwd=;";
 
+        public MySqlConnection ObtenerConexion()
+        {
+            if (conexion == null)
+            {
+                conexion = new MySqlConnection(cadenaConexion);
+                conexion.Open();
+            }
+            return conexion; // Devuelve la conexión sin abrirla
+        }
+
         public bool AbrirConexion()
         {
             try
             {
-                conexion.Open();
                 return true;
             }
             catch (MySqlException ex)
@@ -36,19 +45,10 @@ namespace Proyecto
             }
             catch (MySqlException ex)
             {
-                // Aquí puedes manejar el error de conexión, por ejemplo, mostrarlo en un MessageBox
                 System.Windows.Forms.MessageBox.Show("Error al cerrar la conexión a la base de datos: " + ex.Message);
                 return false;
             }
         }
-        public MySqlConnection ObtenerConexion()
-        {
-            if (conexion == null)
-            {
-                conexion = new MySqlConnection(cadenaConexion);
-                conexion.Open();
-            }
-            return conexion;
-        }
     }
+
 }
