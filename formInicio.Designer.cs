@@ -243,7 +243,7 @@
             this.pnCuerpo.Location = new System.Drawing.Point(152, 51);
             this.pnCuerpo.Margin = new System.Windows.Forms.Padding(2);
             this.pnCuerpo.Name = "pnCuerpo";
-            this.pnCuerpo.Size = new System.Drawing.Size(596, 406);
+            this.pnCuerpo.Size = new System.Drawing.Size(596, 407);
             this.pnCuerpo.TabIndex = 4;
             // 
             // pnHeader
