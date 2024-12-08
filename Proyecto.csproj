@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clientes.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="formClientes.cs">
       <SubType>Form</SubType>

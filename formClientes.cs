@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace Proyecto
     {
         Conexion miConexion;
         private bool conexionAbierta = false;
+        public string rutaIdentificacion = "";
         public formClientes()
         {
             InitializeComponent();
@@ -56,19 +58,14 @@ namespace Proyecto
 
             dgvClientes.ColumnHeadersHeight = 40;
 
-            CargarDatos();
+            
 
         }
 
-        private void btnHabitaciones_Click(object sender, EventArgs e)
-        {
-            formHabitaciones habitaciones = new formHabitaciones();
-            habitaciones.ShowDialog();
-        }
 
         private void formClientes_Load(object sender, EventArgs e)
         {
-            
+            CargarDatos();
             // Carga la imagen en el PictureBox
             pb1.Image = Image.FromFile("C:/Users/LuisM/Downloads/file.png");
 
@@ -76,7 +73,9 @@ namespace Proyecto
             pb1.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.SizeMode = PictureBoxSizeMode.Zoom;
         }
-
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------CONSULTA----------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
         private void CargarDatos()
         {
             miConexion = new Conexion();
@@ -110,40 +109,6 @@ namespace Proyecto
                 MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
         }
-
-
-        private void pb1_Click(object sender, EventArgs e)
-        {
-            // Aquí puedes poner el código que se ejecutará al hacer clic en la imagen
-            MessageBox.Show("¡Has hecho clic en la imagen!");
-
-            // Crea una instancia de OpenFileDialog
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-            // Configura las propiedades del OpenFileDialog (opcional)
-            openFileDialog1.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
-            openFileDialog1.Title = "Selecciona una imagen";
-
-            // Muestra el OpenFileDialog
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                // Si el usuario selecciona un archivo, obtén la ruta del archivo
-                string rutaArchivo = openFileDialog1.FileName;
-
-                // Haz algo con la ruta del archivo, por ejemplo, mostrar la imagen en el PictureBox
-                pb.Image = Image.FromFile(rutaArchivo);
-            }
-        }
-
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            string nombre = txtNombre.Text;
-            string correo = txtCorreo.Text;
-            int telefono = Convert.ToInt32(txtTelefono.Text);
-
-
-        }
-
         private void txtNombreConsulta_TextChanged(object sender, EventArgs e)
         {
             // Obtener el texto del TextBox
@@ -188,5 +153,89 @@ namespace Proyecto
         {
 
         }
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------CONSULTA----------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------REGISTRAR---------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            string nombre = txtNombre.Text;
+            string telefono = txtTelefono.Text;
+            string correo = txtCorreo.Text;
+            if (!string.IsNullOrEmpty(rutaIdentificacion))
+            {
+                byte[] identificacion = File.ReadAllBytes(rutaIdentificacion);
+                try
+                {
+
+                    if (miConexion.AbrirConexion())
+                    {
+
+                        // Crear una instancia de InventarioProducto
+                        Clientes cliente = new Clientes(nombre, telefono, correo, identificacion);
+
+                        // Llamar al método GuardarEnBaseDeDatos
+                        cliente.GuardarDB();
+
+                        // Mostrar un mensaje de confirmación
+                        MessageBox.Show("Cliente guardado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // miConexion.CerrarConexion();
+                        //dgvClientes.Rows.Clear();
+                        CargarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Por favor selecciona una imagen.");
+            }
+        }
+        private void pb1_Click(object sender, EventArgs e)
+        {
+            // Aquí puedes poner el código que se ejecutará al hacer clic en la imagen
+            MessageBox.Show("¡Has hecho clic en la imagen!");
+
+            // Crea una instancia de OpenFileDialog
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            // Configura las propiedades del OpenFileDialog (opcional)
+            openFileDialog1.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog1.Title = "Selecciona una imagen";
+
+            // Muestra el OpenFileDialog
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Si el usuario selecciona un archivo, obtén la ruta del archivo
+                
+                string rutaArchivo = openFileDialog1.FileName;
+                rutaIdentificacion = rutaArchivo;
+
+                // Haz algo con la ruta del archivo, por ejemplo, mostrar la imagen en el PictureBox
+                pb.Image = Image.FromFile(rutaArchivo);
+            }
+        }
+
+
+        private void tabConsultar_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------REGISTRAR---------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
     }
 }

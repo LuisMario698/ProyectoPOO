@@ -18,6 +18,7 @@ namespace Proyecto
             if (conexion == null)
             {
                 conexion = new MySqlConnection(cadenaConexion);
+                conexion.Open();
             }
             return conexion; // Devuelve la conexión sin abrirla
         }
@@ -26,7 +27,6 @@ namespace Proyecto
         {
             try
             {
-                conexion.Open();
                 return true;
             }
             catch (MySqlException ex)
