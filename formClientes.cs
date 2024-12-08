@@ -67,7 +67,7 @@ namespace Proyecto
         {
             CargarDatos();
             // Carga la imagen en el PictureBox
-            pb1.Image = Image.FromFile("C:/Users/LuisM/Downloads/file.png");
+            pb1.Image = Image.FromFile("C:/Users/jesus/Downloads/file.png");
 
             // Ajusta la imagen al tamaño del PictureBox
             pb1.SizeMode = PictureBoxSizeMode.StretchImage;
