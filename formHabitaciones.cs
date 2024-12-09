@@ -171,6 +171,7 @@ namespace Proyecto
             {
                 MessageBox.Show("Habitación modificada correctamente.");
                 CargarDatosHabitaciones(); // Recargar los datos
+                //xd
 
                 // Deseleccionar filas y habilitar el botón Agregar
                 dgvHabitaciones.ClearSelection();
