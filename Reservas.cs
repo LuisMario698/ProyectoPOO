@@ -18,20 +18,18 @@ namespace Proyecto
         public DateTime Fecha_Entrada { get; set; }
         public DateTime Fecha_Salida { get; set; }
 
-        public Reservas(int id, string cliente, string habitacion, string tipo, DateTime entrada, DateTime salida) 
+        public Reservas(int id, string cliente, string habitacion, DateTime entrada, DateTime salida) 
         {
             Id = id;
             Cliente = cliente;
             Habitacion = habitacion;
-            Tipo = tipo;
             Fecha_Entrada = entrada;
             Fecha_Salida = salida;
         }
-        public Reservas(string cliente, string habitacion, string tipo, DateTime entrada, DateTime salida)
+        public Reservas(string cliente, string habitacion, DateTime entrada, DateTime salida)
         {
             Cliente = cliente;
             Habitacion = habitacion;
-            Tipo = tipo;
             Fecha_Entrada = entrada;
             Fecha_Salida = salida;
         }
@@ -41,13 +39,12 @@ namespace Proyecto
             miConexion = new Conexion();
             var conexion = miConexion.ObtenerConexion();
 
-            string consulta = "INSERT INTO reservas (Cliente, Habitacion, Tipo, Fecha_entrada, Fecha_salida) VALUES (@Cliente, @Habitacion, @Tipo, @Entrada, @Salida)";
+            string consulta = "INSERT INTO reservas (Cliente, Habitacion, Fecha_entrada, Fecha_salida) VALUES (@Cliente, @Habitacion, @Entrada, @Salida)";
 
             using (var comando = new MySqlCommand(consulta, conexion))
             {
                 comando.Parameters.AddWithValue("@Cliente", Cliente);
                 comando.Parameters.AddWithValue("@Habitacion", Habitacion);
-                comando.Parameters.AddWithValue("@Tipo", Tipo);
                 comando.Parameters.AddWithValue("@Entrada", Fecha_Entrada);
                 comando.Parameters.AddWithValue("@Salida", Fecha_Salida);
 
@@ -85,5 +82,6 @@ namespace Proyecto
 
             return eliminado;
         }
+        
     }
 }

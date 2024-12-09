@@ -20,25 +20,10 @@ namespace Proyecto
         public int idSeleccionado {  get; set; }
 
 
-
-        //***********************************************************************
-        public string pruebatipo = "Suite";
-        public string pruebatipo2 = "Suite";
-        //************************************************************************
         public formReservas()
         {
             InitializeComponent();
 
-
-
-
-            //**********************************************************************
-            cbClientes.Items.Add("Prueba1");
-            cbClientes.Items.Add("Prueba2");
-
-            cbHabitaciones.Items.Add("1");
-            cbHabitaciones.Items.Add("2");
-            //***********************************************************************
             
 
 
@@ -70,12 +55,6 @@ namespace Proyecto
             });
             dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "Tipo",
-                DataPropertyName = "Tipo", // Nombre de la columna en el DataTable
-                HeaderText = "Tipo"
-            });
-            dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
-            {
                 Name = "Fecha_entrada",
                 DataPropertyName = "Fecha_entrada", // Nombre de la columna en el DataTable
                 HeaderText = "Entrada"
@@ -103,6 +82,8 @@ namespace Proyecto
         private void formReservas_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            CargarDatosEnComboBoxClientes();
+            CargarDatosEnComboBoxHabitaciones();
         }
         private void CargarDatos()
         {
@@ -114,7 +95,7 @@ namespace Proyecto
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Cliente, Habitacion, Tipo, Fecha_entrada, Fecha_salida FROM reservas";
+                        string consulta = "SELECT Id, Cliente, Habitacion, Fecha_entrada, Fecha_salida FROM reservas";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
@@ -140,7 +121,6 @@ namespace Proyecto
 
         private void cbHabitaciones_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void dgvReservas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -163,7 +143,6 @@ namespace Proyecto
                         int habitacion;
                         if (int.TryParse(filaSeleccionada.Cells["Habitacion"].Value?.ToString(), out habitacion))
                         {
-                            string tipo = filaSeleccionada.Cells["Tipo"].Value?.ToString() ?? string.Empty;
                             // La conversión a int fue exitosa, puedes usar 'valorInt' aquí
 
                             DateTime entrada;
@@ -173,7 +152,7 @@ namespace Proyecto
                                 if (DateTime.TryParse(filaSeleccionada.Cells["Fecha_salida"].Value?.ToString(), out salida))
                                 {
                                     // La conversión a DateTime fue exitosa, puedes usar 'valorDateTime' aquí
-                                    MessageBox.Show($"Seleccionaste la reserva: {id}\nCliente: {cliente}\nHabitacion: {habitacion}\nTipo: {tipo}\nFecha de Entrada: {entrada}\nFecha de Salida: {salida}");
+                                    MessageBox.Show($"Seleccionaste la reserva: {id}\nCliente: {cliente}\nHabitacion: {habitacion}\nFecha de Entrada: {entrada}\nFecha de Salida: {salida}");
                                 }
                                 else 
                                 {
@@ -230,39 +209,138 @@ namespace Proyecto
         private void btnReservar_Click(object sender, EventArgs e)
         {
             string cliente = cbClientes.Text;
-            string habitacion = cbHabitaciones.Text;
             DateTime entrada = dpEntrada.Date;
             DateTime salida = dpSalida.Date;
-            
-            try
+            // Obtiene el elemento seleccionado del ComboBox
+            if (cbClientes.SelectedItem != null)
             {
-
-                if (miConexion.AbrirConexion())
+                if (cbHabitaciones.SelectedItem != null)
                 {
+                    string habitacion = cbHabitaciones.Text;
 
-                    // Crear una instancia de InventarioProducto
-                    Reservas reserva = new Reservas(cliente, habitacion, pruebatipo, entrada,salida);
 
-                    // Llamar al método GuardarEnBaseDeDatos
-                    reserva.GuardarDB();
+                    try
+                    {
 
-                    // Mostrar un mensaje de confirmación
-                    MessageBox.Show("Reserva guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (miConexion.AbrirConexion())
+                        {
 
-                    // miConexion.CerrarConexion();
-                    //dgvClientes.Rows.Clear();
-                    CargarDatos();
+                            // Crear una instancia de InventarioProducto
+                            Reservas reserva = new Reservas(cliente, habitacion, entrada, salida);
+
+                            // Llamar al método GuardarEnBaseDeDatos
+                            reserva.GuardarDB();
+
+                            // Mostrar un mensaje de confirmación
+                            MessageBox.Show("Reserva guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // miConexion.CerrarConexion();
+                            //dgvClientes.Rows.Clear();
+                            CargarDatos();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error al guardar la reservacion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+
+                    MessageBox.Show("Por favor, selecciona una habitacion del ComboBox.");
+                }
+            }
+            else { 
+                
+                MessageBox.Show("Por favor, selecciona un cliente del ComboBox.");
+            }
+
+        }
+        private void CargarDatosEnComboBoxClientes()
+        {
+            miConexion = new Conexion();
+
+            try
+            {
+                using (MySqlConnection conexion = miConexion.ObtenerConexion())
+                {
+                    if (miConexion.AbrirConexion())
+                    {
+                        string consulta = "SELECT Id, Nombre FROM clientes";
+                        MySqlCommand comando = new MySqlCommand(consulta, conexion);
+
+                        using (MySqlDataReader reader = comando.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Obtiene el ID y el nombre por separado
+                                int id = reader.GetInt32("Id");
+                                string nombre = reader.GetString("Nombre");
+
+                                // Concatena el ID y el nombre en un string
+                                string cliente = $"{id} - {nombre}";
+
+                                // Agrega el string al ComboBox
+                                cbClientes.Items.Add(cliente);
+                            }
+                        }
+
+                        miConexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al guardar la reservacion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
-            
         }
+        private void CargarDatosEnComboBoxHabitaciones()
+        {
+            miConexion = new Conexion();
+
+            try
+            {
+                using (MySqlConnection conexion = miConexion.ObtenerConexion())
+                {
+                    if (miConexion.AbrirConexion())
+                    {
+                        string consulta = "SELECT Numero, Tipo FROM habitaciones";
+                        MySqlCommand comando = new MySqlCommand(consulta, conexion);
+
+                        using (MySqlDataReader reader = comando.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                // Agrega el nombre del cliente al ComboBox
+                                int numero = reader.GetInt32("Numero");
+                                string tipo = reader.GetString("Tipo");
+                                string habitacion = $"{numero} - {tipo}";
+                                cbHabitaciones.Items.Add(habitacion);
+                            }
+                        }
+
+                        miConexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+        }
+
+        
     }
 }
