@@ -398,8 +398,11 @@ namespace Proyecto
                         MessageBox.Show($"Seleccionaste el producto: {nombre}\nTelefono: {telefono}\nCorreo: {correo}");
 
                         txtNombreAntes.Text = nombre;
+                        txtNombreAntes.Enabled = false;
                         txtTelefonoAntes.Text = telefono;
+                        txtTelefonoAntes.Enabled = false;
                         txtCorreoAntes.Text = correo;
+                        txtCorreoAntes.Enabled = false;
 
                         txtNombreNuevo.Text = nombre;
                         txtTelefonoNuevo.Text = telefono;
@@ -654,11 +657,12 @@ namespace Proyecto
                     if (resultado)
                     {
                         MessageBox.Show("Cliente actualizado correctamente.");
-                        this.Close();
+                        /*this.Close();
                         formClientes regresar = new formClientes();
                         regresar.TopMost = true;
                         regresar.Show();
                         regresar.Activate();
+                        */
                     }
                     else
                     {
@@ -695,6 +699,31 @@ namespace Proyecto
                 {
                     MessageBox.Show("Error al actualizar el cliente.");
                 }
+            }
+        }
+
+        private void pbArchivos_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("¡Has hecho clic en la imagen!");
+
+            // Crea una instancia de OpenFileDialog
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            // Configura las propiedades del OpenFileDialog (opcional)
+            openFileDialog1.Filter = "Archivos de imagen (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog1.Title = "Selecciona una imagen";
+
+            // Muestra el OpenFileDialog
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Si el usuario selecciona un archivo, obtén la ruta del archivo
+
+                string rutaArchivo = openFileDialog1.FileName;
+                rutaIdentificacion = rutaArchivo;
+
+                // Haz algo con la ruta del archivo, por ejemplo, mostrar la imagen en el PictureBox
+                pbIdentificacionNueva.Image = Image.FromFile(rutaArchivo);
+                pbIdentificacionNueva.SizeMode = PictureBoxSizeMode.Zoom;
             }
         }
 
