@@ -21,6 +21,7 @@ namespace Proyecto
     public partial class formHabitaciones : Form
     {
         Habitaciones habitaciones;
+        Conexion miConexion;
         public formHabitaciones()
         {
             InitializeComponent();
@@ -83,6 +84,40 @@ namespace Proyecto
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            miConexion = new Conexion();
+            string tipo = cmbTipo.Text;
+            string estado = cmbEstado.Text;
+            int numero = Convert.ToInt32(txtNumero.Text);
+            decimal precio = Convert.ToDecimal(txtNumero.Text);
+            try
+            {
+
+                if (miConexion.AbrirConexion())
+                {
+
+                    // Crear una instancia de InventarioProducto
+                    Habitaciones habitacion = new Habitaciones(nombre, telefono, correo, identificacion);
+
+                    // Llamar al método GuardarEnBaseDeDatos
+                    habitacion.GuardarDB();
+
+                    // Mostrar un mensaje de confirmación
+                    MessageBox.Show("Cliente guardado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // miConexion.CerrarConexion();
+                    //dgvClientes.Rows.Clear();
+                    CargarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            /*
             try
             {
                 // Validar si se seleccionaron opciones en los ComboBox
@@ -122,6 +157,7 @@ namespace Proyecto
             {
                 MessageBox.Show("Ocurrió un error al agregar la habitación: " + ex.Message);
             }
+            */
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
