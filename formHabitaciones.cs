@@ -84,6 +84,7 @@ namespace Proyecto
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
+            /*
             miConexion = new Conexion();
             string tipo = cmbTipo.Text;
             string estado = cmbEstado.Text;
@@ -117,7 +118,7 @@ namespace Proyecto
             {
                 MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            /*
+            */
             try
             {
                 // Validar si se seleccionaron opciones en los ComboBox
@@ -157,7 +158,7 @@ namespace Proyecto
             {
                 MessageBox.Show("Ocurrió un error al agregar la habitación: " + ex.Message);
             }
-            */
+            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
