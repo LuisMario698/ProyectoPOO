@@ -30,6 +30,8 @@ namespace Proyecto
             ConfigurarDataGridView();
             CargarDatosHabitaciones();
             InitializeComboBoxes();
+            LimpiarControles();
+           dgvHabitaciones.SelectionChanged += dgvHabitaciones_SelectionChanged;
         }
         private void InitializeComboBoxes()
         {
@@ -42,6 +44,13 @@ namespace Proyecto
             cmbEstado.Items.Add("Disponible");
             cmbEstado.Items.Add("Ocupada");
             cmbEstado.Items.Add("En Limpieza");
+        }
+        private void LimpiarControles()
+        {
+            cmbTipo.SelectedIndex = -1; // Ningún elemento seleccionado
+            cmbEstado.SelectedIndex = -1; // Ningún elemento seleccionado
+            txtNumero.Clear(); // Vaciar el TextBox
+            txtPrecio.Clear(); // Vaciar el TextBox
         }
         // Configuración inicial del DataGridView
         private void ConfigurarDataGridView()
@@ -66,15 +75,50 @@ namespace Proyecto
                 {
                     dgvHabitaciones.Rows.Add(row["Tipo"], row["Estado"], row["Numero"], row["Precio"]);
                 }
+
+                // Deshabilitar selección automática
+                if (dgvHabitaciones.Rows.Count > 0)
+                {
+                    dgvHabitaciones.ClearSelection(); // Deselecciona todas las filas
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
         }
+        private void dgvHabitaciones_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvHabitaciones.CurrentRow != null && dgvHabitaciones.CurrentRow.Selected)
+            {
+                string tipo = dgvHabitaciones.CurrentRow.Cells[0].Value?.ToString();
+                string estado = dgvHabitaciones.CurrentRow.Cells[1].Value?.ToString();
+                string numero = dgvHabitaciones.CurrentRow.Cells[2].Value?.ToString();
+                string precio = dgvHabitaciones.CurrentRow.Cells[3].Value?.ToString();
+
+                cmbTipo.SelectedIndex = cmbTipo.Items.IndexOf(tipo);
+                cmbEstado.SelectedIndex = cmbEstado.Items.IndexOf(estado);
+                txtNumero.Text = numero ?? string.Empty;
+                txtPrecio.Text = precio ?? string.Empty;
+
+                // Deshabilitar el botón Agregar si hay una fila seleccionada
+                btnAgregar.Enabled = false;
+                btnAgregar.Visible = false;
+            }
+            else
+            {
+                // Limpiar los controles y habilitar el botón Agregar si no hay fila seleccionada
+                LimpiarControles();
+                btnAgregar.Enabled = true;
+            }
+        }
         private void formHabitaciones_Load(object sender, EventArgs e)
         {
-
+            if (dgvHabitaciones.Rows.Count > 0)
+            {
+                dgvHabitaciones.CurrentCell = dgvHabitaciones.Rows[0].Cells[0]; // Selecciona la primera fila
+                dgvHabitaciones_SelectionChanged(null, null); // Fuerza la sincronización
+            }
         }
 
         private void dgvHabitaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,150 +128,60 @@ namespace Proyecto
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            /*
-            miConexion = new Conexion();
-            string tipo = cmbTipo.Text;
-            string estado = cmbEstado.Text;
-            int numero = Convert.ToInt32(txtNumero.Text);
-            decimal precio = Convert.ToDecimal(txtNumero.Text);
-            try
+            string tipo = cmbTipo.SelectedItem.ToString();
+            string estado = cmbEstado.SelectedItem.ToString();
+            int numero = int.Parse(txtNumero.Text);
+            decimal precio = decimal.Parse(txtPrecio.Text);
+
+            if (habitaciones.AgregarHabitacion(tipo, estado, numero, precio))
             {
-
-                if (miConexion.AbrirConexion())
-                {
-
-                    // Crear una instancia de InventarioProducto
-                    Habitaciones habitacion = new Habitaciones(nombre, telefono, correo, identificacion);
-
-                    // Llamar al método GuardarEnBaseDeDatos
-                    habitacion.GuardarDB();
-
-                    // Mostrar un mensaje de confirmación
-                    MessageBox.Show("Cliente guardado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // miConexion.CerrarConexion();
-                    //dgvClientes.Rows.Clear();
-                    CargarDatos();
-                }
-                else
-                {
-                    MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
-                }
+                MessageBox.Show("Habitación agregada correctamente");
+                CargarDatosHabitaciones();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se pudo agregar la habitación");
             }
-            */
-            try
-            {
-                // Validar si se seleccionaron opciones en los ComboBox
-                if (cmbTipo.SelectedItem == null || cmbEstado.SelectedItem == null)
-                {
-                    MessageBox.Show("Por favor, seleccione un tipo y un estado para la habitación.");
-                    return;
-                }
-
-                // Validar campos numéricos
-                if (!int.TryParse(txtNumero.Text, out int numero))
-                {
-                    MessageBox.Show("El número de la habitación debe ser un valor numérico.");
-                    return;
-                }
-
-                if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
-                {
-                    MessageBox.Show("El precio debe ser un valor numérico.");
-                    return;
-                }
-
-                string tipo = cmbTipo.SelectedItem.ToString();
-                string estado = cmbEstado.SelectedItem.ToString();
-
-                if (habitaciones.AgregarHabitacion(tipo, estado, numero, precio))
-                {
-                    MessageBox.Show("Habitación agregada correctamente");
-                    CargarDatosHabitaciones();
-                }
-                else
-                {
-                    MessageBox.Show("Error al agregar la habitación. Verifique los datos.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ocurrió un error al agregar la habitación: " + ex.Message);
-            }
-            
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            int numero = int.Parse(txtNumero.Text);
+            if (habitaciones.EliminarHabitacion(numero))
             {
-                // Validar si el número de la habitación es un valor numérico
-                if (!int.TryParse(txtNumero.Text, out int numero))
-                {
-                    MessageBox.Show("El número de la habitación debe ser un valor numérico.");
-                    return;
-                }
-
-                if (habitaciones.EliminarHabitacion(numero))
-                {
-                    MessageBox.Show("Habitación eliminada correctamente");
-                    CargarDatosHabitaciones();
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar la habitación. Verifique el número de habitación.");
-                }
+                MessageBox.Show("Habitación eliminada correctamente");
+                CargarDatosHabitaciones();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ocurrió un error al eliminar la habitación: " + ex.Message);
+                MessageBox.Show("No se pudo eliminar la habitación");
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            try
+            string tipo = dgvHabitaciones.CurrentRow.Cells[0].Value.ToString();
+            string estado = dgvHabitaciones.CurrentRow.Cells[1].Value.ToString();
+            int numeroViejo = int.Parse(dgvHabitaciones.CurrentRow.Cells[2].Value.ToString());
+            int numeroNuevo = int.Parse(txtNumero.Text);
+            decimal precio = decimal.Parse(txtPrecio.Text);
+
+            bool actualizado = habitaciones.ModificarHabitacion(tipo, estado, numeroNuevo, precio, numeroViejo);
+
+            if (actualizado)
             {
-                // Validar si se seleccionaron opciones en los ComboBox
-                if (cmbTipo.SelectedItem == null || cmbEstado.SelectedItem == null)
-                {
-                    MessageBox.Show("Por favor, seleccione un tipo y un estado para la habitación.");
-                    return;
-                }
+                MessageBox.Show("Habitación modificada correctamente.");
+                CargarDatosHabitaciones(); // Recargar los datos
+                //xd
 
-                // Validar campos numéricos
-                if (!int.TryParse(txtNumero.Text, out int numero))
-                {
-                    MessageBox.Show("El número de la habitación debe ser un valor numérico.");
-                    return;
-                }
-
-                if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
-                {
-                    MessageBox.Show("El precio debe ser un valor numérico.");
-                    return;
-                }
-
-                string tipo = cmbTipo.SelectedItem.ToString();
-                string estado = cmbEstado.SelectedItem.ToString();
-
-                if (habitaciones.ModificarHabitacion(tipo, estado, numero, precio))
-                {
-                    MessageBox.Show("Habitación modificada correctamente");
-                    CargarDatosHabitaciones();
-                }
-                else
-                {
-                    MessageBox.Show("Error al modificar la habitación. Verifique los datos.");
-                }
+                // Deseleccionar filas y habilitar el botón Agregar
+                dgvHabitaciones.ClearSelection();
+                btnAgregar.Enabled = true;
+                btnAgregar.Visible = true;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ocurrió un error al modificar la habitación: " + ex.Message);
+                MessageBox.Show("No se pudo modificar la habitación.");
             }
         }
     }
