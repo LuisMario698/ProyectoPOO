@@ -17,6 +17,7 @@ namespace Proyecto
     public partial class formClientes : Form
     {
         Conexion miConexion;
+        Clientes miCliente;
         private bool conexionAbierta = false;
         public string rutaIdentificacion = "";
         public int idSeleccionado {  get; set; }
@@ -460,8 +461,8 @@ namespace Proyecto
                         DataTable dt = new DataTable();
                         adaptador.Fill(dt);
 
-                        dgvClientesModificar.DataSource = dt;
-                        dgvClientesModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                        dgvClientesEliminar.DataSource = dt;
+                        dgvClientesEliminar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                         miConexion.CerrarConexion();
                     }
@@ -474,6 +475,97 @@ namespace Proyecto
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+        }
+
+        private void txtNombreModificar_TextChanged(object sender, EventArgs e)
+        {
+            // Obtener el texto del TextBox
+            string filtro = txtNombreModificar.Text;
+
+            // Obtener el DataTable del DataView (si existe)
+            DataTable dt = null;
+            if (dgvClientesModificar.DataSource is DataView dataView)
+            {
+                dt = dataView.Table;
+            }
+            else if (dgvClientesModificar.DataSource is DataTable dataTable)
+            {
+                dt = dataTable;
+            }
+            else
+            {
+                // Si no hay DataSource, crear uno nuevo
+                dt = new DataTable();
+                dt.Columns.Add("Id", typeof(int));
+                dt.Columns.Add("Nombre", typeof(string));
+                dt.Columns.Add("Numero_telefonico", typeof(string));
+                dt.Columns.Add("Correo", typeof(string));
+                dgvClientesModificar.DataSource = dt;
+            }
+
+            // Crear un nuevo DataView a partir del DataTable original
+            DataView dv = new DataView(dt);
+
+            // Aplicar el filtro al DataView, solo si el TextBox no está vacío
+            if (!string.IsNullOrEmpty(filtro))
+            {
+                dv.RowFilter = $"Nombre LIKE '%{filtro}%'"; // Filtrar por la columna "Nombre"
+            }
+
+            // Asignar el DataView (filtrado o no) al DataGridView
+            dgvClientesModificar.DataSource = dv;
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (idSeleccionado > 0)
+            {
+                miCliente = new Clientes();
+                bool resultado = miCliente.EliminarClientePorId(idSeleccionado);
+
+                if (resultado)
+                {
+                    MessageBox.Show("Producto eliminado correctamente.");
+                    //dgvClientesEliminar.Rows.Clear();
+                    // Aquí puedes refrescar el DataGridView u otras acciones necesarias
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el Producto. Puede que no exista.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un Producto a eliminar.");
+            }
+            CargarDatosEliminar();
+        }
+
+        private void dgvClientesEliminar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow filaSeleccionada = dgvClientesEliminar.Rows[e.RowIndex];
+
+                    // Validar y convertir el ID
+                    if (filaSeleccionada.Cells["Id"].Value != null &&
+                        int.TryParse(filaSeleccionada.Cells["Id"].Value.ToString(), out int id))
+                    {
+                        idSeleccionado = id; // Asigna el ID seleccionado
+                        MessageBox.Show("El id seleccionado fue " + idSeleccionado);
+                    }
+                    else
+                    {
+                        MessageBox.Show("El ID del producto no es válido.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se produjo un error: {ex.Message}");
             }
         }
 

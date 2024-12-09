@@ -5,12 +5,13 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Proyecto
 {
     public class Clientes
     {
-        Conexion miConexion;
+        Conexion miConexion = new Conexion();
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }
@@ -32,12 +33,11 @@ namespace Proyecto
             Correo = correo;
             Identificacion = identificacion;
         }
+        public Clientes() { }
 
 
         public void GuardarDB()
         {
-
-            miConexion = new Conexion();
             var conexion = miConexion.ObtenerConexion();
 
             string consulta = "INSERT INTO clientes (Nombre, Numero_telefonico, Correo, Identificacion) VALUES (@Nombre, @Numero_telefonico, @Correo, @Identificacion)";
@@ -55,6 +55,34 @@ namespace Proyecto
                 miConexion.CerrarConexion(); // Cerrar la conexión aquí
                
             }
+        }
+        public bool EliminarClientePorId(int id)
+        {
+            bool eliminado = false;
+
+            try
+            {
+                using (MySqlConnection conn = miConexion.ObtenerConexion())
+                {
+                    string consulta = "DELETE FROM clientes WHERE Id = @Id";
+                    using (MySqlCommand cmd = new MySqlCommand(consulta, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Id", id);
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        eliminado = filasAfectadas > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error al eliminar producto: {ex.Message}");
+            }
+            finally
+            {
+                miConexion.CerrarConexion();
+            }
+
+            return eliminado;
         }
     }
 }

@@ -119,5 +119,10 @@ namespace Proyecto
                 pbIdentificacionNueva.Enabled = false;
             }
         }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

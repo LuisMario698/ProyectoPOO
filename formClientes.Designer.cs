@@ -51,6 +51,8 @@
             this.txtTelefono = new Guna.UI.WinForms.GunaTextBox();
             this.txtCorreo = new Guna.UI.WinForms.GunaTextBox();
             this.txtNombre = new Guna.UI.WinForms.GunaTextBox();
+            this.pb = new Guna.UI.WinForms.GunaTransfarantPictureBox();
+            this.pb1 = new Guna.UI.WinForms.GunaPictureBox();
             this.tabModificar = new System.Windows.Forms.TabPage();
             this.lblMensaje = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             this.lblBuscar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
@@ -58,18 +60,21 @@
             this.txtNombreModificar = new Guna.UI.WinForms.GunaTextBox();
             this.dgvClientesModificar = new Guna.UI.WinForms.GunaDataGridView();
             this.tabEliminar = new System.Windows.Forms.TabPage();
-            this.pb = new Guna.UI.WinForms.GunaTransfarantPictureBox();
-            this.pb1 = new Guna.UI.WinForms.GunaPictureBox();
             this.dgvClientesEliminar = new Guna.UI.WinForms.GunaDataGridView();
+            this.txtClientesEliminar = new Guna.UI.WinForms.GunaTextBox();
+            this.lblNombreEliminar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.lblBuscarEliminar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.btnEliminar = new Guna.UI.WinForms.GunaButton();
+            this.lblMensajeEliminar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             this.tcClientes.SuspendLayout();
             this.tabConsultar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.tabRegistrar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
             this.tabModificar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesModificar)).BeginInit();
             this.tabEliminar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesEliminar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -344,6 +349,27 @@
             this.txtNombre.Size = new System.Drawing.Size(160, 30);
             this.txtNombre.TabIndex = 20;
             // 
+            // pb
+            // 
+            this.pb.BaseColor = System.Drawing.Color.Black;
+            this.pb.Location = new System.Drawing.Point(327, 55);
+            this.pb.Name = "pb";
+            this.pb.Size = new System.Drawing.Size(187, 122);
+            this.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pb.TabIndex = 28;
+            this.pb.TabStop = false;
+            // 
+            // pb1
+            // 
+            this.pb1.BaseColor = System.Drawing.Color.White;
+            this.pb1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pb1.Location = new System.Drawing.Point(133, 129);
+            this.pb1.Name = "pb1";
+            this.pb1.Size = new System.Drawing.Size(41, 39);
+            this.pb1.TabIndex = 27;
+            this.pb1.TabStop = false;
+            this.pb1.Click += new System.EventHandler(this.pb1_Click);
+            // 
             // tabModificar
             // 
             this.tabModificar.Controls.Add(this.lblMensaje);
@@ -366,7 +392,7 @@
             this.lblMensaje.BackColor = System.Drawing.Color.Transparent;
             this.lblMensaje.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblMensaje.ForeColor = System.Drawing.Color.Silver;
-            this.lblMensaje.Location = new System.Drawing.Point(123, 307);
+            this.lblMensaje.Location = new System.Drawing.Point(143, 307);
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.Size = new System.Drawing.Size(301, 20);
             this.lblMensaje.TabIndex = 32;
@@ -411,6 +437,7 @@
             this.txtNombreModificar.SelectedText = "";
             this.txtNombreModificar.Size = new System.Drawing.Size(160, 30);
             this.txtNombreModificar.TabIndex = 27;
+            this.txtNombreModificar.TextChanged += new System.EventHandler(this.txtNombreModificar_TextChanged);
             // 
             // dgvClientesModificar
             // 
@@ -473,6 +500,11 @@
             // 
             // tabEliminar
             // 
+            this.tabEliminar.Controls.Add(this.lblMensajeEliminar);
+            this.tabEliminar.Controls.Add(this.btnEliminar);
+            this.tabEliminar.Controls.Add(this.lblBuscarEliminar);
+            this.tabEliminar.Controls.Add(this.lblNombreEliminar);
+            this.tabEliminar.Controls.Add(this.txtClientesEliminar);
             this.tabEliminar.Controls.Add(this.dgvClientesEliminar);
             this.tabEliminar.Location = new System.Drawing.Point(0, 40);
             this.tabEliminar.Name = "tabEliminar";
@@ -482,27 +514,6 @@
             this.tabEliminar.Text = "Eliminar";
             this.tabEliminar.UseVisualStyleBackColor = true;
             this.tabEliminar.Click += new System.EventHandler(this.tabEliminar_Click);
-            // 
-            // pb
-            // 
-            this.pb.BaseColor = System.Drawing.Color.Black;
-            this.pb.Location = new System.Drawing.Point(327, 55);
-            this.pb.Name = "pb";
-            this.pb.Size = new System.Drawing.Size(187, 122);
-            this.pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pb.TabIndex = 28;
-            this.pb.TabStop = false;
-            // 
-            // pb1
-            // 
-            this.pb1.BaseColor = System.Drawing.Color.White;
-            this.pb1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pb1.Location = new System.Drawing.Point(133, 129);
-            this.pb1.Name = "pb1";
-            this.pb1.Size = new System.Drawing.Size(41, 39);
-            this.pb1.TabIndex = 27;
-            this.pb1.TabStop = false;
-            this.pb1.Click += new System.EventHandler(this.pb1_Click);
             // 
             // dgvClientesEliminar
             // 
@@ -521,7 +532,7 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvClientesEliminar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvClientesEliminar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientesEliminar.ColumnHeadersHeight = 4;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -532,11 +543,11 @@
             this.dgvClientesEliminar.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvClientesEliminar.EnableHeadersVisualStyles = false;
             this.dgvClientesEliminar.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvClientesEliminar.Location = new System.Drawing.Point(183, 102);
+            this.dgvClientesEliminar.Location = new System.Drawing.Point(28, 90);
             this.dgvClientesEliminar.Name = "dgvClientesEliminar";
             this.dgvClientesEliminar.RowHeadersVisible = false;
             this.dgvClientesEliminar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvClientesEliminar.Size = new System.Drawing.Size(240, 150);
+            this.dgvClientesEliminar.Size = new System.Drawing.Size(556, 195);
             this.dgvClientesEliminar.TabIndex = 0;
             this.dgvClientesEliminar.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvClientesEliminar.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -550,7 +561,7 @@
             this.dgvClientesEliminar.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvClientesEliminar.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.dgvClientesEliminar.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvClientesEliminar.ThemeStyle.HeaderStyle.Height = 4;
             this.dgvClientesEliminar.ThemeStyle.ReadOnly = false;
             this.dgvClientesEliminar.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -560,6 +571,87 @@
             this.dgvClientesEliminar.ThemeStyle.RowsStyle.Height = 22;
             this.dgvClientesEliminar.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvClientesEliminar.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvClientesEliminar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientesEliminar_CellClick);
+            // 
+            // txtClientesEliminar
+            // 
+            this.txtClientesEliminar.BaseColor = System.Drawing.Color.White;
+            this.txtClientesEliminar.BorderColor = System.Drawing.Color.Silver;
+            this.txtClientesEliminar.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtClientesEliminar.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtClientesEliminar.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txtClientesEliminar.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtClientesEliminar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtClientesEliminar.Location = new System.Drawing.Point(229, 54);
+            this.txtClientesEliminar.Name = "txtClientesEliminar";
+            this.txtClientesEliminar.PasswordChar = '\0';
+            this.txtClientesEliminar.SelectedText = "";
+            this.txtClientesEliminar.Size = new System.Drawing.Size(160, 30);
+            this.txtClientesEliminar.TabIndex = 28;
+            // 
+            // lblNombreEliminar
+            // 
+            this.lblNombreEliminar.AutoSize = true;
+            this.lblNombreEliminar.BackColor = System.Drawing.Color.Transparent;
+            this.lblNombreEliminar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblNombreEliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
+            this.lblNombreEliminar.Location = new System.Drawing.Point(152, 59);
+            this.lblNombreEliminar.Name = "lblNombreEliminar";
+            this.lblNombreEliminar.Size = new System.Drawing.Size(71, 20);
+            this.lblNombreEliminar.TabIndex = 29;
+            this.lblNombreEliminar.Text = "Nombre:";
+            // 
+            // lblBuscarEliminar
+            // 
+            this.lblBuscarEliminar.AutoSize = true;
+            this.lblBuscarEliminar.BackColor = System.Drawing.Color.Transparent;
+            this.lblBuscarEliminar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblBuscarEliminar.ForeColor = System.Drawing.Color.Silver;
+            this.lblBuscarEliminar.Location = new System.Drawing.Point(281, 31);
+            this.lblBuscarEliminar.Name = "lblBuscarEliminar";
+            this.lblBuscarEliminar.Size = new System.Drawing.Size(56, 20);
+            this.lblBuscarEliminar.TabIndex = 32;
+            this.lblBuscarEliminar.Text = "Buscar";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.AnimationHoverSpeed = 0.07F;
+            this.btnEliminar.AnimationSpeed = 0.03F;
+            this.btnEliminar.BackColor = System.Drawing.Color.Transparent;
+            this.btnEliminar.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.btnEliminar.BorderColor = System.Drawing.Color.Black;
+            this.btnEliminar.BorderSize = 1;
+            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnEliminar.FocusedColor = System.Drawing.Color.Empty;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Image = null;
+            this.btnEliminar.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnEliminar.Location = new System.Drawing.Point(241, 308);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnEliminar.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnEliminar.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnEliminar.OnHoverImage = null;
+            this.btnEliminar.OnPressedColor = System.Drawing.Color.Black;
+            this.btnEliminar.Radius = 10;
+            this.btnEliminar.Size = new System.Drawing.Size(124, 42);
+            this.btnEliminar.TabIndex = 33;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // lblMensajeEliminar
+            // 
+            this.lblMensajeEliminar.AutoSize = true;
+            this.lblMensajeEliminar.BackColor = System.Drawing.Color.Transparent;
+            this.lblMensajeEliminar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblMensajeEliminar.ForeColor = System.Drawing.Color.Silver;
+            this.lblMensajeEliminar.Location = new System.Drawing.Point(152, 285);
+            this.lblMensajeEliminar.Name = "lblMensajeEliminar";
+            this.lblMensajeEliminar.Size = new System.Drawing.Size(291, 20);
+            this.lblMensajeEliminar.TabIndex = 34;
+            this.lblMensajeEliminar.Text = "Por favor, seleccione el cliente a eliminar";
             // 
             // formClientes
             // 
@@ -577,12 +669,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
             this.tabRegistrar.ResumeLayout(false);
             this.tabRegistrar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pb1)).EndInit();
             this.tabModificar.ResumeLayout(false);
             this.tabModificar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesModificar)).EndInit();
             this.tabEliminar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pb1)).EndInit();
+            this.tabEliminar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesEliminar)).EndInit();
             this.ResumeLayout(false);
 
@@ -614,5 +707,10 @@
         private Guna.UI.WinForms.GunaDataGridView dgvClientesModificar;
         private ReaLTaiizor.Controls.DungeonHeaderLabel lblMensaje;
         private Guna.UI.WinForms.GunaDataGridView dgvClientesEliminar;
+        private Guna.UI.WinForms.GunaButton btnEliminar;
+        private ReaLTaiizor.Controls.DungeonHeaderLabel lblBuscarEliminar;
+        private ReaLTaiizor.Controls.DungeonHeaderLabel lblNombreEliminar;
+        private Guna.UI.WinForms.GunaTextBox txtClientesEliminar;
+        private ReaLTaiizor.Controls.DungeonHeaderLabel lblMensajeEliminar;
     }
 }
