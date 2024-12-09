@@ -52,6 +52,7 @@ namespace Proyecto
             dgvHabitaciones.Columns[3].Name = "Precio";
             dgvHabitaciones.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             dgvHabitaciones.ColumnHeadersHeight = 40;
+            dgvHabitaciones.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
         }
 
         // Método para cargar datos en el DataGridView
@@ -83,114 +84,51 @@ namespace Proyecto
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            string tipo = cmbTipo.SelectedItem.ToString();
+            string estado = cmbEstado.SelectedItem.ToString();
+            int numero = int.Parse(txtNumero.Text);
+            decimal precio = decimal.Parse(txtPrecio.Text);
+
+            if (habitaciones.AgregarHabitacion(tipo, estado, numero, precio))
             {
-                // Validar si se seleccionaron opciones en los ComboBox
-                if (cmbTipo.SelectedItem == null || cmbEstado.SelectedItem == null)
-                {
-                    MessageBox.Show("Por favor, seleccione un tipo y un estado para la habitación.");
-                    return;
-                }
-
-                // Validar campos numéricos
-                if (!int.TryParse(txtNumero.Text, out int numero))
-                {
-                    MessageBox.Show("El número de la habitación debe ser un valor numérico.");
-                    return;
-                }
-
-                if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
-                {
-                    MessageBox.Show("El precio debe ser un valor numérico.");
-                    return;
-                }
-
-                string tipo = cmbTipo.SelectedItem.ToString();
-                string estado = cmbEstado.SelectedItem.ToString();
-
-                if (habitaciones.AgregarHabitacion(tipo, estado, numero, precio))
-                {
-                    MessageBox.Show("Habitación agregada correctamente");
-                    CargarDatosHabitaciones();
-                }
-                else
-                {
-                    MessageBox.Show("Error al agregar la habitación. Verifique los datos.");
-                }
+                MessageBox.Show("Habitación agregada correctamente");
+                CargarDatosHabitaciones();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ocurrió un error al agregar la habitación: " + ex.Message);
+                MessageBox.Show("No se pudo agregar la habitación");
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            try
+            int numero = int.Parse(txtNumero.Text);
+            if (habitaciones.EliminarHabitacion(numero))
             {
-                // Validar si el número de la habitación es un valor numérico
-                if (!int.TryParse(txtNumero.Text, out int numero))
-                {
-                    MessageBox.Show("El número de la habitación debe ser un valor numérico.");
-                    return;
-                }
-
-                if (habitaciones.EliminarHabitacion(numero))
-                {
-                    MessageBox.Show("Habitación eliminada correctamente");
-                    CargarDatosHabitaciones();
-                }
-                else
-                {
-                    MessageBox.Show("Error al eliminar la habitación. Verifique el número de habitación.");
-                }
+                MessageBox.Show("Habitación eliminada correctamente");
+                CargarDatosHabitaciones();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ocurrió un error al eliminar la habitación: " + ex.Message);
+                MessageBox.Show("No se pudo eliminar la habitación");
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            try
+            string tipo = cmbTipo.SelectedItem.ToString();
+            string estado = cmbEstado.SelectedItem.ToString();
+            int numero = int.Parse(txtNumero.Text);
+            decimal precio = decimal.Parse(txtPrecio.Text);
+
+            if (habitaciones.ModificarHabitacion(tipo, estado, numero, precio))
             {
-                // Validar si se seleccionaron opciones en los ComboBox
-                if (cmbTipo.SelectedItem == null || cmbEstado.SelectedItem == null)
-                {
-                    MessageBox.Show("Por favor, seleccione un tipo y un estado para la habitación.");
-                    return;
-                }
-
-                // Validar campos numéricos
-                if (!int.TryParse(txtNumero.Text, out int numero))
-                {
-                    MessageBox.Show("El número de la habitación debe ser un valor numérico.");
-                    return;
-                }
-
-                if (!decimal.TryParse(txtPrecio.Text, out decimal precio))
-                {
-                    MessageBox.Show("El precio debe ser un valor numérico.");
-                    return;
-                }
-
-                string tipo = cmbTipo.SelectedItem.ToString();
-                string estado = cmbEstado.SelectedItem.ToString();
-
-                if (habitaciones.ModificarHabitacion(tipo, estado, numero, precio))
-                {
-                    MessageBox.Show("Habitación modificada correctamente");
-                    CargarDatosHabitaciones();
-                }
-                else
-                {
-                    MessageBox.Show("Error al modificar la habitación. Verifique los datos.");
-                }
+                MessageBox.Show("Habitación modificada correctamente");
+                CargarDatosHabitaciones();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Ocurrió un error al modificar la habitación: " + ex.Message);
+                MessageBox.Show("No se pudo modificar la habitación");
             }
         }
     }
