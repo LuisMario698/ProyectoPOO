@@ -13,24 +13,31 @@ namespace Proyecto
 {
     public partial class formReservas : Form
     {
+        private Habitaciones habitaciones;
         public formReservas()
         {
             InitializeComponent();
+            habitaciones = new Habitaciones();
         }
 
         private void formReservas_Load(object sender, EventArgs e)
         {
-
+            CargarDatos();
         }
         private void CargarDatos()
         {
-            Conexion miConexion = new Conexion();
-            ObtenerDatosHabitaciones obtenerDatos = new ObtenerDatosHabitaciones();
+            try
+            {
+                // Obtener los datos de habitaciones
+                DataTable dtHabitaciones = habitaciones.ObtenerHabitaciones();
 
-            DataTable dtHabitaciones = obtenerDatos.ObtenerHabitaciones(miConexion);
-
-            // Mostrar los datos en un DataGridView
-            dgvReservas.DataSource = dtHabitaciones;
+                // Mostrar los datos en el DataGridView
+                dgvReservas.DataSource = dtHabitaciones;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos de las habitaciones: " + ex.Message);
+            }
         }
     }
 }

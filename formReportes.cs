@@ -13,24 +13,32 @@ namespace Proyecto
 {
     public partial class formReportes : Form
     {
+        private Habitaciones habitaciones;
+
         public formReportes()
         {
             InitializeComponent();
+            habitaciones = new Habitaciones();
         }
 
         private void formReportes_Load(object sender, EventArgs e)
         {
-
+            CargarDatos();
         }
         private void CargarDatos()
         {
-            Conexion miConexion = new Conexion();
-            ObtenerDatosHabitaciones obtenerDatos = new ObtenerDatosHabitaciones();
+            try
+            {
+                // Obtener los datos de habitaciones
+                DataTable dtHabitaciones = habitaciones.ObtenerHabitaciones();
 
-            DataTable dtHabitaciones = obtenerDatos.ObtenerHabitaciones(miConexion);
-
-            // Mostrar los datos en un DataGridView
-            dgvReportes.DataSource = dtHabitaciones;
+                // Mostrar los datos en el DataGridView
+                dgvReportes.DataSource = dtHabitaciones;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos de las habitaciones: " + ex.Message);
+            }
         }
     }
 }
