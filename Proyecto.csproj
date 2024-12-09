@@ -178,6 +178,7 @@
     <Compile Include="pruebas de diseño.Designer.cs">
       <DependentUpon>pruebas de diseño.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reservas.cs" />
     <EmbeddedResource Include="formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
     </EmbeddedResource>
