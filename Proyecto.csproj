@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuscarImagen.cs" />
     <Compile Include="Clientes.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="formClientes.cs">
@@ -125,6 +126,12 @@
     </Compile>
     <Compile Include="formClientes.Designer.cs">
       <DependentUpon>formClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="formClientesModificar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formClientesModificar.Designer.cs">
+      <DependentUpon>formClientesModificar.cs</DependentUpon>
     </Compile>
     <Compile Include="formClientesRegistrar.cs">
       <SubType>Form</SubType>
@@ -173,6 +180,9 @@
     </Compile>
     <EmbeddedResource Include="formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formClientesModificar.resx">
+      <DependentUpon>formClientesModificar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formClientesRegistrar.resx">
       <DependentUpon>formClientesRegistrar.cs</DependentUpon>

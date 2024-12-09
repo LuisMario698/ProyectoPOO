@@ -19,6 +19,7 @@ namespace Proyecto
         Conexion miConexion;
         private bool conexionAbierta = false;
         public string rutaIdentificacion = "";
+        public int idSeleccionado {  get; set; }
         public formClientes()
         {
             InitializeComponent();
@@ -55,17 +56,51 @@ namespace Proyecto
             dgvClientes.Columns[0].Width = 30;
             dgvClientes.Columns[1].Width = 150;
             dgvClientes.Columns[2].Width = 100;
-
+            
             dgvClientes.ColumnHeadersHeight = 40;
 
-            
+            //---------------------------------------------------------------------------------------------------
+            dgvClientesModificar.AutoGenerateColumns = false; // Desactiva la generación automática
 
+            // Configura las columnas y vincúlalas a los nombres del DataTable
+            dgvClientesModificar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Id",
+                DataPropertyName = "Id", // Nombre de la columna en el DataTable
+                HeaderText = "ID"
+            });
+            dgvClientesModificar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Nombre",
+                DataPropertyName = "Nombre", // Nombre de la columna en el DataTable
+                HeaderText = "Nombre"
+            });
+            dgvClientesModificar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Numero_Telefonico",
+                DataPropertyName = "Numero_telefonico", // Nombre de la columna en el DataTable
+                HeaderText = "Telefono"
+            });
+            dgvClientesModificar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Correo",
+                DataPropertyName = "Correo", // Nombre de la columna en el DataTable
+                HeaderText = "Correo"
+            });
+
+            dgvClientesModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvClientesModificar.Columns[0].Width = 30;
+            dgvClientesModificar.Columns[1].Width = 150;
+            dgvClientesModificar.Columns[2].Width = 100;
+
+            dgvClientesModificar.ColumnHeadersHeight = 40;
         }
 
 
         private void formClientes_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            CargarDatosModificar();
             // Carga la imagen en el PictureBox
             pb1.Image = Image.FromFile("C:/Users/LuisM/Downloads/file.png");
 
@@ -233,9 +268,126 @@ namespace Proyecto
         {
             
         }
-
         //------------------------------------------------------------------------------------------------------------------------
         //------------------------------------------------REGISTRAR---------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------MODIFICAR---------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+        private void CargarDatosModificar()
+        {
+            miConexion = new Conexion();
+
+            try
+            {
+                using (MySqlConnection conexion = miConexion.ObtenerConexion())
+                {
+                    if (miConexion.AbrirConexion())
+                    {
+                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo FROM clientes";
+                        MySqlCommand comando = new MySqlCommand(consulta, conexion);
+
+                        MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
+                        DataTable dt = new DataTable();
+                        adaptador.Fill(dt);
+
+                        dgvClientesModificar.DataSource = dt;
+                        dgvClientesModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        miConexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+        }
+        private void dgvClientesModificar_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow filaSeleccionada = dgvClientesModificar.Rows[e.RowIndex];
+
+                    // Validar y convertir el ID
+                    if (filaSeleccionada.Cells["Id"].Value != null &&
+                        int.TryParse(filaSeleccionada.Cells["Id"].Value.ToString(), out int id))
+                    {
+                        idSeleccionado = id; // Asigna el ID seleccionado
+                        MessageBox.Show($"ID seleccionado: {idSeleccionado}");
+
+                        // Validar y obtener otros valores
+                        string nombre = filaSeleccionada.Cells["Nombre"].Value?.ToString() ?? string.Empty;
+                        string telefono = filaSeleccionada.Cells["Numero_telefonico"].Value?.ToString() ?? string.Empty;
+                        string correo = filaSeleccionada.Cells["Correo"].Value?.ToString() ?? string.Empty;
+
+                        
+                           
+                            // Mostrar información del producto
+                        MessageBox.Show($"Seleccionaste el producto: {nombre}\nTelefono: {telefono}\nCorreo: {correo}");
+
+                        formClientesModificar modificar = new formClientesModificar
+                        {
+                            idRecivido = idSeleccionado,
+                            Nombre = nombre,
+                            Telefono = telefono,
+                            Correo = correo
+                        };
+
+                        // Obtener la imagen del producto
+                        BuscarImagen imagen = new BuscarImagen();
+
+                        if (imagen.Existe(idSeleccionado))
+                        {
+                            Image imagenEncontrada = imagen.ObtenerImagenPorId(idSeleccionado);
+
+                            if (imagenEncontrada != null)
+                            {
+                                modificar.Identificacion = imagenEncontrada; // Asignar la imagen encontrada
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontró la imagen para el cliente seleccionado.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show($"No hay ningún cliente con el ID: {idSeleccionado}");
+                        }
+
+                        modificar.ShowDialog();
+                        modificar.Activate();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El ID del cliente no es válido.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Se produjo un error: {ex.Message}");
+            }
+        }
+
+        private void dgvClientesModificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
+
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------MODIFICAR---------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
     }
 }
