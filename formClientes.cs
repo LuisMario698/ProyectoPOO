@@ -18,6 +18,7 @@ namespace Proyecto
     {
         Conexion miConexion;
         Clientes miCliente;
+        Clientes enlace;
         private bool conexionAbierta = false;
         public string rutaIdentificacion = "";
         public int idSeleccionado {  get; set; }
@@ -147,6 +148,29 @@ namespace Proyecto
             // Ajusta la imagen al tamaño del PictureBox
             pb1.SizeMode = PictureBoxSizeMode.StretchImage;
             pb.SizeMode = PictureBoxSizeMode.Zoom;
+
+            pbIdentificacionNueva.Visible = true;
+            pbArchivos.Enabled = false;
+            pbArchivos.Visible = false;
+
+            txtNombre.Enabled = false;
+            txtTelefono.Enabled = false;
+            txtCorreo.Enabled = false; 
+
+            pbIdentificacionAntes.Enabled = false;
+            pbIdentificacionAntes.SizeMode = PictureBoxSizeMode.Zoom;
+            pbIdentificacionNueva.Enabled = false;
+            pbIdentificacionNueva.SizeMode = PictureBoxSizeMode.Zoom;
+
+            pbFlecha1.Image = Properties.Resources.flecha;
+            pbFlecha1.SizeMode = PictureBoxSizeMode.Zoom;
+            pbFlecha2.Image = Properties.Resources.flecha;
+            pbFlecha2.SizeMode = PictureBoxSizeMode.Zoom;
+            pbFlecha3.Image = Properties.Resources.flecha;
+            pbFlecha3.SizeMode = PictureBoxSizeMode.Zoom;
+            pbArchivos.Image = Properties.Resources.file;
+            pbArchivos.SizeMode = PictureBoxSizeMode.Zoom;
+
         }
         //------------------------------------------------------------------------------------------------------------------------
         //------------------------------------------------CONSULTA----------------------------------------------------------------
@@ -373,7 +397,15 @@ namespace Proyecto
                             // Mostrar información del producto
                         MessageBox.Show($"Seleccionaste el producto: {nombre}\nTelefono: {telefono}\nCorreo: {correo}");
 
+                        txtNombreAntes.Text = nombre;
+                        txtTelefonoAntes.Text = telefono;
+                        txtCorreoAntes.Text = correo;
 
+                        txtNombreNuevo.Text = nombre;
+                        txtTelefonoNuevo.Text = telefono;
+                        txtCorreoNuevo.Text = correo;
+
+                        /*
                         formClientesModificar modificar = new formClientesModificar
                         {
                             idRecivido = idSeleccionado,
@@ -381,6 +413,7 @@ namespace Proyecto
                             Telefono = telefono,
                             Correo = correo
                         };
+                        */
 
                         // Obtener la imagen del producto
                         BuscarImagen imagen = new BuscarImagen();
@@ -391,23 +424,28 @@ namespace Proyecto
 
                             if (imagenEncontrada != null)
                             {
-                                modificar.Identificacion = imagenEncontrada; // Asignar la imagen encontrada
+                                //modificar.Identificacion = imagenEncontrada; // Asignar la imagen encontrada
+                                pbIdentificacionAntes.Image = imagenEncontrada;
                             }
                             else
                             {
                                 MessageBox.Show("No se encontró la imagen para el cliente seleccionado.");
+                                pbIdentificacionAntes.Image = Properties.Resources.equis;
                             }
                         }
                         else
                         {
                             MessageBox.Show($"No hay ningún cliente con el ID: {idSeleccionado}");
                         }
+                        /*
                         formInicio inicio = new formInicio();
                         this.Hide();
                         inicio.Hide();
                         inicio.Enabled = false;
+                        
                         modificar.Show();
                         modificar.Activate();
+                        */
                     }
                     else
                     {
@@ -576,6 +614,88 @@ namespace Proyecto
         private void lblMensaje_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void switchIdentificacion_CheckedChanged(object sender, EventArgs e)
+        {
+            if (switchIdentificacion.Checked)
+            {
+                // Si está activado, oculta el botón
+                pbArchivos.Visible = true;
+                pbArchivos.Enabled = true;
+                pbIdentificacionNueva.Visible = true;
+                pbIdentificacionNueva.Enabled = true;
+            }
+            else
+            {
+                // Si está desactivado, muestra el botón
+                pbArchivos.Visible = false;
+                pbArchivos.Enabled = false;
+                pbIdentificacionNueva.Visible = false;
+                pbIdentificacionNueva.Enabled = false;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (switchIdentificacion.Checked)
+            {
+                if (!string.IsNullOrEmpty(rutaIdentificacion))
+                {
+                    int id = idSeleccionado;
+                    byte[] identificacion = File.ReadAllBytes(rutaIdentificacion);
+                    string nombre = txtNombreNuevo.Text;
+                    string telefono = txtTelefonoNuevo.Text;
+                    string correo = txtCorreoNuevo.Text;
+                    enlace = new Clientes();
+                    // Llamar al método de actualización en la base de datos
+                    bool resultado = enlace.ActualizarCliente(id, nombre, telefono, correo, identificacion);
+
+                    if (resultado)
+                    {
+                        MessageBox.Show("Cliente actualizado correctamente.");
+                        this.Close();
+                        formClientes regresar = new formClientes();
+                        regresar.TopMost = true;
+                        regresar.Show();
+                        regresar.Activate();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al actualizar el cliente.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Por favor selecciona una imagen.");
+                }
+            }
+            else
+            {
+                int id = idSeleccionado;
+                string nombre = txtNombreNuevo.Text;
+                string telefono = txtTelefonoNuevo.Text;
+                string correo = txtCorreoNuevo.Text;
+                enlace = new Clientes();
+                // Llamar al método de actualización en la base de datos
+                bool resultado = enlace.ActualizarClienteSinFoto(id, nombre, telefono, correo);
+
+                if (resultado)
+                {
+                    MessageBox.Show("Cliente actualizado correctamente.");
+                    //formClientes regresar = new formClientes();
+                    CargarDatosModificar();
+
+                    /*regresar.TopMost = true;
+                    regresar.Show();
+                    regresar.Activate();
+                    */
+                }
+                else
+                {
+                    MessageBox.Show("Error al actualizar el cliente.");
+                }
+            }
         }
 
         //------------------------------------------------------------------------------------------------------------------------
