@@ -84,5 +84,76 @@ namespace Proyecto
 
             return eliminado;
         }
+        public bool ActualizarCliente(int id, string nombre, string telefono, string correo, byte[] identificacion)
+        {
+            string cadenaConexion = "server=localhost;port=3306;database=cooking;user=root;password=;";
+
+            string consulta = "UPDATE clientes SET Id = @Id, Nombre = @Nombre, Numero_Telefonico = @Telefono, Correo = @Correo, Identificacion = @Identificacion " +
+                "WHERE Id = @id";
+
+            try
+            {
+                using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
+                {
+                    conexion.Open();
+
+                    using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                    {
+                        comando.Parameters.AddWithValue("@Id", id);
+                        comando.Parameters.AddWithValue("@Nombre", nombre);
+                        comando.Parameters.AddWithValue("@Telefono", telefono);
+                        comando.Parameters.AddWithValue("@Correo", correo);
+                        comando.Parameters.AddWithValue("@Identificacion", identificacion);
+                        int filasActualizadas = comando.ExecuteNonQuery();
+                        return filasActualizadas > 0;
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error de base de datos: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+                return false;
+            }
+        }
+            public bool ActualizarClienteSinFoto(int id, string nombre, string telefono, string correo)
+            {
+                string cadenaConexion = "server=localhost;port=3306;database=cooking;user=root;password=;";
+
+                string consulta = "UPDATE clientes SET Id = @Id, Nombre = @Nombre, Numero_Telefonico = @Telefono, Correo = @Correo " +
+                    "WHERE Id = @id";
+
+                try
+                {
+                    using (MySqlConnection conexion = new MySqlConnection(cadenaConexion))
+                    {
+                        conexion.Open();
+
+                        using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                        {
+                            comando.Parameters.AddWithValue("@Id", id);
+                            comando.Parameters.AddWithValue("@Nombre", nombre);
+                            comando.Parameters.AddWithValue("@Telefono", telefono);
+                            comando.Parameters.AddWithValue("@Correo", correo);
+                            int filasActualizadas = comando.ExecuteNonQuery();
+                            return filasActualizadas > 0;
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Error de base de datos: {ex.Message}");
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}");
+                    return false;
+                }
+            }
     }
 }

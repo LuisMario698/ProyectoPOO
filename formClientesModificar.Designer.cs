@@ -254,6 +254,7 @@
             this.txtCorreoNuevo.SelectedText = "";
             this.txtCorreoNuevo.Size = new System.Drawing.Size(140, 30);
             this.txtCorreoNuevo.TabIndex = 37;
+            this.txtCorreoNuevo.TextChanged += new System.EventHandler(this.txtCorreoNuevo_TextChanged);
             // 
             // txtCorreo
             // 
@@ -286,6 +287,7 @@
             this.txtTelefonoNuevo.SelectedText = "";
             this.txtTelefonoNuevo.Size = new System.Drawing.Size(140, 30);
             this.txtTelefonoNuevo.TabIndex = 35;
+            this.txtTelefonoNuevo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoNuevo_KeyPress);
             // 
             // txtTelefono
             // 
@@ -318,6 +320,8 @@
             this.txtNombreNuevo.SelectedText = "";
             this.txtNombreNuevo.Size = new System.Drawing.Size(140, 30);
             this.txtNombreNuevo.TabIndex = 33;
+            this.txtNombreNuevo.TextChanged += new System.EventHandler(this.txtNombreNuevo_TextChanged);
+            this.txtNombreNuevo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreNuevo_KeyPress);
             // 
             // lblAntes
             // 

@@ -51,7 +51,7 @@
             this.gridTabla.BackColor = System.Drawing.Color.White;
             this.gridTabla.ColumnCount = 2;
             this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 600F));
+            this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1250F));
             this.gridTabla.Controls.Add(this.pnLateral, 0, 1);
             this.gridTabla.Controls.Add(this.pnLogo, 0, 0);
             this.gridTabla.Controls.Add(this.pnTop, 1, 0);
@@ -60,10 +60,9 @@
             this.gridTabla.Margin = new System.Windows.Forms.Padding(2);
             this.gridTabla.Name = "gridTabla";
             this.gridTabla.RowCount = 2;
-            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 390F));
-            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
-            this.gridTabla.Size = new System.Drawing.Size(750, 460);
+            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 560F));
+            this.gridTabla.Size = new System.Drawing.Size(1430, 796);
             this.gridTabla.TabIndex = 1;
             // 
             // pnLateral
@@ -75,10 +74,10 @@
             this.pnLateral.Controls.Add(this.btnPagos);
             this.pnLateral.Controls.Add(this.btnReportes);
             this.pnLateral.Controls.Add(this.pnExtra);
-            this.pnLateral.Location = new System.Drawing.Point(2, 51);
+            this.pnLateral.Location = new System.Drawing.Point(2, 52);
             this.pnLateral.Margin = new System.Windows.Forms.Padding(2);
             this.pnLateral.Name = "pnLateral";
-            this.pnLateral.Size = new System.Drawing.Size(146, 407);
+            this.pnLateral.Size = new System.Drawing.Size(146, 560);
             this.pnLateral.TabIndex = 1;
             // 
             // btnHabitaciones
@@ -214,10 +213,11 @@
             // pnExtra
             // 
             this.pnExtra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
+            this.pnExtra.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnExtra.Location = new System.Drawing.Point(2, 357);
             this.pnExtra.Margin = new System.Windows.Forms.Padding(2);
             this.pnExtra.Name = "pnExtra";
-            this.pnExtra.Size = new System.Drawing.Size(141, 52);
+            this.pnExtra.Size = new System.Drawing.Size(141, 0);
             this.pnExtra.TabIndex = 5;
             // 
             // pnLogo
@@ -226,7 +226,7 @@
             this.pnLogo.Location = new System.Drawing.Point(2, 2);
             this.pnLogo.Margin = new System.Windows.Forms.Padding(2);
             this.pnLogo.Name = "pnLogo";
-            this.pnLogo.Size = new System.Drawing.Size(146, 44);
+            this.pnLogo.Size = new System.Drawing.Size(146, 46);
             this.pnLogo.TabIndex = 2;
             // 
             // pnTop
@@ -234,16 +234,16 @@
             this.pnTop.Location = new System.Drawing.Point(152, 2);
             this.pnTop.Margin = new System.Windows.Forms.Padding(2);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(596, 44);
+            this.pnTop.Size = new System.Drawing.Size(1250, 46);
             this.pnTop.TabIndex = 3;
             // 
             // pnCuerpo
             // 
             this.pnCuerpo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(219)))), ((int)(((byte)(217)))));
-            this.pnCuerpo.Location = new System.Drawing.Point(152, 51);
+            this.pnCuerpo.Location = new System.Drawing.Point(152, 52);
             this.pnCuerpo.Margin = new System.Windows.Forms.Padding(2);
             this.pnCuerpo.Name = "pnCuerpo";
-            this.pnCuerpo.Size = new System.Drawing.Size(596, 407);
+            this.pnCuerpo.Size = new System.Drawing.Size(1250, 560);
             this.pnCuerpo.TabIndex = 4;
             // 
             // pnHeader
@@ -264,7 +264,7 @@
             this.pnHeader.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pnHeader.ShowMaximize = true;
             this.pnHeader.ShowMinimize = true;
-            this.pnHeader.Size = new System.Drawing.Size(750, 490);
+            this.pnHeader.Size = new System.Drawing.Size(1400, 640);
             this.pnHeader.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.pnHeader.TabIndex = 2;
             this.pnHeader.TitleText = "";
@@ -280,14 +280,14 @@
             this.pnHeader.WorkingArea.Location = new System.Drawing.Point(0, 30);
             this.pnHeader.WorkingArea.Margin = new System.Windows.Forms.Padding(2);
             this.pnHeader.WorkingArea.Name = "WorkingArea";
-            this.pnHeader.WorkingArea.Size = new System.Drawing.Size(750, 460);
+            this.pnHeader.WorkingArea.Size = new System.Drawing.Size(1400, 610);
             this.pnHeader.WorkingArea.TabIndex = 0;
             // 
             // formInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 490);
+            this.ClientSize = new System.Drawing.Size(1400, 640);
             this.Controls.Add(this.pnHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);

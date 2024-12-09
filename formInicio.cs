@@ -16,7 +16,7 @@ namespace Proyecto
         public formInicio()
         {
             InitializeComponent();
-
+            this.CenterToScreen();
             //Colores de paneles
             pnLogo.BackColor = ColorTranslator.FromHtml("#e57e31");
             pnTop.BackColor = ColorTranslator.FromHtml("#ffffff");
@@ -33,7 +33,7 @@ namespace Proyecto
 
         private void formInicio_Load(object sender, EventArgs e)
         {
-
+            this.CenterToScreen();
         }
 
         private void ActualizarCuerpo()

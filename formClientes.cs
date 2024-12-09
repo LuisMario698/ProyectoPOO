@@ -373,6 +373,7 @@ namespace Proyecto
                             // Mostrar información del producto
                         MessageBox.Show($"Seleccionaste el producto: {nombre}\nTelefono: {telefono}\nCorreo: {correo}");
 
+
                         formClientesModificar modificar = new formClientesModificar
                         {
                             idRecivido = idSeleccionado,
@@ -401,8 +402,11 @@ namespace Proyecto
                         {
                             MessageBox.Show($"No hay ningún cliente con el ID: {idSeleccionado}");
                         }
-
-                        modificar.ShowDialog();
+                        formInicio inicio = new formInicio();
+                        this.Hide();
+                        inicio.Hide();
+                        inicio.Enabled = false;
+                        modificar.Show();
                         modificar.Activate();
                     }
                     else
@@ -567,6 +571,11 @@ namespace Proyecto
             {
                 MessageBox.Show($"Se produjo un error: {ex.Message}");
             }
+        }
+
+        private void lblMensaje_Click(object sender, EventArgs e)
+        {
+
         }
 
         //------------------------------------------------------------------------------------------------------------------------
