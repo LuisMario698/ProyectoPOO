@@ -29,6 +29,8 @@ namespace Proyecto
             ConfigurarDataGridView();
             CargarDatosHabitaciones();
             InitializeComboBoxes();
+            LimpiarControles();
+           dgvHabitaciones.SelectionChanged += dgvHabitaciones_SelectionChanged;
         }
         private void InitializeComboBoxes()
         {
@@ -42,6 +44,13 @@ namespace Proyecto
             cmbEstado.Items.Add("Ocupada");
             cmbEstado.Items.Add("En Limpieza");
         }
+        private void LimpiarControles()
+        {
+            cmbTipo.SelectedIndex = -1; // Ningún elemento seleccionado
+            cmbEstado.SelectedIndex = -1; // Ningún elemento seleccionado
+            txtNumero.Clear(); // Vaciar el TextBox
+            txtPrecio.Clear(); // Vaciar el TextBox
+        }
         // Configuración inicial del DataGridView
         private void ConfigurarDataGridView()
         {
@@ -52,7 +61,6 @@ namespace Proyecto
             dgvHabitaciones.Columns[3].Name = "Precio";
             dgvHabitaciones.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             dgvHabitaciones.ColumnHeadersHeight = 40;
-            dgvHabitaciones.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
         }
 
         // Método para cargar datos en el DataGridView
@@ -66,15 +74,50 @@ namespace Proyecto
                 {
                     dgvHabitaciones.Rows.Add(row["Tipo"], row["Estado"], row["Numero"], row["Precio"]);
                 }
+
+                // Deshabilitar selección automática
+                if (dgvHabitaciones.Rows.Count > 0)
+                {
+                    dgvHabitaciones.ClearSelection(); // Deselecciona todas las filas
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
         }
+        private void dgvHabitaciones_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvHabitaciones.CurrentRow != null && dgvHabitaciones.CurrentRow.Selected)
+            {
+                string tipo = dgvHabitaciones.CurrentRow.Cells[0].Value?.ToString();
+                string estado = dgvHabitaciones.CurrentRow.Cells[1].Value?.ToString();
+                string numero = dgvHabitaciones.CurrentRow.Cells[2].Value?.ToString();
+                string precio = dgvHabitaciones.CurrentRow.Cells[3].Value?.ToString();
+
+                cmbTipo.SelectedIndex = cmbTipo.Items.IndexOf(tipo);
+                cmbEstado.SelectedIndex = cmbEstado.Items.IndexOf(estado);
+                txtNumero.Text = numero ?? string.Empty;
+                txtPrecio.Text = precio ?? string.Empty;
+
+                // Deshabilitar el botón Agregar si hay una fila seleccionada
+                btnAgregar.Enabled = false;
+                btnAgregar.Visible = false;
+            }
+            else
+            {
+                // Limpiar los controles y habilitar el botón Agregar si no hay fila seleccionada
+                LimpiarControles();
+                btnAgregar.Enabled = true;
+            }
+        }
         private void formHabitaciones_Load(object sender, EventArgs e)
         {
-
+            if (dgvHabitaciones.Rows.Count > 0)
+            {
+                dgvHabitaciones.CurrentCell = dgvHabitaciones.Rows[0].Cells[0]; // Selecciona la primera fila
+                dgvHabitaciones_SelectionChanged(null, null); // Fuerza la sincronización
+            }
         }
 
         private void dgvHabitaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -116,19 +159,27 @@ namespace Proyecto
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            string tipo = cmbTipo.SelectedItem.ToString();
-            string estado = cmbEstado.SelectedItem.ToString();
-            int numero = int.Parse(txtNumero.Text);
+            string tipo = dgvHabitaciones.CurrentRow.Cells[0].Value.ToString();
+            string estado = dgvHabitaciones.CurrentRow.Cells[1].Value.ToString();
+            int numeroViejo = int.Parse(dgvHabitaciones.CurrentRow.Cells[2].Value.ToString());
+            int numeroNuevo = int.Parse(txtNumero.Text);
             decimal precio = decimal.Parse(txtPrecio.Text);
 
-            if (habitaciones.ModificarHabitacion(tipo, estado, numero, precio))
+            bool actualizado = habitaciones.ModificarHabitacion(tipo, estado, numeroNuevo, precio, numeroViejo);
+
+            if (actualizado)
             {
-                MessageBox.Show("Habitación modificada correctamente");
-                CargarDatosHabitaciones();
+                MessageBox.Show("Habitación modificada correctamente.");
+                CargarDatosHabitaciones(); // Recargar los datos
+
+                // Deseleccionar filas y habilitar el botón Agregar
+                dgvHabitaciones.ClearSelection();
+                btnAgregar.Enabled = true;
+                btnAgregar.Visible = true;
             }
             else
             {
-                MessageBox.Show("No se pudo modificar la habitación");
+                MessageBox.Show("No se pudo modificar la habitación.");
             }
         }
     }

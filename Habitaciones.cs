@@ -69,24 +69,71 @@ namespace Proyecto
                 return false;
             }
         }
-
-        // Método para modificar una habitación
-        public bool ModificarHabitacion(string tipo, string estado, int numero, decimal precio)
+        public bool ModificarPrecio(int numeroViejo, decimal precio)
         {
             try
             {
                 MySqlConnection conn = conexion.ObtenerConexion();
-                string query = "UPDATE Habitaciones SET Tipo = @Tipo, Estado = @Estado, Precio = @Precio WHERE Numero = @Numero";
+                string query = "UPDATE Habitaciones SET Precio = @Precio WHERE Numero = @Numero";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Precio", precio);
+                    cmd.Parameters.AddWithValue("@Numero", numeroViejo);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error al modificar el precio: " + ex.Message);
+                return false;
+            }
+        }
+        public bool ModificarNumero(int numeroViejo, int numeroNuevo)
+        {
+            try
+            {
+                MySqlConnection conn = conexion.ObtenerConexion();
+                string query = "UPDATE Habitaciones SET Numero = @NumeroNuevo WHERE Numero = @NumeroViejo";
+
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@NumeroNuevo", numeroNuevo);
+                    cmd.Parameters.AddWithValue("@NumeroViejo", numeroViejo);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error al modificar el número: " + ex.Message);
+                return false;
+            }
+        }
+
+        // Método para modificar una habitación
+        public bool ModificarHabitacion(string tipo, string estado, int numeroNuevo, decimal precio, int numeroViejo)
+        {
+            try
+            {
+                MySqlConnection conn = conexion.ObtenerConexion();
+                string query = @"
+            UPDATE Habitaciones 
+            SET Tipo = @Tipo, Estado = @Estado, Numero = @NumeroNuevo, Precio = @Precio
+            WHERE Numero = @NumeroViejo";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@Tipo", tipo);
                     cmd.Parameters.AddWithValue("@Estado", estado);
-                    cmd.Parameters.AddWithValue("@Numero", numero);
+                    cmd.Parameters.AddWithValue("@NumeroNuevo", numeroNuevo);
                     cmd.Parameters.AddWithValue("@Precio", precio);
+                    cmd.Parameters.AddWithValue("@NumeroViejo", numeroViejo);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-
                     return rowsAffected > 0;
                 }
             }
@@ -96,7 +143,6 @@ namespace Proyecto
                 return false;
             }
         }
-
         // Método para obtener todas las habitaciones y cargarlas en el DataTable
         public DataTable ObtenerHabitaciones()
         {
