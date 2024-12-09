@@ -94,6 +94,44 @@ namespace Proyecto
             dgvClientesModificar.Columns[2].Width = 100;
 
             dgvClientesModificar.ColumnHeadersHeight = 40;
+
+            //---------------------------------------------------------------------------------------------------
+
+            // Desactivar la generación automática de columnas
+            dgvClientesEliminar.AutoGenerateColumns = false; // Desactiva la generación automática
+
+            // Configura las columnas y vincúlalas a los nombres del DataTable
+            dgvClientesEliminar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Id",
+                DataPropertyName = "Id", // Nombre de la columna en el DataTable
+                HeaderText = "ID"
+            });
+            dgvClientesEliminar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Nombre",
+                DataPropertyName = "Nombre", // Nombre de la columna en el DataTable
+                HeaderText = "Nombre"
+            });
+            dgvClientesEliminar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Numero_Telefonico",
+                DataPropertyName = "Numero_telefonico", // Nombre de la columna en el DataTable
+                HeaderText = "Teléfono"
+            });
+            dgvClientesEliminar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Correo",
+                DataPropertyName = "Correo", // Nombre de la columna en el DataTable
+                HeaderText = "Correo"
+            });
+
+            dgvClientesEliminar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvClientesEliminar.Columns[0].Width = 30;
+            dgvClientesEliminar.Columns[1].Width = 150;
+            dgvClientesEliminar.Columns[2].Width = 100;
+
+            dgvClientesEliminar.ColumnHeadersHeight = 40;
         }
 
 
@@ -101,8 +139,9 @@ namespace Proyecto
         {
             CargarDatos();
             CargarDatosModificar();
+            CargarDatosEliminar();
             // Carga la imagen en el PictureBox
-            pb1.Image = Image.FromFile("C:/Users/LuisM/Downloads/file.png");
+            pb1.Image = Properties.Resources.file;
 
             // Ajusta la imagen al tamaño del PictureBox
             pb1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -364,7 +403,6 @@ namespace Proyecto
 
                         modificar.ShowDialog();
                         modificar.Activate();
-                        this.Close();
                     }
                     else
                     {
@@ -383,11 +421,64 @@ namespace Proyecto
 
         }
 
+        private void tabModificar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabEliminar_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 
         //------------------------------------------------------------------------------------------------------------------------
         //------------------------------------------------MODIFICAR---------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------ELIMINAR----------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------
+
+
+        private void CargarDatosEliminar()
+        {
+            miConexion = new Conexion();
+
+            try
+            {
+                using (MySqlConnection conexion = miConexion.ObtenerConexion())
+                {
+                    if (miConexion.AbrirConexion())
+                    {
+                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo FROM clientes";
+                        MySqlCommand comando = new MySqlCommand(consulta, conexion);
+
+                        MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
+                        DataTable dt = new DataTable();
+                        adaptador.Fill(dt);
+
+                        dgvClientesModificar.DataSource = dt;
+                        dgvClientesModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        miConexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+        }
+
+        //------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------ELIMINAR----------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------
     }
 }

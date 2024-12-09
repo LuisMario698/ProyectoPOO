@@ -231,7 +231,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\equis.png" />
     <Content Include="Resources\file.png" />
+    <Content Include="Resources\flecha.png" />
     <Content Include="Resources\send.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

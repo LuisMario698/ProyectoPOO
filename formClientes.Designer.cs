@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcClientes = new ReaLTaiizor.Controls.HopeTabPage();
             this.tabConsultar = new System.Windows.Forms.TabPage();
             this.lblNombreConsulta = new ReaLTaiizor.Controls.DungeonHeaderLabel();
@@ -49,22 +52,25 @@
             this.txtCorreo = new Guna.UI.WinForms.GunaTextBox();
             this.txtNombre = new Guna.UI.WinForms.GunaTextBox();
             this.tabModificar = new System.Windows.Forms.TabPage();
-            this.tabEliminar = new System.Windows.Forms.TabPage();
-            this.dgvClientesModificar = new Guna.UI.WinForms.GunaDataGridView();
-            this.txtNombreModificar = new Guna.UI.WinForms.GunaTextBox();
-            this.lblNombreModificar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
-            this.lblBuscar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             this.lblMensaje = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.lblBuscar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.lblNombreModificar = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.txtNombreModificar = new Guna.UI.WinForms.GunaTextBox();
+            this.dgvClientesModificar = new Guna.UI.WinForms.GunaDataGridView();
+            this.tabEliminar = new System.Windows.Forms.TabPage();
             this.pb = new Guna.UI.WinForms.GunaTransfarantPictureBox();
             this.pb1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.dgvClientesEliminar = new Guna.UI.WinForms.GunaDataGridView();
             this.tcClientes.SuspendLayout();
             this.tabConsultar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.tabRegistrar.SuspendLayout();
             this.tabModificar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesModificar)).BeginInit();
+            this.tabEliminar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientesEliminar)).BeginInit();
             this.SuspendLayout();
             // 
             // tcClientes
@@ -352,16 +358,59 @@
             this.tabModificar.TabIndex = 2;
             this.tabModificar.Text = "Modificar";
             this.tabModificar.UseVisualStyleBackColor = true;
+            this.tabModificar.Click += new System.EventHandler(this.tabModificar_Click);
             // 
-            // tabEliminar
+            // lblMensaje
             // 
-            this.tabEliminar.Location = new System.Drawing.Point(0, 40);
-            this.tabEliminar.Name = "tabEliminar";
-            this.tabEliminar.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEliminar.Size = new System.Drawing.Size(596, 366);
-            this.tabEliminar.TabIndex = 3;
-            this.tabEliminar.Text = "Eliminar";
-            this.tabEliminar.UseVisualStyleBackColor = true;
+            this.lblMensaje.AutoSize = true;
+            this.lblMensaje.BackColor = System.Drawing.Color.Transparent;
+            this.lblMensaje.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblMensaje.ForeColor = System.Drawing.Color.Silver;
+            this.lblMensaje.Location = new System.Drawing.Point(123, 307);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(301, 20);
+            this.lblMensaje.TabIndex = 32;
+            this.lblMensaje.Text = "Por favor, seleccione el cliente a modificar";
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.AutoSize = true;
+            this.lblBuscar.BackColor = System.Drawing.Color.Transparent;
+            this.lblBuscar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblBuscar.ForeColor = System.Drawing.Color.Silver;
+            this.lblBuscar.Location = new System.Drawing.Point(287, 18);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(56, 20);
+            this.lblBuscar.TabIndex = 31;
+            this.lblBuscar.Text = "Buscar";
+            // 
+            // lblNombreModificar
+            // 
+            this.lblNombreModificar.AutoSize = true;
+            this.lblNombreModificar.BackColor = System.Drawing.Color.Transparent;
+            this.lblNombreModificar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.lblNombreModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
+            this.lblNombreModificar.Location = new System.Drawing.Point(158, 46);
+            this.lblNombreModificar.Name = "lblNombreModificar";
+            this.lblNombreModificar.Size = new System.Drawing.Size(71, 20);
+            this.lblNombreModificar.TabIndex = 28;
+            this.lblNombreModificar.Text = "Nombre:";
+            // 
+            // txtNombreModificar
+            // 
+            this.txtNombreModificar.BaseColor = System.Drawing.Color.White;
+            this.txtNombreModificar.BorderColor = System.Drawing.Color.Silver;
+            this.txtNombreModificar.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtNombreModificar.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtNombreModificar.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txtNombreModificar.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtNombreModificar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtNombreModificar.Location = new System.Drawing.Point(235, 41);
+            this.txtNombreModificar.Name = "txtNombreModificar";
+            this.txtNombreModificar.PasswordChar = '\0';
+            this.txtNombreModificar.SelectedText = "";
+            this.txtNombreModificar.Size = new System.Drawing.Size(160, 30);
+            this.txtNombreModificar.TabIndex = 27;
             // 
             // dgvClientesModificar
             // 
@@ -422,57 +471,17 @@
             this.dgvClientesModificar.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientesModificar_CellClick);
             this.dgvClientesModificar.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientesModificar_CellContentClick);
             // 
-            // txtNombreModificar
+            // tabEliminar
             // 
-            this.txtNombreModificar.BaseColor = System.Drawing.Color.White;
-            this.txtNombreModificar.BorderColor = System.Drawing.Color.Silver;
-            this.txtNombreModificar.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtNombreModificar.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtNombreModificar.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtNombreModificar.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtNombreModificar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNombreModificar.Location = new System.Drawing.Point(235, 41);
-            this.txtNombreModificar.Name = "txtNombreModificar";
-            this.txtNombreModificar.PasswordChar = '\0';
-            this.txtNombreModificar.SelectedText = "";
-            this.txtNombreModificar.Size = new System.Drawing.Size(160, 30);
-            this.txtNombreModificar.TabIndex = 27;
-            // 
-            // lblNombreModificar
-            // 
-            this.lblNombreModificar.AutoSize = true;
-            this.lblNombreModificar.BackColor = System.Drawing.Color.Transparent;
-            this.lblNombreModificar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblNombreModificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblNombreModificar.Location = new System.Drawing.Point(158, 46);
-            this.lblNombreModificar.Name = "lblNombreModificar";
-            this.lblNombreModificar.Size = new System.Drawing.Size(71, 20);
-            this.lblNombreModificar.TabIndex = 28;
-            this.lblNombreModificar.Text = "Nombre:";
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.AutoSize = true;
-            this.lblBuscar.BackColor = System.Drawing.Color.Transparent;
-            this.lblBuscar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblBuscar.ForeColor = System.Drawing.Color.Silver;
-            this.lblBuscar.Location = new System.Drawing.Point(287, 18);
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(56, 20);
-            this.lblBuscar.TabIndex = 31;
-            this.lblBuscar.Text = "Buscar";
-            // 
-            // lblMensaje
-            // 
-            this.lblMensaje.AutoSize = true;
-            this.lblMensaje.BackColor = System.Drawing.Color.Transparent;
-            this.lblMensaje.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.lblMensaje.ForeColor = System.Drawing.Color.Silver;
-            this.lblMensaje.Location = new System.Drawing.Point(123, 307);
-            this.lblMensaje.Name = "lblMensaje";
-            this.lblMensaje.Size = new System.Drawing.Size(301, 20);
-            this.lblMensaje.TabIndex = 32;
-            this.lblMensaje.Text = "Por favor, seleccione el cliente a modificar";
+            this.tabEliminar.Controls.Add(this.dgvClientesEliminar);
+            this.tabEliminar.Location = new System.Drawing.Point(0, 40);
+            this.tabEliminar.Name = "tabEliminar";
+            this.tabEliminar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEliminar.Size = new System.Drawing.Size(596, 366);
+            this.tabEliminar.TabIndex = 3;
+            this.tabEliminar.Text = "Eliminar";
+            this.tabEliminar.UseVisualStyleBackColor = true;
+            this.tabEliminar.Click += new System.EventHandler(this.tabEliminar_Click);
             // 
             // pb
             // 
@@ -495,6 +504,63 @@
             this.pb1.TabStop = false;
             this.pb1.Click += new System.EventHandler(this.pb1_Click);
             // 
+            // dgvClientesEliminar
+            // 
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvClientesEliminar.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgvClientesEliminar.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvClientesEliminar.BackgroundColor = System.Drawing.Color.White;
+            this.dgvClientesEliminar.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvClientesEliminar.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvClientesEliminar.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvClientesEliminar.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvClientesEliminar.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvClientesEliminar.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvClientesEliminar.EnableHeadersVisualStyles = false;
+            this.dgvClientesEliminar.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvClientesEliminar.Location = new System.Drawing.Point(183, 102);
+            this.dgvClientesEliminar.Name = "dgvClientesEliminar";
+            this.dgvClientesEliminar.RowHeadersVisible = false;
+            this.dgvClientesEliminar.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvClientesEliminar.Size = new System.Drawing.Size(240, 150);
+            this.dgvClientesEliminar.TabIndex = 0;
+            this.dgvClientesEliminar.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
+            this.dgvClientesEliminar.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvClientesEliminar.ThemeStyle.AlternatingRowsStyle.Font = null;
+            this.dgvClientesEliminar.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
+            this.dgvClientesEliminar.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
+            this.dgvClientesEliminar.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
+            this.dgvClientesEliminar.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.dgvClientesEliminar.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClientesEliminar.ThemeStyle.HeaderStyle.Height = 4;
+            this.dgvClientesEliminar.ThemeStyle.ReadOnly = false;
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.Height = 22;
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.dgvClientesEliminar.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
             // formClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -514,8 +580,10 @@
             this.tabModificar.ResumeLayout(false);
             this.tabModificar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientesModificar)).EndInit();
+            this.tabEliminar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClientesEliminar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -545,5 +613,6 @@
         private Guna.UI.WinForms.GunaTextBox txtNombreModificar;
         private Guna.UI.WinForms.GunaDataGridView dgvClientesModificar;
         private ReaLTaiizor.Controls.DungeonHeaderLabel lblMensaje;
+        private Guna.UI.WinForms.GunaDataGridView dgvClientesEliminar;
     }
 }

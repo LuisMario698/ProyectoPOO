@@ -46,12 +46,12 @@ namespace Proyecto
                             }
                             else
                             {
-                                MessageBox.Show("No se encontró la imagen para el producto.");
+                                MessageBox.Show("No se encontró la imagen para el cliente.");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("No se encontró el producto con ese ID.");
+                            MessageBox.Show("No se encontró el cliente con ese ID.");
                         }
                     }
                     catch (MySqlException ex)
