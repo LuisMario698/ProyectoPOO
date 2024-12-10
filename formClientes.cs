@@ -21,7 +21,7 @@ namespace Proyecto
         Clientes enlace;
         private bool conexionAbierta = false;
         public string rutaIdentificacion = "";
-        public int idSeleccionado {  get; set; }
+        public int idSeleccionado { get; set; }
         public formClientes()
         {
             InitializeComponent();
@@ -64,7 +64,7 @@ namespace Proyecto
             dgvClientes.Columns[0].Width = 30;
             dgvClientes.Columns[1].Width = 150;
             dgvClientes.Columns[2].Width = 100;
-            
+
             dgvClientes.ColumnHeadersHeight = 40;
 
             //---------------------------------------------------------------------------------------------------
@@ -260,7 +260,7 @@ namespace Proyecto
 
             // Asignar el DataView (filtrado o no) al DataGridView
             dgvClientes.DataSource = dv;
-          
+
         }
 
         private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -335,7 +335,7 @@ namespace Proyecto
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 // Si el usuario selecciona un archivo, obtén la ruta del archivo
-                
+
                 string rutaArchivo = openFileDialog1.FileName;
                 rutaIdentificacion = rutaArchivo;
 
@@ -347,7 +347,7 @@ namespace Proyecto
 
         private void tabConsultar_Click(object sender, EventArgs e)
         {
-            
+
         }
         //------------------------------------------------------------------------------------------------------------------------
         //------------------------------------------------REGISTRAR---------------------------------------------------------------
@@ -469,7 +469,7 @@ namespace Proyecto
 
 
 
-    private void dgvClientesModificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvClientesModificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
@@ -579,9 +579,13 @@ namespace Proyecto
 
                 if (resultado)
                 {
-                    MessageBox.Show("Producto eliminado correctamente.");
+                    MessageBox.Show("Cliente eliminado correctamente.");
                     //dgvClientesEliminar.Rows.Clear();
                     // Aquí puedes refrescar el DataGridView u otras acciones necesarias
+
+                    CargarDatos();
+                    CargarDatosEliminar();
+                    CargarDatosModificar();
                 }
                 else
                 {

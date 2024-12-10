@@ -18,7 +18,7 @@ namespace Proyecto
         Conexion miConexion;
         Reservas miReserva;
         public string activa = "Activa";
-        public int idSeleccionado {  get; set; }
+        public int idSeleccionado { get; set; }
         public int clienteSeleccionado { get; set; }
         public int habitacionSeleccionda { get; set; }
 
@@ -28,7 +28,7 @@ namespace Proyecto
         {
             InitializeComponent();
 
-            
+
 
 
 
@@ -199,9 +199,9 @@ namespace Proyecto
                                     // La conversión a DateTime fue exitosa, puedes usar 'valorDateTime' aquí
                                     MessageBox.Show($"Seleccionaste la reserva: {id}\nCliente: {cliente}\nHabitacion: {habitacion}\nFecha de Entrada: {entrada}\nFecha de Salida: {salida}");
                                 }
-                                else 
+                                else
                                 {
-                                
+
                                 }
                             }
                             else
@@ -266,7 +266,7 @@ namespace Proyecto
                 */
                 bool resultado = miReserva.CancelarReservaPorId(idSeleccionado);
 
-                
+
 
                 if (resultado)
                 {
@@ -346,11 +346,11 @@ namespace Proyecto
             // Obtiene el elemento seleccionado del ComboBox
             if (cbClientes.SelectedItem != null)
             {
-                
+
                 if (cbHabitaciones.SelectedItem != null)
                 {
-                    
-                    
+
+
 
                     try
                     {
@@ -367,7 +367,7 @@ namespace Proyecto
 
                             // Ahora puedes usar las variables "id" y "nombre" como necesites
                             MessageBox.Show($"ID: {idHabitacion}, Nombre: {nombre}");
-                            ActualizarEstadoHabitacion(idHabitacion,"Ocupada");
+                            ActualizarEstadoHabitacion(idHabitacion, "Ocupada");
                         }
 
                         string elementoSeleccionado = cbClientes.SelectedItem.ToString();
@@ -407,7 +407,7 @@ namespace Proyecto
                         {
                             MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
                         }
-                        
+
 
                     }
                     catch (Exception ex)
@@ -421,8 +421,9 @@ namespace Proyecto
                     MessageBox.Show("Por favor, selecciona una habitacion del ComboBox.");
                 }
             }
-            else { 
-                
+            else
+            {
+
                 MessageBox.Show("Por favor, selecciona un cliente del ComboBox.");
             }
 
