@@ -52,7 +52,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvPagos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPagos.ColumnHeadersHeight = 4;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
@@ -81,7 +81,7 @@
             this.dgvPagos.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvPagos.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
             this.dgvPagos.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.dgvPagos.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPagos.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvPagos.ThemeStyle.HeaderStyle.Height = 4;
             this.dgvPagos.ThemeStyle.ReadOnly = false;
             this.dgvPagos.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 367);
+            this.ClientSize = new System.Drawing.Size(1250, 560);
             this.Controls.Add(this.dgvPagos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "formPagos";
