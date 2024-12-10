@@ -33,6 +33,7 @@
             this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
             this.btnConsultar = new Guna.UI.WinForms.GunaButton();
             this.lblNombre = new ReaLTaiizor.Controls.DungeonHeaderLabel();
+            this.skyComboBox1 = new ReaLTaiizor.Controls.SkyComboBox();
             this.SuspendLayout();
             // 
             // gunaTextBox1
@@ -114,11 +115,47 @@
             this.lblNombre.TabIndex = 22;
             this.lblNombre.Text = "Nombre:";
             // 
+            // skyComboBox1
+            // 
+            this.skyComboBox1.BackColor = System.Drawing.Color.Transparent;
+            this.skyComboBox1.BGColorA = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.skyComboBox1.BGColorB = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.skyComboBox1.BorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(252)))), ((int)(((byte)(252)))));
+            this.skyComboBox1.BorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.skyComboBox1.BorderColorC = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.skyComboBox1.BorderColorD = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))), ((int)(((byte)(168)))));
+            this.skyComboBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.skyComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.skyComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skyComboBox1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Bold);
+            this.skyComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            this.skyComboBox1.FormattingEnabled = true;
+            this.skyComboBox1.ItemHeight = 16;
+            this.skyComboBox1.ItemHighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(176)))), ((int)(((byte)(214)))));
+            this.skyComboBox1.LineColorA = System.Drawing.Color.White;
+            this.skyComboBox1.LineColorB = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(189)))), ((int)(((byte)(189)))));
+            this.skyComboBox1.LineColorC = System.Drawing.Color.White;
+            this.skyComboBox1.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.skyComboBox1.ListBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.skyComboBox1.ListDashType = System.Drawing.Drawing2D.DashStyle.Dot;
+            this.skyComboBox1.ListForeColor = System.Drawing.Color.Black;
+            this.skyComboBox1.ListSelectedBackColorA = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.skyComboBox1.ListSelectedBackColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.skyComboBox1.Location = new System.Drawing.Point(603, 25);
+            this.skyComboBox1.Name = "skyComboBox1";
+            this.skyComboBox1.Size = new System.Drawing.Size(163, 22);
+            this.skyComboBox1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            this.skyComboBox1.StartIndex = 0;
+            this.skyComboBox1.TabIndex = 28;
+            this.skyComboBox1.TriangleColorA = System.Drawing.Color.FromArgb(((int)(((byte)(121)))), ((int)(((byte)(176)))), ((int)(((byte)(214)))));
+            this.skyComboBox1.TriangleColorB = System.Drawing.Color.FromArgb(((int)(((byte)(27)))), ((int)(((byte)(94)))), ((int)(((byte)(137)))));
+            // 
             // pruebas_de_diseño
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.skyComboBox1);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.gunaButton1);
@@ -136,5 +173,6 @@
         private Guna.UI.WinForms.GunaButton gunaButton1;
         private Guna.UI.WinForms.GunaButton btnConsultar;
         private ReaLTaiizor.Controls.DungeonHeaderLabel lblNombre;
+        private ReaLTaiizor.Controls.SkyComboBox skyComboBox1;
     }
 }

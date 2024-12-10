@@ -249,6 +249,7 @@
             this.tabRegistrar.TabIndex = 1;
             this.tabRegistrar.Text = "Registrar";
             this.tabRegistrar.UseVisualStyleBackColor = true;
+            this.tabRegistrar.Click += new System.EventHandler(this.tabRegistrar_Click);
             // 
             // btnRegistrar
             // 
