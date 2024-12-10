@@ -19,6 +19,9 @@ namespace Proyecto
         Reservas miReserva;
         public string activa = "Activa";
         public int idSeleccionado {  get; set; }
+        public int clienteSeleccionado { get; set; }
+        public int habitacionSeleccionda { get; set; }
+
 
 
         public formReservas()
@@ -142,6 +145,41 @@ namespace Proyecto
                     if (filaSeleccionada.Cells["Id"].Value != null &&
                         int.TryParse(filaSeleccionada.Cells["Id"].Value.ToString(), out int id))
                     {
+
+                        string clienteSele = filaSeleccionada.Cells["Cliente"].Value?.ToString();
+                        string habitacionSele = filaSeleccionada.Cells["Habitacion"].Value?.ToString();
+
+                        // Extraer el número de la cadena "cliente"
+                        if (!string.IsNullOrEmpty(clienteSele))
+                        {
+                            string[] partesCliente = clienteSele.Split('-');
+                            if (partesCliente.Length > 0 && int.TryParse(partesCliente[0].Trim(), out int idCliente))
+                            {
+                                // Aquí tienes el ID del cliente en la variable "idCliente"
+                                clienteSeleccionado = idCliente;
+                                MessageBox.Show("ID del cliente: " + idCliente);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo obtener el ID del cliente.");
+                            }
+                        }
+
+                        // Extraer el número de la cadena "habitacion"
+                        if (!string.IsNullOrEmpty(habitacionSele))
+                        {
+                            string[] partesHabitacion = habitacionSele.Split('-');
+                            if (partesHabitacion.Length > 0 && int.TryParse(partesHabitacion[0].Trim(), out int numeroHabitacion))
+                            {
+                                // Aquí tienes el número de la habitación en la variable "numeroHabitacion"
+                                habitacionSeleccionda = numeroHabitacion;
+                                MessageBox.Show("Número de habitación: " + numeroHabitacion);
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo obtener el número de habitación.");
+                            }
+                        }
                         idSeleccionado = id; // Asigna el ID seleccionado
                         MessageBox.Show($"ID seleccionado: {idSeleccionado}");
 
@@ -193,11 +231,49 @@ namespace Proyecto
             if (idSeleccionado > 0)
             {
                 miReserva = new Reservas();
+                /*
+                string habitacion = cbHabitaciones.Text;
+
+                // Divide el string en un array usando el guion como delimitador
+                string[] valoresHabitacion = habitacion.Split('-');
+
+                // Accede a los valores separados
+                if (valoresHabitacion.Length == 2)
+                {
+                    int idHabitacion = int.Parse(valoresHabitacion[0].Trim());
+                    string nombre = valoresHabitacion[1].Trim();
+
+                    // Ahora puedes usar las variables "id" y "nombre" como necesites
+                    MessageBox.Show($"ID: {idHabitacion}, Nombre: {nombre}");
+                    ActualizarEstadoHabitacion(idHabitacion, "Ocupada");
+                }
+
+                string elementoSeleccionado = cbClientes.SelectedItem.ToString();
+
+                // Divide el string en un array usando el guion como delimitador
+                string[] valores = elementoSeleccionado.Split('-');
+
+                // Accede a los valores separados
+                if (valores.Length == 2)
+                {
+                    int idCliente = int.Parse(valores[0].Trim());
+                    string nombre = valores[1].Trim();
+
+                    // Ahora puedes usar las variables "id" y "nombre" como necesites
+                    MessageBox.Show($"ID: {idCliente}, Nombre: {nombre}");
+                    ActualizarEstadoCliente(idCliente, "Ocupado ");
+                }
+                */
                 bool resultado = miReserva.CancelarReservaPorId(idSeleccionado);
+
+                
 
                 if (resultado)
                 {
                     MessageBox.Show("Reservacion cancelada correctamente.");
+
+                    ActualizarEstadoCliente(clienteSeleccionado, "Disponible");
+                    ActualizarEstadoHabitacion(habitacionSeleccionda, "Disponible");
                     //dgvClientesEliminar.Rows.Clear();
                     // Aquí puedes refrescar el DataGridView u otras acciones necesarias
                 }
@@ -212,7 +288,7 @@ namespace Proyecto
             }
             CargarDatos();
         }
-        public void ActualizarEstadoCliente(int id)
+        public void ActualizarEstadoCliente(int id, string estado)
         {
             miConexion = new Conexion();
             using (MySqlConnection conexion = miConexion.ObtenerConexion())
@@ -223,7 +299,7 @@ namespace Proyecto
                     MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                     // Agrega los parámetros para evitar la inyección SQL
-                    comando.Parameters.AddWithValue("@Estado", "Ocupado");
+                    comando.Parameters.AddWithValue("@Estado", estado);
                     comando.Parameters.AddWithValue("@Id", id);
 
                     // Ejecuta el comando
@@ -237,7 +313,7 @@ namespace Proyecto
                 }
             }
         }
-        public void ActualizarEstadoHabitacion(int id)
+        public void ActualizarEstadoHabitacion(int id, string estado)
         {
             miConexion = new Conexion();
             using (MySqlConnection conexion = miConexion.ObtenerConexion())
@@ -248,7 +324,7 @@ namespace Proyecto
                     MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                     // Agrega los parámetros para evitar la inyección SQL
-                    comando.Parameters.AddWithValue("@Estado", "Ocupada");
+                    comando.Parameters.AddWithValue("@Estado", estado);
                     comando.Parameters.AddWithValue("@Numero", id);
 
                     // Ejecuta el comando
@@ -291,7 +367,7 @@ namespace Proyecto
 
                             // Ahora puedes usar las variables "id" y "nombre" como necesites
                             MessageBox.Show($"ID: {idHabitacion}, Nombre: {nombre}");
-                            ActualizarEstadoHabitacion(idHabitacion);
+                            ActualizarEstadoHabitacion(idHabitacion,"Ocupada");
                         }
 
                         string elementoSeleccionado = cbClientes.SelectedItem.ToString();
@@ -307,7 +383,7 @@ namespace Proyecto
 
                             // Ahora puedes usar las variables "id" y "nombre" como necesites
                             MessageBox.Show($"ID: {idCliente}, Nombre: {nombre}");
-                            ActualizarEstadoCliente(idCliente);
+                            ActualizarEstadoCliente(idCliente, "Ocupado ");
                         }
 
 
@@ -433,6 +509,9 @@ namespace Proyecto
             }
         }
 
-        
+        private void dgvReservas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

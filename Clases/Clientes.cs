@@ -17,21 +17,24 @@ namespace Proyecto
         public string Telefono { get; set; }
         public string Correo { get; set; }
         public byte[] Identificacion { get; set; }
+        public string Estado { get; set; }
        
-        public Clientes(int id, string nombre, string telefonoo, string correo, byte[] identificacion)
+        public Clientes(int id, string nombre, string telefonoo, string correo, byte[] identificacion, string estado)
         {
             Id = id;
             Nombre = nombre;
             Telefono = telefonoo;
             Correo = correo;
             Identificacion = identificacion;
+            Estado = estado;
         }
-        public Clientes(string nombre, string telefonoo, string correo, byte[] identificacion)
+        public Clientes(string nombre, string telefonoo, string correo, byte[] identificacion, string estado)
         {
             Nombre = nombre;
             Telefono = telefonoo;
             Correo = correo;
             Identificacion = identificacion;
+            Estado = estado;
         }
         public Clientes() { }
 
@@ -40,7 +43,7 @@ namespace Proyecto
         {
             var conexion = miConexion.ObtenerConexion();
 
-            string consulta = "INSERT INTO clientes (Nombre, Numero_telefonico, Correo, Identificacion) VALUES (@Nombre, @Numero_telefonico, @Correo, @Identificacion)";
+            string consulta = "INSERT INTO clientes (Nombre, Numero_telefonico, Correo, Identificacion, Estado) VALUES (@Nombre, @Numero_telefonico, @Correo, @Identificacion, @Estado)";
 
             using (var comando = new MySqlCommand(consulta, conexion))
             {
@@ -48,6 +51,7 @@ namespace Proyecto
                 comando.Parameters.AddWithValue("@Numero_telefonico", Telefono);
                 comando.Parameters.AddWithValue("@Correo", Correo);
                 comando.Parameters.AddWithValue("@Identificacion", Identificacion);
+                comando.Parameters.AddWithValue("@Estado", "Disponible");
 
 
                 comando.ExecuteNonQuery();
@@ -64,7 +68,7 @@ namespace Proyecto
             {
                 using (MySqlConnection conn = miConexion.ObtenerConexion())
                 {
-                    string consulta = "DELETE FROM clientes WHERE Id = @Id";
+                    string consulta = "DELETE FROM clientes WHERE Id = @Id AND Estado = 'Disponible'";
                     using (MySqlCommand cmd = new MySqlCommand(consulta, conn))
                     {
                         cmd.Parameters.AddWithValue("@Id", id);

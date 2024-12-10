@@ -11,7 +11,7 @@ namespace Proyecto
 {
     public class Conexion
     {
-        private MySqlConnection conexion;
+        public MySqlConnection conexion;
         public string cadenaConexion = $"Server=localhost;Database=cooking;Uid=root;Pwd=;";
 
         public MySqlConnection ObtenerConexion()
@@ -36,12 +36,28 @@ namespace Proyecto
                 return false;
             }
         }
+        public bool AbrirConexion(int prueba)
+        {
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                {
+                    conexion.Open();
+                }
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Error al abrir la conexión: " + ex.Message);
+                return false;
+            }
+        }
 
         public bool CerrarConexion()
         {
             try
             {
-                conexion.Close();
+                conexion.Close(); // Cierra la conexión existente
                 return true;
             }
             catch (MySqlException ex)

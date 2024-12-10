@@ -53,7 +53,13 @@ namespace Proyecto
                 DataPropertyName = "Correo", // Nombre de la columna en el DataTable
                 HeaderText = "Correo"
             });
-            
+            dgvClientes.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Estado",
+                DataPropertyName = "Estado", // Nombre de la columna en el DataTable
+                HeaderText = "Estado"
+            });
+
             dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientes.Columns[0].Width = 30;
             dgvClientes.Columns[1].Width = 150;
@@ -88,6 +94,12 @@ namespace Proyecto
                 Name = "Correo",
                 DataPropertyName = "Correo", // Nombre de la columna en el DataTable
                 HeaderText = "Correo"
+            });
+            dgvClientesModificar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Estado",
+                DataPropertyName = "Estado", // Nombre de la columna en el DataTable
+                HeaderText = "Estado"
             });
 
             dgvClientesModificar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -127,6 +139,12 @@ namespace Proyecto
                 DataPropertyName = "Correo", // Nombre de la columna en el DataTable
                 HeaderText = "Correo"
             });
+            dgvClientesEliminar.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Estado",
+                DataPropertyName = "Estado", // Nombre de la columna en el DataTable
+                HeaderText = "Estado"
+            });
 
             dgvClientesEliminar.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClientesEliminar.Columns[0].Width = 30;
@@ -153,9 +171,6 @@ namespace Proyecto
             pbArchivos.Enabled = false;
             pbArchivos.Visible = false;
 
-            txtNombre.Enabled = false;
-            txtTelefono.Enabled = false;
-            txtCorreo.Enabled = false; 
 
             pbIdentificacionAntes.Enabled = false;
             pbIdentificacionAntes.SizeMode = PictureBoxSizeMode.Zoom;
@@ -185,7 +200,7 @@ namespace Proyecto
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo FROM clientes";
+                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo, Estado FROM clientes";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
@@ -274,7 +289,7 @@ namespace Proyecto
                     {
 
                         // Crear una instancia de InventarioProducto
-                        Clientes cliente = new Clientes(nombre, telefono, correo, identificacion);
+                        Clientes cliente = new Clientes(nombre, telefono, correo, identificacion, "Disponible");
 
                         // Llamar al método GuardarEnBaseDeDatos
                         cliente.GuardarDB();
@@ -285,6 +300,8 @@ namespace Proyecto
                         // miConexion.CerrarConexion();
                         //dgvClientes.Rows.Clear();
                         CargarDatos();
+                        CargarDatosEliminar();
+                        CargarDatosModificar();
                     }
                     else
                     {
@@ -342,14 +359,13 @@ namespace Proyecto
         private void CargarDatosModificar()
         {
             miConexion = new Conexion();
-
             try
             {
                 using (MySqlConnection conexion = miConexion.ObtenerConexion())
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo FROM clientes";
+                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo, Estado FROM clientes";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
@@ -380,6 +396,16 @@ namespace Proyecto
                 {
                     DataGridViewRow filaSeleccionada = dgvClientesModificar.Rows[e.RowIndex];
 
+                    // Obtener el estado del cliente
+                    string estado = filaSeleccionada.Cells["Estado"].Value?.ToString() ?? string.Empty;
+
+                    // Validar si el cliente está ocupado
+                    if (estado == "Ocupado")
+                    {
+                        MessageBox.Show("No se puede modificar un cliente ocupado.");
+                        return; // Salir del método si el cliente está ocupado
+                    }
+
                     // Validar y convertir el ID
                     if (filaSeleccionada.Cells["Id"].Value != null &&
                         int.TryParse(filaSeleccionada.Cells["Id"].Value.ToString(), out int id))
@@ -392,11 +418,10 @@ namespace Proyecto
                         string telefono = filaSeleccionada.Cells["Numero_telefonico"].Value?.ToString() ?? string.Empty;
                         string correo = filaSeleccionada.Cells["Correo"].Value?.ToString() ?? string.Empty;
 
-                        
-                           
-                            // Mostrar información del producto
-                        MessageBox.Show($"Seleccionaste el producto: {nombre}\nTelefono: {telefono}\nCorreo: {correo}");
+                        // Mostrar información del cliente
+                        MessageBox.Show($"Seleccionaste el cliente: {nombre}\nTelefono: {telefono}\nCorreo: {correo}");
 
+                        // Mostrar los datos en los TextBox
                         txtNombreAntes.Text = nombre;
                         txtNombreAntes.Enabled = false;
                         txtTelefonoAntes.Text = telefono;
@@ -408,17 +433,7 @@ namespace Proyecto
                         txtTelefonoNuevo.Text = telefono;
                         txtCorreoNuevo.Text = correo;
 
-                        /*
-                        formClientesModificar modificar = new formClientesModificar
-                        {
-                            idRecivido = idSeleccionado,
-                            Nombre = nombre,
-                            Telefono = telefono,
-                            Correo = correo
-                        };
-                        */
-
-                        // Obtener la imagen del producto
+                        // Obtener la imagen del cliente
                         BuscarImagen imagen = new BuscarImagen();
 
                         if (imagen.Existe(idSeleccionado))
@@ -427,7 +442,6 @@ namespace Proyecto
 
                             if (imagenEncontrada != null)
                             {
-                                //modificar.Identificacion = imagenEncontrada; // Asignar la imagen encontrada
                                 pbIdentificacionAntes.Image = imagenEncontrada;
                             }
                             else
@@ -440,15 +454,6 @@ namespace Proyecto
                         {
                             MessageBox.Show($"No hay ningún cliente con el ID: {idSeleccionado}");
                         }
-                        /*
-                        formInicio inicio = new formInicio();
-                        this.Hide();
-                        inicio.Hide();
-                        inicio.Enabled = false;
-                        
-                        modificar.Show();
-                        modificar.Activate();
-                        */
                     }
                     else
                     {
@@ -462,7 +467,9 @@ namespace Proyecto
             }
         }
 
-        private void dgvClientesModificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+
+    private void dgvClientesModificar_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
@@ -499,7 +506,7 @@ namespace Proyecto
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo FROM clientes";
+                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo, Estado FROM clientes";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
@@ -546,6 +553,7 @@ namespace Proyecto
                 dt.Columns.Add("Nombre", typeof(string));
                 dt.Columns.Add("Numero_telefonico", typeof(string));
                 dt.Columns.Add("Correo", typeof(string));
+                dt.Columns.Add("Estado", typeof(string));
                 dgvClientesModificar.DataSource = dt;
             }
 
@@ -594,17 +602,31 @@ namespace Proyecto
                 if (e.RowIndex >= 0)
                 {
                     DataGridViewRow filaSeleccionada = dgvClientesEliminar.Rows[e.RowIndex];
+                    object valorCelda = filaSeleccionada.Cells["Estado"].Value;
+
+                    // Verifica si valorCelda es nulo
+                    string valorEstado = valorCelda?.ToString() ?? string.Empty;
 
                     // Validar y convertir el ID
-                    if (filaSeleccionada.Cells["Id"].Value != null &&
-                        int.TryParse(filaSeleccionada.Cells["Id"].Value.ToString(), out int id))
+                    if (valorEstado == "Disponible")
                     {
-                        idSeleccionado = id; // Asigna el ID seleccionado
-                        MessageBox.Show("El id seleccionado fue " + idSeleccionado);
+                        if (filaSeleccionada.Cells["Id"].Value != null &&
+                            int.TryParse(filaSeleccionada.Cells["Id"].Value.ToString(), out int id))
+                        {
+                            idSeleccionado = id; // Asigna el ID seleccionado
+                            MessageBox.Show("El id seleccionado fue " + idSeleccionado);
+
+                            // Aquí puedes llamar al método para eliminar el cliente
+                            // ...
+                        }
+                        else
+                        {
+                            MessageBox.Show("El ID del producto no es válido.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("El ID del producto no es válido.");
+                        MessageBox.Show("No se puede eliminar un cliente que este ocupado");
                     }
                 }
             }
@@ -728,6 +750,11 @@ namespace Proyecto
         }
 
         private void tabRegistrar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClientesEliminar_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

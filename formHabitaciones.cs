@@ -20,7 +20,7 @@ namespace Proyecto
 {
     public partial class formHabitaciones : Form
     {
-        Habitaciones habitaciones;
+        public Habitaciones habitaciones;
         Conexion miConexion;
         public formHabitaciones()
         {
@@ -39,11 +39,11 @@ namespace Proyecto
             cmbTipo.Items.Add("Estandar");
             cmbTipo.Items.Add("Suite");
             cmbTipo.Items.Add("Deluxe");
-
+            cmbTipo.SelectedIndex = 0;
             // Llenar el ComboBox de Estado con opciones predefinidas
             cmbEstado.Items.Add("Disponible");
-            cmbEstado.Items.Add("Ocupada");
             cmbEstado.Items.Add("En Limpieza");
+            cmbEstado.SelectedIndex = 0;
         }
         private void LimpiarControles()
         {
@@ -70,16 +70,10 @@ namespace Proyecto
             try
             {
                 dgvHabitaciones.Rows.Clear();
-                DataTable dt = habitaciones.ObtenerHabitaciones();
+                DataTable dt = habitaciones.ObtenerHabitaciones(); // Llama al método sin pasar la conexión
                 foreach (DataRow row in dt.Rows)
                 {
                     dgvHabitaciones.Rows.Add(row["Tipo"], row["Estado"], row["Numero"], row["Precio"]);
-                }
-
-                // Deshabilitar selección automática
-                if (dgvHabitaciones.Rows.Count > 0)
-                {
-                    dgvHabitaciones.ClearSelection(); // Deselecciona todas las filas
                 }
             }
             catch (Exception ex)
@@ -102,8 +96,6 @@ namespace Proyecto
                 txtPrecio.Text = precio ?? string.Empty;
 
                 // Deshabilitar el botón Agregar si hay una fila seleccionada
-                btnAgregar.Enabled = false;
-                btnAgregar.Visible = false;
             }
             else
             {
@@ -183,6 +175,11 @@ namespace Proyecto
             {
                 MessageBox.Show("No se pudo modificar la habitación.");
             }
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
