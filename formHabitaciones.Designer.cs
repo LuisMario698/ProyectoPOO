@@ -74,13 +74,12 @@
             this.dgvHabitaciones.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvHabitaciones.EnableHeadersVisualStyles = false;
             this.dgvHabitaciones.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvHabitaciones.Location = new System.Drawing.Point(390, 87);
-            this.dgvHabitaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvHabitaciones.Location = new System.Drawing.Point(260, 57);
             this.dgvHabitaciones.Name = "dgvHabitaciones";
             this.dgvHabitaciones.RowHeadersVisible = false;
             this.dgvHabitaciones.RowHeadersWidth = 62;
             this.dgvHabitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHabitaciones.Size = new System.Drawing.Size(839, 378);
+            this.dgvHabitaciones.Size = new System.Drawing.Size(559, 246);
             this.dgvHabitaciones.TabIndex = 0;
             this.dgvHabitaciones.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvHabitaciones.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -117,11 +116,12 @@
             this.btnEliminar.Image = null;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnEliminar.Location = new System.Drawing.Point(1109, 473);
+            this.btnEliminar.Location = new System.Drawing.Point(739, 307);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnEliminar.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.btnEliminar.Size = new System.Drawing.Size(120, 40);
+            this.btnEliminar.Size = new System.Drawing.Size(80, 26);
             this.btnEliminar.TabIndex = 1;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -138,11 +138,12 @@
             this.btnModificar.Image = null;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnModificar.Location = new System.Drawing.Point(967, 473);
+            this.btnModificar.Location = new System.Drawing.Point(645, 307);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnModificar.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.btnModificar.Size = new System.Drawing.Size(120, 40);
+            this.btnModificar.Size = new System.Drawing.Size(80, 26);
             this.btnModificar.TabIndex = 2;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -159,11 +160,12 @@
             this.btnAgregar.Image = null;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnAgregar.Location = new System.Drawing.Point(143, 473);
+            this.btnAgregar.Location = new System.Drawing.Point(95, 307);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.btnAgregar.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.btnAgregar.Size = new System.Drawing.Size(120, 40);
+            this.btnAgregar.Size = new System.Drawing.Size(80, 26);
             this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextAlignment = System.Drawing.StringAlignment.Center;
@@ -172,51 +174,57 @@
             // lblTipo
             // 
             this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(40, 172);
+            this.lblTipo.Location = new System.Drawing.Point(27, 112);
+            this.lblTipo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTipo.Name = "lblTipo";
-            this.lblTipo.Size = new System.Drawing.Size(43, 20);
+            this.lblTipo.Size = new System.Drawing.Size(31, 13);
             this.lblTipo.TabIndex = 4;
             this.lblTipo.Text = "Tipo:";
             // 
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(26, 233);
+            this.lblEstado.Location = new System.Drawing.Point(17, 151);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(64, 20);
+            this.lblEstado.Size = new System.Drawing.Size(43, 13);
             this.lblEstado.TabIndex = 5;
             this.lblEstado.Text = "Estado:";
             // 
             // lblNumero
             // 
             this.lblNumero.AutoSize = true;
-            this.lblNumero.Location = new System.Drawing.Point(14, 301);
+            this.lblNumero.Location = new System.Drawing.Point(9, 196);
+            this.lblNumero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumero.Name = "lblNumero";
-            this.lblNumero.Size = new System.Drawing.Size(69, 20);
+            this.lblNumero.Size = new System.Drawing.Size(47, 13);
             this.lblNumero.TabIndex = 6;
             this.lblNumero.Text = "Numero:";
             // 
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(26, 351);
+            this.lblPrecio.Location = new System.Drawing.Point(17, 228);
+            this.lblPrecio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(57, 20);
+            this.lblPrecio.Size = new System.Drawing.Size(40, 13);
             this.lblPrecio.TabIndex = 7;
             this.lblPrecio.Text = "Precio:";
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(89, 301);
+            this.txtNumero.Location = new System.Drawing.Point(59, 196);
+            this.txtNumero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtNumero.Name = "txtNumero";
-            this.txtNumero.Size = new System.Drawing.Size(174, 26);
+            this.txtNumero.Size = new System.Drawing.Size(117, 20);
             this.txtNumero.TabIndex = 10;
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(89, 351);
+            this.txtPrecio.Location = new System.Drawing.Point(59, 228);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(174, 26);
+            this.txtPrecio.Size = new System.Drawing.Size(117, 20);
             this.txtPrecio.TabIndex = 11;
             // 
             // cmbTipo
@@ -227,9 +235,10 @@
             this.cmbTipo.EnabledCalc = true;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.ItemHeight = 20;
-            this.cmbTipo.Location = new System.Drawing.Point(89, 172);
+            this.cmbTipo.Location = new System.Drawing.Point(59, 112);
+            this.cmbTipo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(174, 26);
+            this.cmbTipo.Size = new System.Drawing.Size(117, 26);
             this.cmbTipo.TabIndex = 12;
             // 
             // cmbEstado
@@ -240,16 +249,17 @@
             this.cmbEstado.EnabledCalc = true;
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.ItemHeight = 20;
-            this.cmbEstado.Location = new System.Drawing.Point(89, 227);
+            this.cmbEstado.Location = new System.Drawing.Point(59, 148);
+            this.cmbEstado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(174, 26);
+            this.cmbEstado.Size = new System.Drawing.Size(117, 26);
             this.cmbEstado.TabIndex = 13;
             // 
             // formHabitaciones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1250, 560);
+            this.ClientSize = new System.Drawing.Size(833, 364);
             this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.txtPrecio);
@@ -263,10 +273,9 @@
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.dgvHabitaciones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "formHabitaciones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "formHabitaciones";
+            this.Text = "<";
             this.Load += new System.EventHandler(this.formHabitaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).EndInit();
             this.ResumeLayout(false);
