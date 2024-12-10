@@ -17,23 +17,24 @@ namespace Proyecto
         public string Tipo { get; set; }
         public DateTime Fecha_Entrada { get; set; }
         public DateTime Fecha_Salida { get; set; }
+        public string Estado { get; set; }
 
-        public Reservas(int id, string cliente, string habitacion, string tipo, DateTime entrada, DateTime salida) 
+        public Reservas(int id, string cliente, string habitacion, DateTime entrada, DateTime salida, string estado) 
         {
             Id = id;
             Cliente = cliente;
             Habitacion = habitacion;
-            Tipo = tipo;
             Fecha_Entrada = entrada;
             Fecha_Salida = salida;
+            Estado = estado;
         }
-        public Reservas(string cliente, string habitacion, string tipo, DateTime entrada, DateTime salida)
+        public Reservas(string cliente, string habitacion, DateTime entrada, DateTime salida, string estado)
         {
             Cliente = cliente;
             Habitacion = habitacion;
-            Tipo = tipo;
             Fecha_Entrada = entrada;
             Fecha_Salida = salida;
+            Estado = estado;
         }
         public Reservas() { }
         public void GuardarDB()
@@ -41,15 +42,15 @@ namespace Proyecto
             miConexion = new Conexion();
             var conexion = miConexion.ObtenerConexion();
 
-            string consulta = "INSERT INTO reservas (Cliente, Habitacion, Tipo, Fecha_entrada, Fecha_salida) VALUES (@Cliente, @Habitacion, @Tipo, @Entrada, @Salida)";
+            string consulta = "INSERT INTO reservas (Cliente, Habitacion, Fecha_entrada, Fecha_salida, Estado) VALUES (@Cliente, @Habitacion, @Entrada, @Salida, @Estado)";
 
             using (var comando = new MySqlCommand(consulta, conexion))
             {
                 comando.Parameters.AddWithValue("@Cliente", Cliente);
                 comando.Parameters.AddWithValue("@Habitacion", Habitacion);
-                comando.Parameters.AddWithValue("@Tipo", Tipo);
                 comando.Parameters.AddWithValue("@Entrada", Fecha_Entrada);
                 comando.Parameters.AddWithValue("@Salida", Fecha_Salida);
+                comando.Parameters.AddWithValue("@Estado", Estado);
 
                 comando.ExecuteNonQuery();
 
@@ -85,5 +86,6 @@ namespace Proyecto
 
             return eliminado;
         }
+        
     }
 }

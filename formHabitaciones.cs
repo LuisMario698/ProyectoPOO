@@ -38,10 +38,11 @@ namespace Proyecto
             cmbTipo.Items.Add("Estandar");
             cmbTipo.Items.Add("Suite");
             cmbTipo.Items.Add("Deluxe");
-
+            cmbTipo.SelectedIndex = 0;
             // Llenar el ComboBox de Estado con opciones predefinidas
             cmbEstado.Items.Add("Disponible");
             cmbEstado.Items.Add("En Limpieza");
+            cmbEstado.SelectedIndex = 0;
         }
         private void LimpiarControles()
         {
@@ -74,7 +75,7 @@ namespace Proyecto
             try
             {
                 dgvHabitaciones.Rows.Clear();
-                DataTable dt = habitaciones.ObtenerHabitaciones();
+                DataTable dt = habitaciones.ObtenerHabitaciones(); // Llama al método sin pasar la conexión
                 foreach (DataRow row in dt.Rows)
                 {
                     dgvHabitaciones.Rows.Add(row["Tipo"], row["Estado"], row["Numero"], row["Precio"]);
