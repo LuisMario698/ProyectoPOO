@@ -204,6 +204,8 @@ namespace Proyecto
                     btnAgregar.Visible = true;
                     lblEditando.Visible = true;
                     lblHabitacion.Visible = true;
+                    lblEditando.Visible = false;
+                    lblHabitacion.Visible = false;
                 }
                 else
                 {
