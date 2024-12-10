@@ -43,6 +43,8 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.cmbTipo = new ReaLTaiizor.Controls.AloneComboBox();
             this.cmbEstado = new ReaLTaiizor.Controls.AloneComboBox();
+            this.lblEditando = new System.Windows.Forms.Label();
+            this.lblHabitacion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -245,11 +247,31 @@
             this.cmbEstado.Size = new System.Drawing.Size(174, 26);
             this.cmbEstado.TabIndex = 13;
             // 
+            // lblEditando
+            // 
+            this.lblEditando.AutoSize = true;
+            this.lblEditando.Location = new System.Drawing.Point(58, 87);
+            this.lblEditando.Name = "lblEditando";
+            this.lblEditando.Size = new System.Drawing.Size(221, 20);
+            this.lblEditando.TabIndex = 14;
+            this.lblEditando.Text = "Editando Habitacion Numero: ";
+            // 
+            // lblHabitacion
+            // 
+            this.lblHabitacion.AutoSize = true;
+            this.lblHabitacion.Location = new System.Drawing.Point(139, 127);
+            this.lblHabitacion.Name = "lblHabitacion";
+            this.lblHabitacion.Size = new System.Drawing.Size(18, 20);
+            this.lblHabitacion.TabIndex = 15;
+            this.lblHabitacion.Text = "0";
+            // 
             // formHabitaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1250, 560);
+            this.Controls.Add(this.lblHabitacion);
+            this.Controls.Add(this.lblEditando);
             this.Controls.Add(this.cmbEstado);
             this.Controls.Add(this.cmbTipo);
             this.Controls.Add(this.txtPrecio);
@@ -288,5 +310,7 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private ReaLTaiizor.Controls.AloneComboBox cmbTipo;
         private ReaLTaiizor.Controls.AloneComboBox cmbEstado;
+        private System.Windows.Forms.Label lblEditando;
+        private System.Windows.Forms.Label lblHabitacion;
     }
 }

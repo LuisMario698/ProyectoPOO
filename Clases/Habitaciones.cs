@@ -19,7 +19,7 @@ namespace Proyecto
         }
 
         // Método para agregar una habitación
-        public bool AgregarHabitacion(string tipo, string estado, int numero, decimal precio)
+        public bool AgregarHabitacion(string tipo, string estado, decimal numero, decimal precio)
         {
             try
             {
