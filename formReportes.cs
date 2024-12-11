@@ -20,6 +20,33 @@ namespace Proyecto
         {
             InitializeComponent();
             ConfigurarDataGridViews();
+
+            dgvClientes.AutoGenerateColumns = false; // Desactiva la generación automática
+
+            // Configura las columnas y vincúlalas a los nombres del DataTable
+            dgvClientes.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Id",
+                DataPropertyName = "Id", // Nombre de la columna en el DataTable
+                HeaderText = "ID"
+            });
+            dgvClientes.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Nombre",
+                DataPropertyName = "Nombre", // Nombre de la columna en el DataTable
+                HeaderText = "Nombre"
+            });
+            dgvClientes.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Reservas",
+                DataPropertyName = "Reservas", // Nombre de la columna en el DataTable
+                HeaderText = "Reservas"
+            });
+
+            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvClientes.Columns[0].Width = 30;
+
+            dgvClientes.ColumnHeadersHeight = 40;
         }
 
         private void formReportes_Load(object sender, EventArgs e)
@@ -109,7 +136,7 @@ namespace Proyecto
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo, Estado FROM clientes";
+                        string consulta = "SELECT Id, Nombre, Reservas FROM clientes";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);

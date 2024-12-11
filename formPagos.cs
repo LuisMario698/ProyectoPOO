@@ -479,6 +479,36 @@ namespace Proyecto
             }
             ActualizarTotal();
         }
+        private void IncrementarReservasCliente(int idCliente)
+        {
+            miConexion = new Conexion();
+
+            try
+            {
+                using (MySqlConnection conexion = miConexion.ObtenerConexion())
+                {
+                    if (miConexion.AbrirConexion())
+                    {
+                        string consulta = "UPDATE clientes SET Reservas = Reservas + 1 WHERE Id = @Id";
+                        using (MySqlCommand comando = new MySqlCommand(consulta, conexion))
+                        {
+                            comando.Parameters.AddWithValue("@Id", idCliente);
+                            comando.ExecuteNonQuery();
+                        }
+
+                        miConexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar las reservas del cliente: " + ex.Message);
+            }
+        }
 
         private void txtComidas_TextChanged(object sender, EventArgs e)
         {
@@ -554,6 +584,8 @@ namespace Proyecto
 
                     ActualizarEstadoCliente(clienteSeleccionado, "Disponible");
                     ActualizarEstadoHabitacion(habitacionSeleccionda, "Disponible");
+                    IncrementarReservasCliente(clienteSeleccionado);
+
                     //dgvClientesEliminar.Rows.Clear();
                     // Aquí puedes refrescar el DataGridView u otras acciones necesarias
                     try
