@@ -60,11 +60,31 @@ namespace Proyecto
         {
 
             // Configurar DataGridView para Ingresos
-            dgvReservas.ColumnCount = 3;
-            dgvReservas.Columns[0].Name = "Fecha";
-            dgvReservas.Columns[1].Name = "Reserva ID";
-            dgvReservas.Columns[2].Name = "Total";
+            dgvReservas.AutoGenerateColumns = false; // Desactiva la generación automática
+
+            // Configura las columnas y vincúlalas a los nombres del DataTable
+            dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Fecha",
+                DataPropertyName = "Fecha", // Nombre de la columna en el DataTable
+                HeaderText = "Fecha"
+            });
+            dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Id",
+                DataPropertyName = "Id", // Nombre de la columna en el DataTable
+                HeaderText = "Id"
+            });
+            dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Total",
+                DataPropertyName = "Total", // Nombre de la columna en el DataTable
+                HeaderText = "Total"
+            });
+
             dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvReservas.ColumnHeadersHeight = 40;
 
         }
         private void CargarHabitaciones()
@@ -100,7 +120,7 @@ namespace Proyecto
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Cliente, Habitacion, Fecha_entrada, Fecha_salida, Instancia, Estado FROM reservas";
+                        string consulta = "SELECT Fecha, Id, Total FROM pagos";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
@@ -110,6 +130,21 @@ namespace Proyecto
                         dgvReservas.DataSource = dt;
                         dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+
+                        decimal sumaTotal = 0;
+                        foreach (DataGridViewRow row in dgvReservas.Rows)
+                        {
+                            if (row.Cells["Total"].Value != null &&
+                                decimal.TryParse(row.Cells["Total"].Value.ToString(), out decimal totalFila))
+                            {
+                                sumaTotal += totalFila;
+                            }
+                        }
+
+                        // Mostrar la suma en el Label
+                        lblTotalPagado.Text = sumaTotal.ToString();
+
+                        miConexion.CerrarConexion();
                         // Cerrar la conexión después de cargar los datos
                         miConexion.CerrarConexion();
                     }

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ReaLTaiizor.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,7 +28,6 @@ namespace Proyecto
         public formReservas()
         {
             InitializeComponent();
-
 
 
 
