@@ -531,5 +531,10 @@ namespace Proyecto
         {
 
         }
+
+        private void lblCliente_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -69,14 +69,13 @@
             this.pnHeader.MacOSLeftBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.pnHeader.MacOSRightBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.pnHeader.MacOSSeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(173)))), ((int)(((byte)(173)))));
-            this.pnHeader.Margin = new System.Windows.Forms.Padding(2);
             this.pnHeader.MaterialBackColor = System.Drawing.Color.DodgerBlue;
             this.pnHeader.MaterialForeColor = System.Drawing.Color.White;
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.pnHeader.ShowMaximize = true;
             this.pnHeader.ShowMinimize = true;
-            this.pnHeader.Size = new System.Drawing.Size(750, 490);
+            this.pnHeader.Size = new System.Drawing.Size(1125, 754);
             this.pnHeader.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.pnHeader.TabIndex = 3;
             this.pnHeader.TitleText = "";
@@ -107,10 +106,9 @@
             this.pnHeader.WorkingArea.Controls.Add(this.txtNombre);
             this.pnHeader.WorkingArea.Controls.Add(this.pbIdentificacion);
             this.pnHeader.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnHeader.WorkingArea.Location = new System.Drawing.Point(0, 30);
-            this.pnHeader.WorkingArea.Margin = new System.Windows.Forms.Padding(2);
+            this.pnHeader.WorkingArea.Location = new System.Drawing.Point(0, 46);
             this.pnHeader.WorkingArea.Name = "WorkingArea";
-            this.pnHeader.WorkingArea.Size = new System.Drawing.Size(750, 460);
+            this.pnHeader.WorkingArea.Size = new System.Drawing.Size(1125, 708);
             this.pnHeader.WorkingArea.TabIndex = 0;
             this.pnHeader.WorkingArea.Paint += new System.Windows.Forms.PaintEventHandler(this.pnHeader_WorkingArea_Paint);
             // 
@@ -128,7 +126,8 @@
             this.btnModificar.ForeColor = System.Drawing.Color.White;
             this.btnModificar.Image = null;
             this.btnModificar.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnModificar.Location = new System.Drawing.Point(147, 292);
+            this.btnModificar.Location = new System.Drawing.Point(220, 449);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnModificar.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -136,7 +135,7 @@
             this.btnModificar.OnHoverImage = null;
             this.btnModificar.OnPressedColor = System.Drawing.Color.Black;
             this.btnModificar.Radius = 10;
-            this.btnModificar.Size = new System.Drawing.Size(124, 42);
+            this.btnModificar.Size = new System.Drawing.Size(186, 65);
             this.btnModificar.TabIndex = 48;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -145,18 +144,20 @@
             // pbIdentificacionNueva
             // 
             this.pbIdentificacionNueva.InitialImage = null;
-            this.pbIdentificacionNueva.Location = new System.Drawing.Point(462, 263);
+            this.pbIdentificacionNueva.Location = new System.Drawing.Point(693, 405);
+            this.pbIdentificacionNueva.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbIdentificacionNueva.Name = "pbIdentificacionNueva";
-            this.pbIdentificacionNueva.Size = new System.Drawing.Size(161, 142);
+            this.pbIdentificacionNueva.Size = new System.Drawing.Size(242, 218);
             this.pbIdentificacionNueva.TabIndex = 47;
             this.pbIdentificacionNueva.TabStop = false;
             // 
             // pbArchivos
             // 
             this.pbArchivos.BaseColor = System.Drawing.Color.White;
-            this.pbArchivos.Location = new System.Drawing.Point(519, 207);
+            this.pbArchivos.Location = new System.Drawing.Point(778, 318);
+            this.pbArchivos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbArchivos.Name = "pbArchivos";
-            this.pbArchivos.Size = new System.Drawing.Size(50, 50);
+            this.pbArchivos.Size = new System.Drawing.Size(75, 77);
             this.pbArchivos.TabIndex = 46;
             this.pbArchivos.TabStop = false;
             this.pbArchivos.Click += new System.EventHandler(this.pbArchivos_Click);
@@ -164,27 +165,30 @@
             // pbFlecha2
             // 
             this.pbFlecha2.BaseColor = System.Drawing.Color.White;
-            this.pbFlecha2.Location = new System.Drawing.Point(246, 77);
+            this.pbFlecha2.Location = new System.Drawing.Point(369, 118);
+            this.pbFlecha2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFlecha2.Name = "pbFlecha2";
-            this.pbFlecha2.Size = new System.Drawing.Size(30, 30);
+            this.pbFlecha2.Size = new System.Drawing.Size(45, 46);
             this.pbFlecha2.TabIndex = 45;
             this.pbFlecha2.TabStop = false;
             // 
             // pbFlecha3
             // 
             this.pbFlecha3.BaseColor = System.Drawing.Color.White;
-            this.pbFlecha3.Location = new System.Drawing.Point(246, 113);
+            this.pbFlecha3.Location = new System.Drawing.Point(369, 174);
+            this.pbFlecha3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFlecha3.Name = "pbFlecha3";
-            this.pbFlecha3.Size = new System.Drawing.Size(30, 30);
+            this.pbFlecha3.Size = new System.Drawing.Size(45, 46);
             this.pbFlecha3.TabIndex = 44;
             this.pbFlecha3.TabStop = false;
             // 
             // pbFlecha1
             // 
             this.pbFlecha1.BaseColor = System.Drawing.Color.White;
-            this.pbFlecha1.Location = new System.Drawing.Point(246, 41);
+            this.pbFlecha1.Location = new System.Drawing.Point(369, 63);
+            this.pbFlecha1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbFlecha1.Name = "pbFlecha1";
-            this.pbFlecha1.Size = new System.Drawing.Size(30, 30);
+            this.pbFlecha1.Size = new System.Drawing.Size(45, 46);
             this.pbFlecha1.TabIndex = 43;
             this.pbFlecha1.TabStop = false;
             // 
@@ -195,7 +199,8 @@
             this.switchIdentificacion.BaseOffColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
             this.switchIdentificacion.BaseOnColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
             this.switchIdentificacion.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.switchIdentificacion.Location = new System.Drawing.Point(524, 169);
+            this.switchIdentificacion.Location = new System.Drawing.Point(786, 260);
+            this.switchIdentificacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.switchIdentificacion.Name = "switchIdentificacion";
             this.switchIdentificacion.Size = new System.Drawing.Size(40, 20);
             this.switchIdentificacion.TabIndex = 41;
@@ -209,9 +214,10 @@
             this.lblAhora.BackColor = System.Drawing.Color.Transparent;
             this.lblAhora.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblAhora.ForeColor = System.Drawing.Color.Silver;
-            this.lblAhora.Location = new System.Drawing.Point(327, 18);
+            this.lblAhora.Location = new System.Drawing.Point(490, 28);
+            this.lblAhora.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAhora.Name = "lblAhora";
-            this.lblAhora.Size = new System.Drawing.Size(52, 20);
+            this.lblAhora.Size = new System.Drawing.Size(75, 30);
             this.lblAhora.TabIndex = 40;
             this.lblAhora.Text = "Ahora";
             // 
@@ -221,9 +227,10 @@
             this.lblCorreo.BackColor = System.Drawing.Color.Transparent;
             this.lblCorreo.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblCorreo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblCorreo.Location = new System.Drawing.Point(28, 123);
+            this.lblCorreo.Location = new System.Drawing.Point(42, 189);
+            this.lblCorreo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCorreo.Name = "lblCorreo";
-            this.lblCorreo.Size = new System.Drawing.Size(66, 20);
+            this.lblCorreo.Size = new System.Drawing.Size(98, 30);
             this.lblCorreo.TabIndex = 39;
             this.lblCorreo.Text = "Corrreo:";
             // 
@@ -233,9 +240,10 @@
             this.lblNombre.BackColor = System.Drawing.Color.Transparent;
             this.lblNombre.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblNombre.Location = new System.Drawing.Point(23, 51);
+            this.lblNombre.Location = new System.Drawing.Point(34, 78);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(71, 20);
+            this.lblNombre.Size = new System.Drawing.Size(104, 30);
             this.lblNombre.TabIndex = 38;
             this.lblNombre.Text = "Nombre:";
             // 
@@ -248,11 +256,12 @@
             this.txtCorreoNuevo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtCorreoNuevo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtCorreoNuevo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCorreoNuevo.Location = new System.Drawing.Point(282, 113);
+            this.txtCorreoNuevo.Location = new System.Drawing.Point(423, 174);
+            this.txtCorreoNuevo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCorreoNuevo.Name = "txtCorreoNuevo";
             this.txtCorreoNuevo.PasswordChar = '\0';
             this.txtCorreoNuevo.SelectedText = "";
-            this.txtCorreoNuevo.Size = new System.Drawing.Size(140, 30);
+            this.txtCorreoNuevo.Size = new System.Drawing.Size(210, 52);
             this.txtCorreoNuevo.TabIndex = 37;
             this.txtCorreoNuevo.TextChanged += new System.EventHandler(this.txtCorreoNuevo_TextChanged);
             // 
@@ -265,11 +274,12 @@
             this.txtCorreo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtCorreo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCorreo.Location = new System.Drawing.Point(100, 113);
+            this.txtCorreo.Location = new System.Drawing.Point(150, 174);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.PasswordChar = '\0';
             this.txtCorreo.SelectedText = "";
-            this.txtCorreo.Size = new System.Drawing.Size(140, 30);
+            this.txtCorreo.Size = new System.Drawing.Size(210, 52);
             this.txtCorreo.TabIndex = 36;
             // 
             // txtTelefonoNuevo
@@ -281,11 +291,12 @@
             this.txtTelefonoNuevo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtTelefonoNuevo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTelefonoNuevo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTelefonoNuevo.Location = new System.Drawing.Point(282, 77);
+            this.txtTelefonoNuevo.Location = new System.Drawing.Point(423, 118);
+            this.txtTelefonoNuevo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTelefonoNuevo.Name = "txtTelefonoNuevo";
             this.txtTelefonoNuevo.PasswordChar = '\0';
             this.txtTelefonoNuevo.SelectedText = "";
-            this.txtTelefonoNuevo.Size = new System.Drawing.Size(140, 30);
+            this.txtTelefonoNuevo.Size = new System.Drawing.Size(210, 52);
             this.txtTelefonoNuevo.TabIndex = 35;
             this.txtTelefonoNuevo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefonoNuevo_KeyPress);
             // 
@@ -298,11 +309,12 @@
             this.txtTelefono.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtTelefono.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTelefono.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTelefono.Location = new System.Drawing.Point(100, 77);
+            this.txtTelefono.Location = new System.Drawing.Point(150, 118);
+            this.txtTelefono.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.PasswordChar = '\0';
             this.txtTelefono.SelectedText = "";
-            this.txtTelefono.Size = new System.Drawing.Size(140, 30);
+            this.txtTelefono.Size = new System.Drawing.Size(210, 52);
             this.txtTelefono.TabIndex = 34;
             // 
             // txtNombreNuevo
@@ -314,11 +326,12 @@
             this.txtNombreNuevo.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtNombreNuevo.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtNombreNuevo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNombreNuevo.Location = new System.Drawing.Point(282, 41);
+            this.txtNombreNuevo.Location = new System.Drawing.Point(423, 63);
+            this.txtNombreNuevo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombreNuevo.Name = "txtNombreNuevo";
             this.txtNombreNuevo.PasswordChar = '\0';
             this.txtNombreNuevo.SelectedText = "";
-            this.txtNombreNuevo.Size = new System.Drawing.Size(140, 30);
+            this.txtNombreNuevo.Size = new System.Drawing.Size(210, 52);
             this.txtNombreNuevo.TabIndex = 33;
             this.txtNombreNuevo.TextChanged += new System.EventHandler(this.txtNombreNuevo_TextChanged);
             this.txtNombreNuevo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombreNuevo_KeyPress);
@@ -329,9 +342,10 @@
             this.lblAntes.BackColor = System.Drawing.Color.Transparent;
             this.lblAntes.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblAntes.ForeColor = System.Drawing.Color.Silver;
-            this.lblAntes.Location = new System.Drawing.Point(143, 18);
+            this.lblAntes.Location = new System.Drawing.Point(214, 28);
+            this.lblAntes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAntes.Name = "lblAntes";
-            this.lblAntes.Size = new System.Drawing.Size(50, 20);
+            this.lblAntes.Size = new System.Drawing.Size(72, 30);
             this.lblAntes.TabIndex = 32;
             this.lblAntes.Text = "Antes";
             // 
@@ -341,9 +355,10 @@
             this.lblTelefono.BackColor = System.Drawing.Color.Transparent;
             this.lblTelefono.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblTelefono.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblTelefono.Location = new System.Drawing.Point(20, 87);
+            this.lblTelefono.Location = new System.Drawing.Point(30, 134);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(74, 20);
+            this.lblTelefono.Size = new System.Drawing.Size(107, 30);
             this.lblTelefono.TabIndex = 25;
             this.lblTelefono.Text = "Telefono:";
             // 
@@ -356,29 +371,32 @@
             this.txtNombre.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtNombre.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtNombre.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNombre.Location = new System.Drawing.Point(100, 41);
+            this.txtNombre.Location = new System.Drawing.Point(150, 63);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.PasswordChar = '\0';
             this.txtNombre.SelectedText = "";
-            this.txtNombre.Size = new System.Drawing.Size(140, 30);
+            this.txtNombre.Size = new System.Drawing.Size(210, 52);
             this.txtNombre.TabIndex = 21;
             // 
             // pbIdentificacion
             // 
             this.pbIdentificacion.InitialImage = null;
-            this.pbIdentificacion.Location = new System.Drawing.Point(462, 18);
+            this.pbIdentificacion.Location = new System.Drawing.Point(693, 28);
+            this.pbIdentificacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbIdentificacion.Name = "pbIdentificacion";
-            this.pbIdentificacion.Size = new System.Drawing.Size(161, 142);
+            this.pbIdentificacion.Size = new System.Drawing.Size(242, 218);
             this.pbIdentificacion.TabIndex = 42;
             this.pbIdentificacion.TabStop = false;
             // 
             // formClientesModificar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 490);
+            this.ClientSize = new System.Drawing.Size(1125, 754);
             this.Controls.Add(this.pnHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "formClientesModificar";
             this.Text = "formClientesModificar";
             this.Load += new System.EventHandler(this.formClientesModificar_Load);
