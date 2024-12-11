@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvReservas = new Guna.UI.WinForms.GunaDataGridView();
             this.lblEntrada = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             this.lblAntes = new ReaLTaiizor.Controls.DungeonHeaderLabel();
@@ -51,38 +51,39 @@
             // 
             // dgvReservas
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.dgvReservas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvReservas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvReservas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReservas.BackgroundColor = System.Drawing.Color.White;
             this.dgvReservas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvReservas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvReservas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvReservas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvReservas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvReservas.ColumnHeadersHeight = 4;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReservas.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReservas.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvReservas.EnableHeadersVisualStyles = false;
             this.dgvReservas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.dgvReservas.Location = new System.Drawing.Point(625, 42);
+            this.dgvReservas.Location = new System.Drawing.Point(564, 52);
+            this.dgvReservas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvReservas.Name = "dgvReservas";
             this.dgvReservas.RowHeadersVisible = false;
             this.dgvReservas.RowHeadersWidth = 62;
             this.dgvReservas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReservas.Size = new System.Drawing.Size(602, 409);
+            this.dgvReservas.Size = new System.Drawing.Size(803, 503);
             this.dgvReservas.TabIndex = 0;
             this.dgvReservas.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvReservas.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -115,9 +116,10 @@
             this.lblEntrada.BackColor = System.Drawing.Color.Transparent;
             this.lblEntrada.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblEntrada.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblEntrada.Location = new System.Drawing.Point(107, 315);
+            this.lblEntrada.Location = new System.Drawing.Point(143, 388);
+            this.lblEntrada.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEntrada.Name = "lblEntrada";
-            this.lblEntrada.Size = new System.Drawing.Size(63, 20);
+            this.lblEntrada.Size = new System.Drawing.Size(81, 25);
             this.lblEntrada.TabIndex = 25;
             this.lblEntrada.Text = "Entrada";
             // 
@@ -127,9 +129,10 @@
             this.lblAntes.BackColor = System.Drawing.Color.Transparent;
             this.lblAntes.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblAntes.ForeColor = System.Drawing.Color.Silver;
-            this.lblAntes.Location = new System.Drawing.Point(385, 19);
+            this.lblAntes.Location = new System.Drawing.Point(203, 23);
+            this.lblAntes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAntes.Name = "lblAntes";
-            this.lblAntes.Size = new System.Drawing.Size(141, 20);
+            this.lblAntes.Size = new System.Drawing.Size(180, 25);
             this.lblAntes.TabIndex = 52;
             this.lblAntes.Text = "Seleccionar fecha...";
             // 
@@ -159,9 +162,10 @@
             this.cbClientes.ListForeColor = System.Drawing.Color.Black;
             this.cbClientes.ListSelectedBackColorA = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cbClientes.ListSelectedBackColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbClientes.Location = new System.Drawing.Point(55, 401);
+            this.cbClientes.Location = new System.Drawing.Point(73, 494);
+            this.cbClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbClientes.Name = "cbClientes";
-            this.cbClientes.Size = new System.Drawing.Size(163, 22);
+            this.cbClientes.Size = new System.Drawing.Size(216, 22);
             this.cbClientes.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.cbClientes.StartIndex = 0;
             this.cbClientes.TabIndex = 54;
@@ -194,9 +198,10 @@
             this.cbHabitaciones.ListForeColor = System.Drawing.Color.Black;
             this.cbHabitaciones.ListSelectedBackColorA = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cbHabitaciones.ListSelectedBackColorB = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbHabitaciones.Location = new System.Drawing.Point(363, 401);
+            this.cbHabitaciones.Location = new System.Drawing.Point(301, 494);
+            this.cbHabitaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbHabitaciones.Name = "cbHabitaciones";
-            this.cbHabitaciones.Size = new System.Drawing.Size(163, 22);
+            this.cbHabitaciones.Size = new System.Drawing.Size(216, 22);
             this.cbHabitaciones.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             this.cbHabitaciones.StartIndex = 0;
             this.cbHabitaciones.TabIndex = 55;
@@ -217,7 +222,8 @@
             this.dpEntrada.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(51)))));
             this.dpEntrada.HeadLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(231)))), ((int)(((byte)(237)))));
             this.dpEntrada.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(238)))), ((int)(((byte)(245)))));
-            this.dpEntrada.Location = new System.Drawing.Point(12, 42);
+            this.dpEntrada.Location = new System.Drawing.Point(16, 52);
+            this.dpEntrada.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dpEntrada.Name = "dpEntrada";
             this.dpEntrada.NMColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
             this.dpEntrada.NMHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
@@ -247,7 +253,8 @@
             this.dpSalida.HeaderTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(49)))), ((int)(((byte)(51)))));
             this.dpSalida.HeadLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(231)))), ((int)(((byte)(237)))));
             this.dpSalida.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(238)))), ((int)(((byte)(245)))));
-            this.dpSalida.Location = new System.Drawing.Point(329, 42);
+            this.dpSalida.Location = new System.Drawing.Point(274, 52);
+            this.dpSalida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dpSalida.Name = "dpSalida";
             this.dpSalida.NMColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(196)))), ((int)(((byte)(204)))));
             this.dpSalida.NMHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
@@ -270,9 +277,10 @@
             this.lblSalida.BackColor = System.Drawing.Color.Transparent;
             this.lblSalida.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblSalida.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblSalida.Location = new System.Drawing.Point(420, 315);
+            this.lblSalida.Location = new System.Drawing.Point(381, 388);
+            this.lblSalida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSalida.Name = "lblSalida";
-            this.lblSalida.Size = new System.Drawing.Size(50, 20);
+            this.lblSalida.Size = new System.Drawing.Size(65, 25);
             this.lblSalida.TabIndex = 60;
             this.lblSalida.Text = "Salida";
             // 
@@ -282,9 +290,10 @@
             this.lblCliente.BackColor = System.Drawing.Color.Transparent;
             this.lblCliente.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblCliente.Location = new System.Drawing.Point(107, 378);
+            this.lblCliente.Location = new System.Drawing.Point(143, 465);
+            this.lblCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(57, 20);
+            this.lblCliente.Size = new System.Drawing.Size(73, 25);
             this.lblCliente.TabIndex = 61;
             this.lblCliente.Text = "Cliente";
             this.lblCliente.Click += new System.EventHandler(this.lblCliente_Click);
@@ -295,9 +304,10 @@
             this.lblHabitacion.BackColor = System.Drawing.Color.Transparent;
             this.lblHabitacion.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblHabitacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblHabitacion.Location = new System.Drawing.Point(405, 378);
+            this.lblHabitacion.Location = new System.Drawing.Point(357, 465);
+            this.lblHabitacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHabitacion.Name = "lblHabitacion";
-            this.lblHabitacion.Size = new System.Drawing.Size(84, 20);
+            this.lblHabitacion.Size = new System.Drawing.Size(109, 25);
             this.lblHabitacion.TabIndex = 62;
             this.lblHabitacion.Text = "Habitacion";
             // 
@@ -315,7 +325,8 @@
             this.btnReservar.ForeColor = System.Drawing.Color.White;
             this.btnReservar.Image = null;
             this.btnReservar.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReservar.Location = new System.Drawing.Point(226, 470);
+            this.btnReservar.Location = new System.Drawing.Point(301, 578);
+            this.btnReservar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnReservar.Name = "btnReservar";
             this.btnReservar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnReservar.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -323,7 +334,7 @@
             this.btnReservar.OnHoverImage = null;
             this.btnReservar.OnPressedColor = System.Drawing.Color.Black;
             this.btnReservar.Radius = 10;
-            this.btnReservar.Size = new System.Drawing.Size(124, 42);
+            this.btnReservar.Size = new System.Drawing.Size(165, 52);
             this.btnReservar.TabIndex = 68;
             this.btnReservar.Text = "Reservar";
             this.btnReservar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -335,9 +346,10 @@
             this.lblReservacionesActivas.BackColor = System.Drawing.Color.Transparent;
             this.lblReservacionesActivas.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblReservacionesActivas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(76)))), ((int)(((byte)(77)))));
-            this.lblReservacionesActivas.Location = new System.Drawing.Point(850, 19);
+            this.lblReservacionesActivas.Location = new System.Drawing.Point(859, 23);
+            this.lblReservacionesActivas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReservacionesActivas.Name = "lblReservacionesActivas";
-            this.lblReservacionesActivas.Size = new System.Drawing.Size(164, 20);
+            this.lblReservacionesActivas.Size = new System.Drawing.Size(204, 25);
             this.lblReservacionesActivas.TabIndex = 69;
             this.lblReservacionesActivas.Text = "Reservaciones Activas";
             // 
@@ -355,7 +367,8 @@
             this.btnCancelar.ForeColor = System.Drawing.Color.White;
             this.btnCancelar.Image = null;
             this.btnCancelar.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnCancelar.Location = new System.Drawing.Point(874, 488);
+            this.btnCancelar.Location = new System.Drawing.Point(908, 594);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnCancelar.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -363,7 +376,7 @@
             this.btnCancelar.OnHoverImage = null;
             this.btnCancelar.OnPressedColor = System.Drawing.Color.Black;
             this.btnCancelar.Radius = 10;
-            this.btnCancelar.Size = new System.Drawing.Size(124, 42);
+            this.btnCancelar.Size = new System.Drawing.Size(165, 52);
             this.btnCancelar.TabIndex = 70;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -375,9 +388,10 @@
             this.lblCancelarReservacion.BackColor = System.Drawing.Color.Transparent;
             this.lblCancelarReservacion.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             this.lblCancelarReservacion.ForeColor = System.Drawing.Color.Silver;
-            this.lblCancelarReservacion.Location = new System.Drawing.Point(813, 459);
+            this.lblCancelarReservacion.Location = new System.Drawing.Point(825, 565);
+            this.lblCancelarReservacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCancelarReservacion.Name = "lblCancelarReservacion";
-            this.lblCancelarReservacion.Size = new System.Drawing.Size(255, 20);
+            this.lblCancelarReservacion.Size = new System.Drawing.Size(326, 25);
             this.lblCancelarReservacion.TabIndex = 71;
             this.lblCancelarReservacion.Text = "Seleccione la reservacion a cancelar";
             // 
@@ -385,16 +399,17 @@
             // 
             this.lbl.AutoSize = true;
             this.lbl.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lbl.Location = new System.Drawing.Point(529, 470);
+            this.lbl.Location = new System.Drawing.Point(705, 578);
+            this.lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl.Name = "lbl";
-            this.lbl.Size = new System.Drawing.Size(0, 15);
+            this.lbl.Size = new System.Drawing.Size(0, 20);
             this.lbl.TabIndex = 72;
             // 
             // formReservas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1250, 560);
+            this.ClientSize = new System.Drawing.Size(1667, 689);
             this.Controls.Add(this.lbl);
             this.Controls.Add(this.lblCancelarReservacion);
             this.Controls.Add(this.btnCancelar);
@@ -411,6 +426,7 @@
             this.Controls.Add(this.lblEntrada);
             this.Controls.Add(this.dgvReservas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "formReservas";
             this.Text = "formReservas";
             this.Load += new System.EventHandler(this.formReservas_Load);

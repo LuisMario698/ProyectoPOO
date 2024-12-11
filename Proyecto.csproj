@@ -159,6 +159,9 @@
     <Compile Include="Clases\BuscarImagen.cs" />
     <Compile Include="Clases\Clientes.cs" />
     <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Clases\HabitacionDeluxe.cs" />
+    <Compile Include="Clases\HabitacionEstandar.cs" />
+    <Compile Include="Clases\HabitacionSuite.cs" />
     <Compile Include="Clases\IHabitaciones.cs" />
     <Compile Include="Clases\Pagos.cs" />
     <Compile Include="formClientes.cs">
@@ -166,18 +169,6 @@
     </Compile>
     <Compile Include="formClientes.Designer.cs">
       <DependentUpon>formClientes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formClientesModificar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formClientesModificar.Designer.cs">
-      <DependentUpon>formClientesModificar.cs</DependentUpon>
-    </Compile>
-    <Compile Include="formClientesRegistrar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formClientesRegistrar.Designer.cs">
-      <DependentUpon>formClientesRegistrar.cs</DependentUpon>
     </Compile>
     <Compile Include="formHabitaciones.cs">
       <SubType>Form</SubType>
@@ -221,12 +212,6 @@
     <Compile Include="Clases\Reservas.cs" />
     <EmbeddedResource Include="formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formClientesModificar.resx">
-      <DependentUpon>formClientesModificar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="formClientesRegistrar.resx">
-      <DependentUpon>formClientesRegistrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="formHabitaciones.resx">
       <DependentUpon>formHabitaciones.cs</DependentUpon>
@@ -273,6 +258,7 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Resources\equis.png" />
+    <None Include="Resources\cooking.jpg" />
     <Content Include="Resources\file.png" />
     <Content Include="Resources\flecha.png" />
     <Content Include="Resources\send.png" />

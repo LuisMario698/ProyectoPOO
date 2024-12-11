@@ -151,7 +151,6 @@ namespace Proyecto
                             {
                                 // Aquí tienes el ID del cliente en la variable "idCliente"
                                 clienteSeleccionado = idCliente;
-                                MessageBox.Show("ID del cliente: " + idCliente);
                                 lblIdCliente.Text = clienteSeleccionado.ToString();
                                 lblNombreCliente.Text = ObtenerNombreCliente(clienteSeleccionado);
                             }
@@ -169,7 +168,6 @@ namespace Proyecto
                             {
                                 // Aquí tienes el número de la habitación en la variable "numeroHabitacion"
                                 habitacionSeleccionda = numeroHabitacion;
-                                MessageBox.Show("Número de habitación: " + numeroHabitacion);
                                 lblIdHabitacion.Text = habitacionSeleccionda.ToString();
                                 lblTipoHabitacion.Text = ObtenerTipoHabitacion(habitacionSeleccionda);
                                 lblPrecioHabitacion.Text = ObtenerPrecioHabitacion(habitacionSeleccionda).ToString();
@@ -444,7 +442,6 @@ namespace Proyecto
         {
             if (checkLimpieza.Checked)
             {
-                MessageBox.Show("La habitación se marcó como limpia.");
                 if(lblTipoHabitacion.Text == "Estandar")
                 {
                     decimal gastosLimpieza = estandar.CalcularGastosLimpieza(true);
@@ -463,7 +460,6 @@ namespace Proyecto
             }
             else
             {
-                MessageBox.Show("La habitación se desmarcó como limpia.");
                 if (lblTipoHabitacion.Text == "Estandar")
                 {
                     decimal gastosLimpieza = estandar.CalcularGastosLimpieza(false);
@@ -758,7 +754,7 @@ namespace Proyecto
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo cancelar la reservacion. Puede que no exista.");
+                    MessageBox.Show("No se pudo terminar la reservacion. Puede que no exista.");
                 }
             }
             else

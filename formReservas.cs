@@ -163,7 +163,6 @@ namespace Proyecto
                             {
                                 // Aquí tienes el ID del cliente en la variable "idCliente"
                                 clienteSeleccionado = idCliente;
-                                MessageBox.Show("ID del cliente: " + idCliente);
                             }
                             else
                             {
@@ -179,7 +178,6 @@ namespace Proyecto
                             {
                                 // Aquí tienes el número de la habitación en la variable "numeroHabitacion"
                                 habitacionSeleccionda = numeroHabitacion;
-                                MessageBox.Show("Número de habitación: " + numeroHabitacion);
                             }
                             else
                             {

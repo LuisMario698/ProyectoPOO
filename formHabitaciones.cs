@@ -25,12 +25,17 @@ namespace Proyecto
         {
             InitializeComponent();
 
+            
             habitaciones = new Habitaciones();
             ConfigurarDataGridView();
             CargarDatosHabitaciones();
             InitializeComboBoxes();
             LimpiarControles();
             dgvHabitaciones.CellDoubleClick += dgvHabitaciones_CellDoubleClick;
+            cmbTipo.SelectedIndexChanged += cmbTipo_SelectedIndexChanged;
+            txtPrecio.Enabled = false;
+            txtPrecio.Text = "500";
+
         }
         private void InitializeComboBoxes()
         {
@@ -48,8 +53,7 @@ namespace Proyecto
         {
             cmbTipo.SelectedIndex = 0; // Ningún elemento seleccionado
             cmbEstado.SelectedIndex = 0; // Ningún elemento seleccionado
-            txtNumero.Clear(); // Vaciar el TextBox
-            txtPrecio.Clear(); // Vaciar el TextBox
+            txtNumero.Clear(); // Vaciar el TextBox // Vaciar el TextBox
             lblEditando.Visible = false;
             lblHabitacion.Visible = false;
         }
@@ -267,8 +271,25 @@ namespace Proyecto
         private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbTipo.SelectedIndex == 0)
-            { 
-                
+            {
+                txtPrecio.Text = "500";
+            }
+            if (cmbTipo.SelectedIndex == 1)
+            {
+                txtPrecio.Text = "1000";
+            }
+            if (cmbTipo.SelectedIndex == 2)
+            {
+                txtPrecio.Text = "1500";
+            }
+        }
+
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verifica si la tecla presionada no es un número, una tecla de control (Backspace, etc.), o el signo menos
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Ignora la tecla presionada si no es un número
             }
         }
     }

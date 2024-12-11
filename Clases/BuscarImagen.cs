@@ -46,7 +46,6 @@ namespace Proyecto
                             }
                             else
                             {
-                                MessageBox.Show("No se encontró la imagen para el cliente.");
                             }
                         }
                         else

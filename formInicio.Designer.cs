@@ -40,29 +40,32 @@
             this.pnTop = new Guna.UI.WinForms.GunaPanel();
             this.pnCuerpo = new Guna.UI.WinForms.GunaPanel();
             this.pnHeader = new ReaLTaiizor.Forms.ParrotForm();
+            this.pbLogo = new Guna.UI.WinForms.GunaPictureBox();
             this.gridTabla.SuspendLayout();
             this.pnLateral.SuspendLayout();
+            this.pnCuerpo.SuspendLayout();
             this.pnHeader.WorkingArea.SuspendLayout();
             this.pnHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // gridTabla
             // 
             this.gridTabla.BackColor = System.Drawing.Color.White;
             this.gridTabla.ColumnCount = 2;
-            this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1250F));
+            this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.gridTabla.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 1707F));
             this.gridTabla.Controls.Add(this.pnLateral, 0, 1);
             this.gridTabla.Controls.Add(this.pnLogo, 0, 0);
             this.gridTabla.Controls.Add(this.pnTop, 1, 0);
             this.gridTabla.Controls.Add(this.pnCuerpo, 1, 1);
             this.gridTabla.Location = new System.Drawing.Point(0, 1);
-            this.gridTabla.Margin = new System.Windows.Forms.Padding(2);
+            this.gridTabla.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridTabla.Name = "gridTabla";
             this.gridTabla.RowCount = 2;
-            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 560F));
-            this.gridTabla.Size = new System.Drawing.Size(1430, 796);
+            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
+            this.gridTabla.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 689F));
+            this.gridTabla.Size = new System.Drawing.Size(1907, 980);
             this.gridTabla.TabIndex = 1;
             // 
             // pnLateral
@@ -74,10 +77,10 @@
             this.pnLateral.Controls.Add(this.btnPagos);
             this.pnLateral.Controls.Add(this.btnReportes);
             this.pnLateral.Controls.Add(this.pnExtra);
-            this.pnLateral.Location = new System.Drawing.Point(2, 52);
-            this.pnLateral.Margin = new System.Windows.Forms.Padding(2);
+            this.pnLateral.Location = new System.Drawing.Point(3, 64);
+            this.pnLateral.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLateral.Name = "pnLateral";
-            this.pnLateral.Size = new System.Drawing.Size(146, 560);
+            this.pnLateral.Size = new System.Drawing.Size(194, 689);
             this.pnLateral.TabIndex = 1;
             // 
             // btnHabitaciones
@@ -92,15 +95,15 @@
             this.btnHabitaciones.ForeColor = System.Drawing.Color.White;
             this.btnHabitaciones.Image = null;
             this.btnHabitaciones.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnHabitaciones.Location = new System.Drawing.Point(2, 2);
-            this.btnHabitaciones.Margin = new System.Windows.Forms.Padding(2);
+            this.btnHabitaciones.Location = new System.Drawing.Point(3, 2);
+            this.btnHabitaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHabitaciones.Name = "btnHabitaciones";
             this.btnHabitaciones.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(102)))), ((int)(((byte)(131)))));
             this.btnHabitaciones.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnHabitaciones.OnHoverForeColor = System.Drawing.Color.White;
             this.btnHabitaciones.OnHoverImage = null;
             this.btnHabitaciones.OnPressedColor = System.Drawing.Color.Black;
-            this.btnHabitaciones.Size = new System.Drawing.Size(141, 67);
+            this.btnHabitaciones.Size = new System.Drawing.Size(188, 82);
             this.btnHabitaciones.TabIndex = 0;
             this.btnHabitaciones.Text = "Habitaciones";
             this.btnHabitaciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -118,15 +121,15 @@
             this.btnClientes.ForeColor = System.Drawing.Color.White;
             this.btnClientes.Image = null;
             this.btnClientes.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnClientes.Location = new System.Drawing.Point(2, 73);
-            this.btnClientes.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClientes.Location = new System.Drawing.Point(3, 88);
+            this.btnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(102)))), ((int)(((byte)(131)))));
             this.btnClientes.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnClientes.OnHoverForeColor = System.Drawing.Color.White;
             this.btnClientes.OnHoverImage = null;
             this.btnClientes.OnPressedColor = System.Drawing.Color.Black;
-            this.btnClientes.Size = new System.Drawing.Size(141, 67);
+            this.btnClientes.Size = new System.Drawing.Size(188, 82);
             this.btnClientes.TabIndex = 1;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -144,15 +147,15 @@
             this.btnReservas.ForeColor = System.Drawing.Color.White;
             this.btnReservas.Image = null;
             this.btnReservas.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReservas.Location = new System.Drawing.Point(2, 144);
-            this.btnReservas.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReservas.Location = new System.Drawing.Point(3, 174);
+            this.btnReservas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReservas.Name = "btnReservas";
             this.btnReservas.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(102)))), ((int)(((byte)(131)))));
             this.btnReservas.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnReservas.OnHoverForeColor = System.Drawing.Color.White;
             this.btnReservas.OnHoverImage = null;
             this.btnReservas.OnPressedColor = System.Drawing.Color.Black;
-            this.btnReservas.Size = new System.Drawing.Size(141, 67);
+            this.btnReservas.Size = new System.Drawing.Size(188, 82);
             this.btnReservas.TabIndex = 2;
             this.btnReservas.Text = "Reservas";
             this.btnReservas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -170,15 +173,15 @@
             this.btnPagos.ForeColor = System.Drawing.Color.White;
             this.btnPagos.Image = null;
             this.btnPagos.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnPagos.Location = new System.Drawing.Point(2, 215);
-            this.btnPagos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPagos.Location = new System.Drawing.Point(3, 260);
+            this.btnPagos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPagos.Name = "btnPagos";
             this.btnPagos.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(102)))), ((int)(((byte)(131)))));
             this.btnPagos.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnPagos.OnHoverForeColor = System.Drawing.Color.White;
             this.btnPagos.OnHoverImage = null;
             this.btnPagos.OnPressedColor = System.Drawing.Color.Black;
-            this.btnPagos.Size = new System.Drawing.Size(141, 67);
+            this.btnPagos.Size = new System.Drawing.Size(188, 82);
             this.btnPagos.TabIndex = 3;
             this.btnPagos.Text = "Pagos";
             this.btnPagos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -196,15 +199,15 @@
             this.btnReportes.ForeColor = System.Drawing.Color.White;
             this.btnReportes.Image = null;
             this.btnReportes.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReportes.Location = new System.Drawing.Point(2, 286);
-            this.btnReportes.Margin = new System.Windows.Forms.Padding(2);
+            this.btnReportes.Location = new System.Drawing.Point(3, 346);
+            this.btnReportes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(102)))), ((int)(((byte)(131)))));
             this.btnReportes.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnReportes.OnHoverForeColor = System.Drawing.Color.White;
             this.btnReportes.OnHoverImage = null;
             this.btnReportes.OnPressedColor = System.Drawing.Color.Black;
-            this.btnReportes.Size = new System.Drawing.Size(141, 67);
+            this.btnReportes.Size = new System.Drawing.Size(188, 82);
             this.btnReportes.TabIndex = 4;
             this.btnReportes.Text = "Reportes";
             this.btnReportes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -214,37 +217,39 @@
             // 
             this.pnExtra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(43)))), ((int)(((byte)(55)))));
             this.pnExtra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnExtra.Location = new System.Drawing.Point(2, 357);
-            this.pnExtra.Margin = new System.Windows.Forms.Padding(2);
+            this.pnExtra.Location = new System.Drawing.Point(3, 432);
+            this.pnExtra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnExtra.Name = "pnExtra";
-            this.pnExtra.Size = new System.Drawing.Size(141, 0);
+            this.pnExtra.Size = new System.Drawing.Size(188, 0);
             this.pnExtra.TabIndex = 5;
             // 
             // pnLogo
             // 
             this.pnLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(126)))), ((int)(((byte)(49)))));
-            this.pnLogo.Location = new System.Drawing.Point(2, 2);
-            this.pnLogo.Margin = new System.Windows.Forms.Padding(2);
+            this.pnLogo.Location = new System.Drawing.Point(3, 2);
+            this.pnLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnLogo.Name = "pnLogo";
-            this.pnLogo.Size = new System.Drawing.Size(146, 46);
+            this.pnLogo.Size = new System.Drawing.Size(194, 57);
             this.pnLogo.TabIndex = 2;
             // 
             // pnTop
             // 
-            this.pnTop.Location = new System.Drawing.Point(152, 2);
-            this.pnTop.Margin = new System.Windows.Forms.Padding(2);
+            this.pnTop.Location = new System.Drawing.Point(203, 2);
+            this.pnTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(1250, 46);
+            this.pnTop.Size = new System.Drawing.Size(1667, 57);
             this.pnTop.TabIndex = 3;
             // 
             // pnCuerpo
             // 
-            this.pnCuerpo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(219)))), ((int)(((byte)(217)))));
-            this.pnCuerpo.Location = new System.Drawing.Point(152, 52);
-            this.pnCuerpo.Margin = new System.Windows.Forms.Padding(2);
+            this.pnCuerpo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(55)))), ((int)(((byte)(65)))));
+            this.pnCuerpo.Controls.Add(this.pbLogo);
+            this.pnCuerpo.Location = new System.Drawing.Point(203, 64);
+            this.pnCuerpo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnCuerpo.Name = "pnCuerpo";
-            this.pnCuerpo.Size = new System.Drawing.Size(1250, 560);
+            this.pnCuerpo.Size = new System.Drawing.Size(1667, 689);
             this.pnCuerpo.TabIndex = 4;
+            this.pnCuerpo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnCuerpo_Paint);
             // 
             // pnHeader
             // 
@@ -257,14 +262,14 @@
             this.pnHeader.MacOSLeftBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.pnHeader.MacOSRightBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.pnHeader.MacOSSeparatorColor = System.Drawing.Color.FromArgb(((int)(((byte)(173)))), ((int)(((byte)(173)))), ((int)(((byte)(173)))));
-            this.pnHeader.Margin = new System.Windows.Forms.Padding(2);
+            this.pnHeader.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnHeader.MaterialBackColor = System.Drawing.Color.DodgerBlue;
             this.pnHeader.MaterialForeColor = System.Drawing.Color.White;
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pnHeader.ShowMaximize = true;
+            this.pnHeader.ShowMaximize = false;
             this.pnHeader.ShowMinimize = true;
-            this.pnHeader.Size = new System.Drawing.Size(1400, 640);
+            this.pnHeader.Size = new System.Drawing.Size(1867, 788);
             this.pnHeader.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             this.pnHeader.TabIndex = 2;
             this.pnHeader.TitleText = "";
@@ -278,28 +283,40 @@
             this.pnHeader.WorkingArea.Controls.Add(this.gridTabla);
             this.pnHeader.WorkingArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnHeader.WorkingArea.Location = new System.Drawing.Point(0, 30);
-            this.pnHeader.WorkingArea.Margin = new System.Windows.Forms.Padding(2);
+            this.pnHeader.WorkingArea.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnHeader.WorkingArea.Name = "WorkingArea";
-            this.pnHeader.WorkingArea.Size = new System.Drawing.Size(1400, 610);
+            this.pnHeader.WorkingArea.Size = new System.Drawing.Size(1867, 758);
             this.pnHeader.WorkingArea.TabIndex = 0;
+            // 
+            // pbLogo
+            // 
+            this.pbLogo.BaseColor = System.Drawing.Color.White;
+            this.pbLogo.InitialImage = global::Proyecto.Properties.Resources.cooking;
+            this.pbLogo.Location = new System.Drawing.Point(371, 77);
+            this.pbLogo.Name = "pbLogo";
+            this.pbLogo.Size = new System.Drawing.Size(576, 539);
+            this.pbLogo.TabIndex = 0;
+            this.pbLogo.TabStop = false;
             // 
             // formInicio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1400, 640);
+            this.ClientSize = new System.Drawing.Size(1867, 788);
             this.Controls.Add(this.pnHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MaximumSize = new System.Drawing.Size(1440, 829);
-            this.MinimumSize = new System.Drawing.Size(142, 32);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(1920, 1020);
+            this.MinimumSize = new System.Drawing.Size(189, 39);
             this.Name = "formInicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.formInicio_Load);
             this.gridTabla.ResumeLayout(false);
             this.pnLateral.ResumeLayout(false);
+            this.pnCuerpo.ResumeLayout(false);
             this.pnHeader.WorkingArea.ResumeLayout(false);
             this.pnHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -317,5 +334,6 @@
         private Guna.UI.WinForms.GunaPanel pnTop;
         private Guna.UI.WinForms.GunaPanel pnCuerpo;
         private ReaLTaiizor.Forms.ParrotForm pnHeader;
+        private Guna.UI.WinForms.GunaPictureBox pbLogo;
     }
 }

@@ -17,6 +17,9 @@ namespace Proyecto
         {
             InitializeComponent();
             this.CenterToScreen();
+            pnCuerpo.BackColor = ColorTranslator.FromHtml("#263741");
+            pbLogo.Image = Properties.Resources.cooking;
+            pbLogo.SizeMode = PictureBoxSizeMode.Zoom;
             //Colores de paneles
             pnLogo.BackColor = ColorTranslator.FromHtml("#e57e31");
             pnTop.BackColor = ColorTranslator.FromHtml("#ffffff");
@@ -85,6 +88,7 @@ namespace Proyecto
             pnCuerpo.Controls.Add(habitaciones);
 
             habitaciones.Show();
+            pbLogo.Visible = false;
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
@@ -100,6 +104,7 @@ namespace Proyecto
             pnCuerpo.Controls.Add(clientes);
 
             clientes.Show();
+            pbLogo.Visible = false;
         }
 
         private void btnReservas_Click(object sender, EventArgs e)
@@ -115,6 +120,7 @@ namespace Proyecto
             pnCuerpo.Controls.Add(reservas);
 
             reservas.Show();
+            pbLogo.Visible = false;
         }
 
         private void btnPagos_Click(object sender, EventArgs e)
@@ -130,6 +136,7 @@ namespace Proyecto
             pnCuerpo.Controls.Add(pagos);
 
             pagos.Show();
+            pbLogo.Visible = false;
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
@@ -145,6 +152,12 @@ namespace Proyecto
             pnCuerpo.Controls.Add(reportes);
 
             reportes.Show();
+            pbLogo.Visible = false;
+        }
+
+        private void pnCuerpo_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Guna.UI.WinForms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +27,18 @@ namespace Proyecto
         public formClientes()
         {
             InitializeComponent();
+            btnRegistrar.BaseColor = Color.FromArgb(255, 193, 54);
+            btnRegistrar.BorderSize = 0;
+            btnRegistrar.ForeColor = Color.Black;
+            btnEliminar.BaseColor = Color.FromArgb(255, 193, 54);
+            btnEliminar.BorderSize = 0;
+            btnEliminar.ForeColor = Color.Black;
+            btnModificar.BaseColor = Color.FromArgb(255, 193, 54);
+            btnModificar.BorderSize = 0;
+            btnModificar.ForeColor = Color.Black;
+
+
+
             // Desactivar la generación automática de columnas
             dgvClientes.AutoGenerateColumns = false; // Desactiva la generación automática
 
@@ -276,47 +290,80 @@ namespace Proyecto
         //------------------------------------------------------------------------------------------------------------------------
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            string nombre = txtNombre.Text;
-            string telefono = txtTelefono.Text;
-            string correo = txtCorreo.Text;
-            if (!string.IsNullOrEmpty(rutaIdentificacion))
+            if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                byte[] identificacion = File.ReadAllBytes(rutaIdentificacion);
-                try
+                if (string.IsNullOrEmpty(txtCorreo.Text))
                 {
-
-                    if (miConexion.AbrirConexion())
+                    if (string.IsNullOrEmpty(txtTelefono.Text))
                     {
+                        string nombre = txtNombre.Text;
+                        string telefono = txtTelefono.Text;
+                        string correo = txtCorreo.Text;
 
-                        // Crear una instancia de InventarioProducto
-                        Clientes cliente = new Clientes(nombre, telefono, correo, identificacion, "Disponible");
+                        if (EsCorreoValido(correo))
+                        {
+                            MessageBox.Show("El correo electrónico es válido.");
 
-                        // Llamar al método GuardarEnBaseDeDatos
-                        cliente.GuardarDB();
 
-                        // Mostrar un mensaje de confirmación
-                        MessageBox.Show("Cliente guardado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if (!string.IsNullOrEmpty(rutaIdentificacion))
+                            {
 
-                        // miConexion.CerrarConexion();
-                        //dgvClientes.Rows.Clear();
-                        CargarDatos();
-                        CargarDatosEliminar();
-                        CargarDatosModificar();
+                                byte[] identificacion = File.ReadAllBytes(rutaIdentificacion);
+                                try
+                                {
+
+                                    if (miConexion.AbrirConexion())
+                                    {
+
+                                        // Crear una instancia de InventarioProducto
+                                        Clientes cliente = new Clientes(nombre, telefono, correo, identificacion, "Disponible");
+
+                                        // Llamar al método GuardarEnBaseDeDatos
+                                        cliente.GuardarDB();
+
+                                        // Mostrar un mensaje de confirmación
+                                        MessageBox.Show("Cliente guardado correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                        // miConexion.CerrarConexion();
+                                        //dgvClientes.Rows.Clear();
+                                        CargarDatos();
+                                        CargarDatosEliminar();
+                                        CargarDatosModificar();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+
+                            else
+                            {
+                                MessageBox.Show("Por favor selecciona una imagen.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El correo electrónico no es válido.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                        MessageBox.Show("Llene todos los parametros.");
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show($"Error al guardar el cliente: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Llene todos los parametros.");
                 }
             }
-
             else
             {
-                MessageBox.Show("Por favor selecciona una imagen.");
+                MessageBox.Show("Llene todos los parametros.");
             }
         }
         private void pb1_Click(object sender, EventArgs e)
@@ -667,64 +714,119 @@ namespace Proyecto
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (switchIdentificacion.Checked)
+            try
             {
-                if (!string.IsNullOrEmpty(rutaIdentificacion))
+                // Validar campos vacíos
+                if (string.IsNullOrEmpty(txtNombreNuevo.Text) ||
+                    string.IsNullOrEmpty(txtTelefonoNuevo.Text) ||
+                    string.IsNullOrEmpty(txtCorreoNuevo.Text))
                 {
-                    int id = idSeleccionado;
-                    byte[] identificacion = File.ReadAllBytes(rutaIdentificacion);
-                    string nombre = txtNombreNuevo.Text;
-                    string telefono = txtTelefonoNuevo.Text;
-                    string correo = txtCorreoNuevo.Text;
-                    enlace = new Clientes();
-                    // Llamar al método de actualización en la base de datos
-                    bool resultado = enlace.ActualizarCliente(id, nombre, telefono, correo, identificacion);
+                    MessageBox.Show("Por favor, completa todos los campos.");
+                    return;
+                }
 
-                    if (resultado)
+                string correo = txtCorreoNuevo.Text;
+                if (EsCorreoValido(correo))
+                {
+                    // ... (Aquí puedes realizar otras acciones, como guardar el correo o habilitar otro control) ...
+
+                    if (switchIdentificacion.Checked)
                     {
-                        MessageBox.Show("Cliente actualizado correctamente.");
-                        /*this.Close();
-                        formClientes regresar = new formClientes();
-                        regresar.TopMost = true;
-                        regresar.Show();
-                        regresar.Activate();
-                        */
+                        if (!string.IsNullOrEmpty(rutaIdentificacion))
+                        {
+                            try
+                            {
+                                int id = idSeleccionado;
+                                byte[] identificacion = File.ReadAllBytes(rutaIdentificacion);
+                                string nombre = txtNombreNuevo.Text;
+                                string telefono = txtTelefonoNuevo.Text;
+
+                                // Crea una instancia de la clase Clientes (si es necesario)
+                                Clientes enlace = new Clientes();
+
+                                // Llamar al método de actualización en la base de datos
+                                if (miConexion.AbrirConexion())
+                                {
+                                    bool resultado = enlace.ActualizarCliente(id, nombre, telefono, correo, identificacion);
+                                    miConexion.CerrarConexion();
+
+                                    if (resultado)
+                                    {
+                                        MessageBox.Show("Cliente actualizado correctamente.");
+                                        CargarDatos();
+                                        CargarDatosEliminar();
+                                        CargarDatosModificar();
+                                        // ... (código para limpiar los controles) ...
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error al actualizar el cliente.");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Error al actualizar el cliente: {ex.Message}");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Por favor selecciona una imagen.");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Error al actualizar el cliente.");
+                        try
+                        {
+                            int id = idSeleccionado;
+                            string nombre = txtNombreNuevo.Text;
+                            string telefono = txtTelefonoNuevo.Text;
+
+                            // Crea una instancia de la clase Clientes (si es necesario)
+                            Clientes enlace = new Clientes();
+
+                            // Llamar al método de actualización en la base de datos
+                            if (miConexion.AbrirConexion())
+                            {
+                                bool resultado = enlace.ActualizarClienteSinFoto(id, nombre, telefono, correo);
+                                miConexion.CerrarConexion();
+
+                                if (resultado)
+                                {
+                                    MessageBox.Show("Cliente actualizado correctamente.");
+                                    CargarDatos();
+                                    CargarDatosEliminar();
+                                    CargarDatosModificar();
+                                    // ... (código para limpiar los controles) ...
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error al actualizar el cliente.");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error al actualizar el cliente: {ex.Message}");
+                        }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Por favor selecciona una imagen.");
+                    MessageBox.Show("El correo electrónico no es válido.");
                 }
             }
-            else
+            catch (Exception ex)
             {
-                int id = idSeleccionado;
-                string nombre = txtNombreNuevo.Text;
-                string telefono = txtTelefonoNuevo.Text;
-                string correo = txtCorreoNuevo.Text;
-                enlace = new Clientes();
-                // Llamar al método de actualización en la base de datos
-                bool resultado = enlace.ActualizarClienteSinFoto(id, nombre, telefono, correo);
-
-                if (resultado)
-                {
-                    MessageBox.Show("Cliente actualizado correctamente.");
-                    //formClientes regresar = new formClientes();
-                    CargarDatosModificar();
-
-                    /*regresar.TopMost = true;
-                    regresar.Show();
-                    regresar.Activate();
-                    */
-                }
-                else
-                {
-                    MessageBox.Show("Error al actualizar el cliente.");
-                }
+                MessageBox.Show($"Se produjo un error: {ex.Message}");
             }
         }
 
@@ -801,6 +903,70 @@ namespace Proyecto
 
             // Asignar el DataView (filtrado o no) al DataGridView
             dgvClientesEliminar.DataSource = dv;
+        }
+
+        private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Ignora la tecla presionada si no es un número
+            }
+        }
+
+        private void txtTelefonoNuevo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Ignora la tecla presionada si no es un número
+            }
+        }
+        private bool EsCorreoValido(string correo)
+        {
+            try
+            {
+                MailAddress mailAddress = new MailAddress(correo);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+private void tcClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcClientes.SelectedIndex == 0) 
+            {
+                LimpiarModificar();
+            }
+            if (tcClientes.SelectedIndex == 1)
+            {
+                LimpiarModificar();
+            }
+            if (tcClientes.SelectedIndex == 2)
+            {
+                LimpiarModificar();
+            }
+            if (tcClientes.SelectedIndex == 3)
+            {
+                LimpiarModificar();
+            }
+        }
+        private void LimpiarModificar()
+        {
+            txtNombreNuevo.Text = "";
+            txtCorreoNuevo.Text = "";
+            txtTelefonoNuevo.Text = "";
+            pbIdentificacionNueva.Image = null;
+            pbIdentificacionAntes.Image = null;
+            txtNombreAntes.Text = "";
+            txtCorreoAntes.Text = "";
+            txtTelefonoAntes.Text = "";
+            txtNombre.Text = "";
+            txtCorreo.Text = "";
+            txtTelefono.Text = "";
+            pb.Image = null;
+            pb1.Image = null;
         }
 
         //------------------------------------------------------------------------------------------------------------------------

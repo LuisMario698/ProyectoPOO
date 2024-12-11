@@ -45,6 +45,7 @@
             this.cmbEstado = new ReaLTaiizor.Controls.AloneComboBox();
             this.lblEditando = new System.Windows.Forms.Label();
             this.lblHabitacion = new System.Windows.Forms.Label();
+            this.dungeonHeaderLabel1 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHabitaciones)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,7 +83,7 @@
             this.dgvHabitaciones.RowHeadersVisible = false;
             this.dgvHabitaciones.RowHeadersWidth = 62;
             this.dgvHabitaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHabitaciones.Size = new System.Drawing.Size(745, 303);
+            this.dgvHabitaciones.Size = new System.Drawing.Size(745, 460);
             this.dgvHabitaciones.TabIndex = 0;
             this.dgvHabitaciones.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.Guna;
             this.dgvHabitaciones.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
@@ -119,7 +120,7 @@
             this.btnEliminar.Image = null;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnEliminar.Location = new System.Drawing.Point(985, 378);
+            this.btnEliminar.Location = new System.Drawing.Point(985, 558);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -141,7 +142,7 @@
             this.btnModificar.Image = null;
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnModificar.Location = new System.Drawing.Point(860, 378);
+            this.btnModificar.Location = new System.Drawing.Point(786, 558);
             this.btnModificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -158,12 +159,12 @@
             this.btnAgregar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAgregar.EnteredBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.btnAgregar.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.btnAgregar.EnteredColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnAgregar.Image = null;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.InactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.btnAgregar.Location = new System.Drawing.Point(127, 378);
+            this.btnAgregar.Location = new System.Drawing.Point(130, 558);
             this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.PressedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
@@ -177,7 +178,7 @@
             // lblTipo
             // 
             this.lblTipo.AutoSize = true;
-            this.lblTipo.Location = new System.Drawing.Point(36, 138);
+            this.lblTipo.Location = new System.Drawing.Point(39, 192);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(38, 16);
             this.lblTipo.TabIndex = 4;
@@ -186,7 +187,7 @@
             // lblEstado
             // 
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(23, 186);
+            this.lblEstado.Location = new System.Drawing.Point(26, 294);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(53, 16);
             this.lblEstado.TabIndex = 5;
@@ -195,7 +196,7 @@
             // lblNumero
             // 
             this.lblNumero.AutoSize = true;
-            this.lblNumero.Location = new System.Drawing.Point(12, 241);
+            this.lblNumero.Location = new System.Drawing.Point(15, 384);
             this.lblNumero.Name = "lblNumero";
             this.lblNumero.Size = new System.Drawing.Size(58, 16);
             this.lblNumero.TabIndex = 6;
@@ -204,7 +205,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(23, 281);
+            this.lblPrecio.Location = new System.Drawing.Point(26, 475);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(49, 16);
             this.lblPrecio.TabIndex = 7;
@@ -212,15 +213,16 @@
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(79, 241);
+            this.txtNumero.Location = new System.Drawing.Point(82, 384);
             this.txtNumero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(155, 22);
             this.txtNumero.TabIndex = 10;
+            this.txtNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumero_KeyPress);
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(79, 281);
+            this.txtPrecio.Location = new System.Drawing.Point(82, 475);
             this.txtPrecio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(155, 22);
@@ -234,7 +236,7 @@
             this.cmbTipo.EnabledCalc = true;
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.ItemHeight = 20;
-            this.cmbTipo.Location = new System.Drawing.Point(79, 138);
+            this.cmbTipo.Location = new System.Drawing.Point(82, 192);
             this.cmbTipo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbTipo.Name = "cmbTipo";
             this.cmbTipo.Size = new System.Drawing.Size(155, 26);
@@ -249,7 +251,7 @@
             this.cmbEstado.EnabledCalc = true;
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.ItemHeight = 20;
-            this.cmbEstado.Location = new System.Drawing.Point(79, 182);
+            this.cmbEstado.Location = new System.Drawing.Point(82, 290);
             this.cmbEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(155, 26);
@@ -258,7 +260,7 @@
             // lblEditando
             // 
             this.lblEditando.AutoSize = true;
-            this.lblEditando.Location = new System.Drawing.Point(77, 107);
+            this.lblEditando.Location = new System.Drawing.Point(67, 136);
             this.lblEditando.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEditando.Name = "lblEditando";
             this.lblEditando.Size = new System.Drawing.Size(186, 16);
@@ -268,7 +270,7 @@
             // lblHabitacion
             // 
             this.lblHabitacion.AutoSize = true;
-            this.lblHabitacion.Location = new System.Drawing.Point(262, 107);
+            this.lblHabitacion.Location = new System.Drawing.Point(252, 136);
             this.lblHabitacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHabitacion.Name = "lblHabitacion";
             this.lblHabitacion.Size = new System.Drawing.Size(14, 16);
@@ -276,11 +278,25 @@
             this.lblHabitacion.Text = "0";
             this.lblHabitacion.Click += new System.EventHandler(this.lblHabitacion_Click);
             // 
+            // dungeonHeaderLabel1
+            // 
+            this.dungeonHeaderLabel1.AutoSize = true;
+            this.dungeonHeaderLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.dungeonHeaderLabel1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.dungeonHeaderLabel1.ForeColor = System.Drawing.Color.Silver;
+            this.dungeonHeaderLabel1.Location = new System.Drawing.Point(470, 25);
+            this.dungeonHeaderLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.dungeonHeaderLabel1.Name = "dungeonHeaderLabel1";
+            this.dungeonHeaderLabel1.Size = new System.Drawing.Size(471, 25);
+            this.dungeonHeaderLabel1.TabIndex = 70;
+            this.dungeonHeaderLabel1.Text = "Seleccione una habitacion para modificar o eliminar";
+            // 
             // formHabitaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1667, 689);
+            this.Controls.Add(this.dungeonHeaderLabel1);
             this.Controls.Add(this.lblHabitacion);
             this.Controls.Add(this.lblEditando);
             this.Controls.Add(this.cmbEstado);
@@ -323,5 +339,6 @@
         private ReaLTaiizor.Controls.AloneComboBox cmbEstado;
         private System.Windows.Forms.Label lblEditando;
         private System.Windows.Forms.Label lblHabitacion;
+        private ReaLTaiizor.Controls.DungeonHeaderLabel dungeonHeaderLabel1;
     }
 }
