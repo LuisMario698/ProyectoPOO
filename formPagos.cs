@@ -522,5 +522,48 @@ namespace Proyecto
                 MessageBox.Show("Error al calcular el total. Asegúrate de que los valores sean numéricos.");
             }
         }
+
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            string cliente = $"{lblIdCliente.Text} - {lblNombreCliente.Text}";
+            int habitacion = int.Parse(lblIdHabitacion.Text);
+            string tipo = lblTipoHabitacion.Text;
+            DateTime fecha = DateTime.Now;
+            int total = int.Parse(lblTotal.Text);
+
+            // Crea una instancia de la clase Pagos
+            Pagos pago = new Pagos(cliente, habitacion, tipo, fecha, total);
+
+            // Guarda el pago en la base de datos
+            pago.GuardarDB();
+
+            MessageBox.Show("Pago realizado correctamente.");
+            if (idSeleccionado > 0)
+            {
+                Reservas miReserva = new Reservas();
+                bool resultado = miReserva.CancelarReservaPorId(idSeleccionado);
+
+
+
+                if (resultado)
+                {
+                    MessageBox.Show("Reservacion finalizada.");
+
+                    ActualizarEstadoCliente(clienteSeleccionado, "Disponible");
+                    ActualizarEstadoHabitacion(habitacionSeleccionda, "Disponible");
+                    //dgvClientesEliminar.Rows.Clear();
+                    // Aquí puedes refrescar el DataGridView u otras acciones necesarias
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo cancelar la reservacion. Puede que no exista.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona una reservacion a cancelar.");
+            }
+            CargarDatos();
+        }
     }
 }

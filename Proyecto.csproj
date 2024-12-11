@@ -122,6 +122,7 @@
     <Compile Include="Clases\Clientes.cs" />
     <Compile Include="Clases\Conexion.cs" />
     <Compile Include="Clases\IHabitaciones.cs" />
+    <Compile Include="Clases\Pagos.cs" />
     <Compile Include="formClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,7 +180,7 @@
     <Compile Include="pruebas de diseño.Designer.cs">
       <DependentUpon>pruebas de diseño.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reservas.cs" />
+    <Compile Include="Clases\Reservas.cs" />
     <EmbeddedResource Include="formClientes.resx">
       <DependentUpon>formClientes.cs</DependentUpon>
     </EmbeddedResource>

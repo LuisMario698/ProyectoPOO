@@ -354,7 +354,7 @@ namespace Proyecto
             TimeSpan diferencia = salida - entrada;
             int instancia = diferencia.Days;
             // Obtiene el elemento seleccionado del ComboBox
-            if (instancia < 1)
+            if (instancia >= 1)
             {
                 if (cbClientes.SelectedItem != null)
                 {
