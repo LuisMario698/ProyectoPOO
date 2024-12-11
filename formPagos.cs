@@ -1,16 +1,13 @@
 ﻿using MySql.Data.MySqlClient;
 using Proyecto.Clases;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Proyecto.Habitaciones;
+using Xceed.Words.NET;
+using System.IO;
+using Xceed.Document.NET;
+using System.Drawing;
 
 namespace Proyecto
 {
@@ -21,6 +18,9 @@ namespace Proyecto
         public int clienteSeleccionado {  get; set; }
         public int habitacionSeleccionda { get; set; }
         public int idSeleccionado { get; set; }
+        public string dpEntrada {  get; set; }
+        public string dpSalida { get; set; }
+        public string dpInstancia { get; set; }
 
         HabitacionEstandar estandar = new HabitacionEstandar();
         HabitacionSuite suite = new HabitacionSuite();
@@ -188,6 +188,7 @@ namespace Proyecto
                         decimal precio = ObtenerPrecioHabitacion(habitacionSeleccionda);
                         lblSubtotal.Text = (precio * instancia).ToString();
                         ActualizarTotal();
+                        dpInstancia = instancia.ToString();
 
                         // Validar y obtener otros valores
                         string cliente = filaSeleccionada.Cells["Cliente"].Value?.ToString() ?? string.Empty;
@@ -202,6 +203,8 @@ namespace Proyecto
                             {
                                 if (DateTime.TryParse(filaSeleccionada.Cells["Fecha_salida"].Value?.ToString(), out salida))
                                 {
+                                    dpEntrada = entrada.ToString();
+                                    dpSalida = salida.ToString();
                                     // La conversión a DateTime fue exitosa, puedes usar 'valorDateTime' aquí
                                     MessageBox.Show($"Seleccionaste la reserva: {id}\nCliente: {cliente}\nHabitacion: {habitacion}\nFecha de Entrada: {entrada}\nFecha de Salida: {salida}");
                                     ActualizarTotal();
@@ -553,6 +556,168 @@ namespace Proyecto
                     ActualizarEstadoHabitacion(habitacionSeleccionda, "Disponible");
                     //dgvClientesEliminar.Rows.Clear();
                     // Aquí puedes refrescar el DataGridView u otras acciones necesarias
+                    try
+                    {
+                        // Crea un nuevo documento Word
+                        using (var document = DocX.Create("Comprobante de Pago.docx"))
+                        {
+                            // Agrega un título con formato
+                            // Agrega un título con formato
+                            var titulo = document.InsertParagraph("Comprobante de Pago - Hotel Cooking");
+                            titulo.FontSize(20);
+                            titulo.Bold();
+                            titulo.Alignment = Alignment.center;
+
+                            // Agrega la información del pago con formato
+                            document.InsertParagraph($"Cliente: {lblNombreCliente.Text} (ID: {lblIdCliente.Text})").FontSize(12);
+                            document.InsertParagraph($"Habitación: {lblIdHabitacion.Text} ({lblTipoHabitacion.Text})").FontSize(12);
+                            document.InsertParagraph($"Fecha de entrada: {dpEntrada}").FontSize(12);
+                            document.InsertParagraph($"Fecha de salida: {dpSalida}").FontSize(12);
+
+                            // Calcula la instancia (número de días)
+                            
+                            document.InsertParagraph($"Instancia (días): {dpInstancia}").FontSize(12);
+
+                            // Calcula el precio por día
+                            decimal precioPorDia = decimal.Parse(lblSubtotal.Text) / Convert.ToInt32(dpInstancia);
+                            document.InsertParagraph($"Precio por día: {precioPorDia}").FontSize(12);
+
+                            document.InsertParagraph(); // Agrega un espacio en blanco
+
+                            // Agrega los detalles del pago con formato
+                            document.InsertParagraph($"Subtotal de habitación: {lblSubtotal.Text}").FontSize(12);
+                            document.InsertParagraph($"Total de comida: {lblTotalComida.Text}").FontSize(12);
+                            document.InsertParagraph($"Total de limpieza: {lblTotalLimpieza.Text}").FontSize(12);
+                            document.InsertParagraph($"Total: {lblTotal.Text}").FontSize(12).Bold();
+                            // Crea un SaveFileDialog
+                            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                            saveFileDialog1.Filter = "Documentos Word (*.docx)|*.docx|Todos los archivos (*.*)|*.*";
+                            saveFileDialog1.Title = "Guardar comprobante de pago";
+                            saveFileDialog1.FileName = "Comprobante de Pago.docx";
+
+                            // Muestra el SaveFileDialog
+                            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                            {
+                                // Guarda el documento en la ubicación seleccionada por el usuario
+                                document.SaveAs(saveFileDialog1.FileName);
+
+                                MessageBox.Show("Comprobante de pago guardado correctamente en:\n" + saveFileDialog1.FileName);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al generar el comprobante de pago: " + ex.Message);
+                    }
+                    /*try
+                    {
+                        if (dgvReservas.SelectedRows.Count > 0)
+                        {
+                            // Obtener el ID de la reserva seleccionada
+                            int idReserva = Convert.ToInt32(dgvReservas.SelectedRows[0].Cells[0].Value);
+                            MessageBox.Show($"ID de la reserva seleccionada: {idReserva}");
+
+                            // Buscar la reserva en la lista
+                            Reserva reservaSeleccionada = ReservaManager.ObtenerReservas().Find(r => r.Id == idReserva);
+
+                            // Verificar si la reserva existe
+                            if (reservaSeleccionada != null)
+                            {
+                                SaveFileDialog saveFileDialog = new SaveFileDialog
+                                {
+                                    Filter = "Documentos Word (*.docx)|*.docx",
+                                    Title = "Guardar Nota de Pago"
+                                };
+
+                                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                                {
+                                    // Crear el documento Word
+                                    using (var doc = Xceed.Words.NET.DocX.Create(saveFileDialog.FileName))
+                                    {
+                                        // Título de la nota de pago
+                                        doc.InsertParagraph("Nota de Pago")
+                                            .FontSize(20)
+                                            .Bold()
+                                            .Color(System.Drawing.Color.DarkBlue)
+                                            .Alignment = Alignment.center;
+
+                                        doc.InsertParagraph("\n");
+
+                                        // Información de la reserva
+                                        doc.InsertParagraph("Detalles de la Reserva")
+                                            .FontSize(16)
+                                            .Bold()
+                                            .Alignment = Alignment.left;
+
+                                        doc.InsertParagraph($"ID Reserva: {reservaSeleccionada.Id}")
+                                            .FontSize(12);
+
+                                        doc.InsertParagraph($"Cliente: {reservaSeleccionada.NombreCliente}")
+                                            .FontSize(12);
+
+                                        doc.InsertParagraph($"Habitación: {reservaSeleccionada.Habitacion}")
+                                            .FontSize(12);
+
+                                        doc.InsertParagraph($"Fecha Ingreso: {reservaSeleccionada.FechaIngreso:yyyy-MM-dd}")
+                                            .FontSize(12);
+
+                                        doc.InsertParagraph($"Fecha Salida: {reservaSeleccionada.FechaSalida:yyyy-MM-dd}")
+                                            .FontSize(12);
+
+                                        // Calcular el costo de la habitación (precio arbitrario)
+                                        int diasEstancia = (reservaSeleccionada.FechaSalida - reservaSeleccionada.FechaIngreso).Days;
+                                        decimal precioPorNoche = 100; // Valor arbitrario por noche
+                                        decimal total = diasEstancia * precioPorNoche;
+
+                                        doc.InsertParagraph("\n");
+
+                                        // Total a pagar
+                                        doc.InsertParagraph("Total a Pagar")
+                                            .FontSize(16)
+                                            .Bold()
+                                            .Alignment = Alignment.left;
+
+                                        doc.InsertParagraph($"Costo por Noche: ${precioPorNoche} MXN")
+                                            .FontSize(12);
+
+                                        doc.InsertParagraph($"Días de Estancia: {diasEstancia} días")
+                                            .FontSize(12);
+
+                                        doc.InsertParagraph($"Total: ${total} MXN")
+                                            .FontSize(12)
+                                            .Bold()
+                                            .Color(System.Drawing.Color.Green);
+
+                                        doc.InsertParagraph("\n");
+
+                                        // Agradecimiento
+                                        doc.InsertParagraph("Gracias por su preferencia. Esperamos su pronta visita.")
+                                            .FontSize(12)
+                                            .Italic()
+                                            .Alignment = Alignment.center;
+
+                                        // Guardar el documento
+                                        doc.Save();
+                                    }
+
+                                    MessageBox.Show("Nota de pago generada exitosamente en formato Word.");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se encontró la reserva seleccionada.");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Seleccione una reserva para generar la nota de pago.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al generar la nota de pago: " + ex.Message);
+                    }
+                    */
                 }
                 else
                 {
