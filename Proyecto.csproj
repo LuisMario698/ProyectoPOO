@@ -121,6 +121,7 @@
     <Compile Include="Clases\BuscarImagen.cs" />
     <Compile Include="Clases\Clientes.cs" />
     <Compile Include="Clases\Conexion.cs" />
+    <Compile Include="Clases\IHabitaciones.cs" />
     <Compile Include="formClientes.cs">
       <SubType>Form</SubType>
     </Compile>

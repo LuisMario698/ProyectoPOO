@@ -254,6 +254,14 @@ namespace Proyecto
             return false;
         }
 
+        private void dgvHabitaciones_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void lblHabitacion_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

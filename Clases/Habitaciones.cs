@@ -163,4 +163,15 @@ namespace Proyecto
             }
         }
     }
+
+
+
+
+
+
+
+    public class Estandar : Habitaciones
+    {
+
+    }
 }

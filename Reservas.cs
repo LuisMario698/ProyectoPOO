@@ -17,6 +17,7 @@ namespace Proyecto
         public string Tipo { get; set; }
         public DateTime Fecha_Entrada { get; set; }
         public DateTime Fecha_Salida { get; set; }
+        public int Instancia { get; set; }
         public string Estado { get; set; }
 
         public Reservas(int id, string cliente, string habitacion, DateTime entrada, DateTime salida, string estado) 
@@ -28,12 +29,13 @@ namespace Proyecto
             Fecha_Salida = salida;
             Estado = estado;
         }
-        public Reservas(string cliente, string habitacion, DateTime entrada, DateTime salida, string estado)
+        public Reservas(string cliente, string habitacion, DateTime entrada, DateTime salida, int instancia, string estado)
         {
             Cliente = cliente;
             Habitacion = habitacion;
             Fecha_Entrada = entrada;
             Fecha_Salida = salida;
+            Instancia = instancia;
             Estado = estado;
         }
         public Reservas() { }
@@ -42,7 +44,7 @@ namespace Proyecto
             miConexion = new Conexion();
             var conexion = miConexion.ObtenerConexion();
 
-            string consulta = "INSERT INTO reservas (Cliente, Habitacion, Fecha_entrada, Fecha_salida, Estado) VALUES (@Cliente, @Habitacion, @Entrada, @Salida, @Estado)";
+            string consulta = "INSERT INTO reservas (Cliente, Habitacion, Fecha_entrada, Fecha_salida, Instancia, Estado) VALUES (@Cliente, @Habitacion, @Entrada, @Salida, @Instancia, @Estado)";
 
             using (var comando = new MySqlCommand(consulta, conexion))
             {
@@ -50,6 +52,7 @@ namespace Proyecto
                 comando.Parameters.AddWithValue("@Habitacion", Habitacion);
                 comando.Parameters.AddWithValue("@Entrada", Fecha_Entrada);
                 comando.Parameters.AddWithValue("@Salida", Fecha_Salida);
+                comando.Parameters.AddWithValue("@Instancia", Instancia);
                 comando.Parameters.AddWithValue("@Estado", Estado);
 
                 comando.ExecuteNonQuery();

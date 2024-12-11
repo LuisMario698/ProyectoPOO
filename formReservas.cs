@@ -71,6 +71,12 @@ namespace Proyecto
             });
             dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
             {
+                Name = "Instancia",
+                DataPropertyName = "Instancia", // Nombre de la columna en el DataTable
+                HeaderText = "Instancia"
+            });
+            dgvReservas.Columns.Add(new DataGridViewTextBoxColumn
+            {
                 Name = "Estado",
                 DataPropertyName = "Estado", // Nombre de la columna en el DataTable
                 HeaderText = "Estado"
@@ -105,7 +111,7 @@ namespace Proyecto
                 {
                     if (miConexion.AbrirConexion())
                     {
-                        string consulta = "SELECT Id, Cliente, Habitacion, Fecha_entrada, Fecha_salida, Estado FROM reservas";
+                        string consulta = "SELECT Id, Cliente, Habitacion, Fecha_entrada, Fecha_salida, Instancia, Estado FROM reservas";
                         MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
                         MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
@@ -274,6 +280,8 @@ namespace Proyecto
 
                     ActualizarEstadoCliente(clienteSeleccionado, "Disponible");
                     ActualizarEstadoHabitacion(habitacionSeleccionda, "Disponible");
+                    CargarDatosEnComboBoxClientes();
+                    CargarDatosEnComboBoxHabitaciones();
                     //dgvClientesEliminar.Rows.Clear();
                     // Aquí puedes refrescar el DataGridView u otras acciones necesarias
                 }
@@ -343,88 +351,97 @@ namespace Proyecto
             string cliente = cbClientes.Text;
             DateTime entrada = dpEntrada.Date;
             DateTime salida = dpSalida.Date;
+            TimeSpan diferencia = salida - entrada;
+            int instancia = diferencia.Days;
             // Obtiene el elemento seleccionado del ComboBox
-            if (cbClientes.SelectedItem != null)
+            if (instancia < 1)
             {
-
-                if (cbHabitaciones.SelectedItem != null)
+                if (cbClientes.SelectedItem != null)
                 {
 
-
-
-                    try
+                    if (cbHabitaciones.SelectedItem != null)
                     {
-                        string habitacion = cbHabitaciones.Text;
 
-                        // Divide el string en un array usando el guion como delimitador
-                        string[] valoresHabitacion = habitacion.Split('-');
 
-                        // Accede a los valores separados
-                        if (valoresHabitacion.Length == 2)
+
+                        try
                         {
-                            int idHabitacion = int.Parse(valoresHabitacion[0].Trim());
-                            string nombre = valoresHabitacion[1].Trim();
+                            string habitacion = cbHabitaciones.Text;
 
-                            // Ahora puedes usar las variables "id" y "nombre" como necesites
-                            MessageBox.Show($"ID: {idHabitacion}, Nombre: {nombre}");
-                            ActualizarEstadoHabitacion(idHabitacion, "Ocupada");
+                            // Divide el string en un array usando el guion como delimitador
+                            string[] valoresHabitacion = habitacion.Split('-');
+
+                            // Accede a los valores separados
+                            if (valoresHabitacion.Length == 2)
+                            {
+                                int idHabitacion = int.Parse(valoresHabitacion[0].Trim());
+                                string nombre = valoresHabitacion[1].Trim();
+
+                                // Ahora puedes usar las variables "id" y "nombre" como necesites
+                                MessageBox.Show($"ID: {idHabitacion}, Nombre: {nombre}");
+                                ActualizarEstadoHabitacion(idHabitacion, "Ocupada");
+                            }
+
+                            string elementoSeleccionado = cbClientes.SelectedItem.ToString();
+
+                            // Divide el string en un array usando el guion como delimitador
+                            string[] valores = elementoSeleccionado.Split('-');
+
+                            // Accede a los valores separados
+                            if (valores.Length == 2)
+                            {
+                                int idCliente = int.Parse(valores[0].Trim());
+                                string nombre = valores[1].Trim();
+
+                                // Ahora puedes usar las variables "id" y "nombre" como necesites
+                                MessageBox.Show($"ID: {idCliente}, Nombre: {nombre}");
+                                ActualizarEstadoCliente(idCliente, "Ocupado ");
+                            }
+
+
+                            if (miConexion.AbrirConexion())
+                            {
+
+                                // Crear una instancia de InventarioProducto
+                                Reservas reserva = new Reservas(cliente, habitacion, entrada, salida, instancia, activa);
+
+                                // Llamar al método GuardarEnBaseDeDatos
+                                reserva.GuardarDB();
+
+                                // Mostrar un mensaje de confirmación
+                                MessageBox.Show("Reserva guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // miConexion.CerrarConexion();
+                                //dgvClientes.Rows.Clear();
+                                CargarDatos();
+                            }
+                            else
+                            {
+                                MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                            }
+
+
                         }
-
-                        string elementoSeleccionado = cbClientes.SelectedItem.ToString();
-
-                        // Divide el string en un array usando el guion como delimitador
-                        string[] valores = elementoSeleccionado.Split('-');
-
-                        // Accede a los valores separados
-                        if (valores.Length == 2)
+                        catch (Exception ex)
                         {
-                            int idCliente = int.Parse(valores[0].Trim());
-                            string nombre = valores[1].Trim();
-
-                            // Ahora puedes usar las variables "id" y "nombre" como necesites
-                            MessageBox.Show($"ID: {idCliente}, Nombre: {nombre}");
-                            ActualizarEstadoCliente(idCliente, "Ocupado ");
+                            MessageBox.Show($"Error al guardar la reservacion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-
-                        if (miConexion.AbrirConexion())
-                        {
-
-                            // Crear una instancia de InventarioProducto
-                            Reservas reserva = new Reservas(cliente, habitacion, entrada, salida, activa);
-
-                            // Llamar al método GuardarEnBaseDeDatos
-                            reserva.GuardarDB();
-
-                            // Mostrar un mensaje de confirmación
-                            MessageBox.Show("Reserva guardada correctamente en la base de datos.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // miConexion.CerrarConexion();
-                            //dgvClientes.Rows.Clear();
-                            CargarDatos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
-                        }
-
-
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        MessageBox.Show($"Error al guardar la reservacion: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        MessageBox.Show("Por favor, selecciona una habitacion del ComboBox.");
                     }
                 }
                 else
                 {
 
-                    MessageBox.Show("Por favor, selecciona una habitacion del ComboBox.");
+                    MessageBox.Show("Por favor, selecciona un cliente del ComboBox.");
                 }
             }
-            else
-            {
-
-                MessageBox.Show("Por favor, selecciona un cliente del ComboBox.");
+            else {
+                MessageBox.Show("La fecha de salida debe ser posterior a la fecha de entrada.");
+                return; // Salir del método si la diferencia es menor a un día
             }
 
 
