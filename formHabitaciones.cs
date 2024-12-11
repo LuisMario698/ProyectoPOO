@@ -263,5 +263,13 @@ namespace Proyecto
         {
 
         }
+
+        private void cmbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTipo.SelectedIndex == 0)
+            { 
+                
+            }
+        }
     }
 }
