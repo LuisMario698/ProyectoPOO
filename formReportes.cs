@@ -39,11 +39,6 @@ namespace Proyecto
             dgvReservas.Columns[2].Name = "Total";
             dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Configurar DataGridView para Clientes
-            dgvClientes.ColumnCount = 2;
-            dgvClientes.Columns[0].Name = "Nombre";
-            dgvClientes.Columns[1].Name = "Reservas";
-            dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void CargarHabitaciones()
         {
@@ -106,40 +101,35 @@ namespace Proyecto
 
         private void CargarClientes()
         {
+            miConexion = new Conexion();
+
             try
             {
-                // Limpiar el DataGridView antes de cargar los nuevos datos
-                dgvClientes.Rows.Clear();
-
-                // Establecer la conexión a la base de datos
-                using (var conexion = miConexion.ObtenerConexion())
+                using (MySqlConnection conexion = miConexion.ObtenerConexion())
                 {
-                    // Definir la consulta SQL para obtener los clientes
-                    string query = "SELECT id_cliente, nombre, apellido, email, telefono FROM clientes";
-
-                    // Crear un comando y establecer la consulta y la conexión
-                    MySqlCommand cmd = new MySqlCommand(query, conexion);
-
-                    // Abrir la conexión
-                    conexion.Open();
-
-                    // Ejecutar la consulta y obtener los resultados
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    // Recorrer los resultados y agregar las filas al DataGridView
-                    while (reader.Read())
+                    if (miConexion.AbrirConexion())
                     {
-                        // Añadir una fila con los datos de cada cliente
-                        dgvClientes.Rows.Add(reader["id_cliente"], reader["nombre"], reader["apellido"], reader["email"], reader["telefono"]);
-                    }
+                        string consulta = "SELECT Id, Nombre, Numero_telefonico, Correo, Estado FROM clientes";
+                        MySqlCommand comando = new MySqlCommand(consulta, conexion);
 
-                    // Cerrar el lector de datos
-                    reader.Close();
+                        MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
+                        DataTable dt = new DataTable();
+                        adaptador.Fill(dt);
+
+                        dgvClientes.DataSource = dt;
+                        dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                        miConexion.CerrarConexion();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo abrir la conexión a la base de datos.");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar los clientes: " + ex.Message);
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
         }
 
