@@ -29,8 +29,6 @@ namespace Proyecto
         {
             InitializeComponent();
 
-            checkLimpieza.Enabled = false;
-            txtComidas.Enabled = false;
             dgvReservas.AutoGenerateColumns = false; // Desactiva la generación automática
 
             // Configura las columnas y vincúlalas a los nombres del DataTable
@@ -129,6 +127,8 @@ namespace Proyecto
 
         private void dgvReservas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            checkLimpieza.Checked = false;
+            txtComidas.Text = "0";
             try
             {
                 if (e.RowIndex >= 0)
@@ -210,6 +210,7 @@ namespace Proyecto
                                     // La conversión a DateTime fue exitosa, puedes usar 'valorDateTime' aquí
                                     MessageBox.Show($"Seleccionaste la reserva: {id}\nCliente: {cliente}\nHabitacion: {habitacion}\nFecha de Entrada: {entrada}\nFecha de Salida: {salida}");
                                     ActualizarTotal();
+                                    
                                 }
                                 else
                                 {
@@ -570,12 +571,13 @@ namespace Proyecto
             Pagos pago = new Pagos(cliente, habitacion, tipo, fecha, total);
 
             // Guarda el pago en la base de datos
-            pago.GuardarDB();
-
-            MessageBox.Show("Pago realizado correctamente.");
+            
             if (idSeleccionado > 0)
             {
                 Reservas miReserva = new Reservas();
+                pago.GuardarDB();
+
+                MessageBox.Show("Pago realizado correctamente.");
                 bool resultado = miReserva.CancelarReservaPorId(idSeleccionado);
 
 

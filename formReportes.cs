@@ -205,7 +205,11 @@ namespace Proyecto
                         DataTable dt = new DataTable();
                         adaptador.Fill(dt);
 
-                        dgvClientes.DataSource = dt;
+                        // Ordenar el DataTable por la columna "Reservas" de forma descendente
+                        DataView dv = new DataView(dt);
+                        dv.Sort = "Reservas DESC";
+
+                        dgvClientes.DataSource = dv; // Asignar el DataView al DataGridView
                         dgvClientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
                         miConexion.CerrarConexion();
