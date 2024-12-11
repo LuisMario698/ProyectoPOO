@@ -763,6 +763,46 @@ namespace Proyecto
 
         }
 
+        private void txtClientesEliminar_TextChanged(object sender, EventArgs e)
+        {
+            // Obtener el texto del TextBox
+            string filtro = txtClientesEliminar.Text;
+
+            // Obtener el DataTable del DataView (si existe)
+            DataTable dt = null;
+            if (dgvClientesEliminar.DataSource is DataView dataView)
+            {
+                dt = dataView.Table;
+            }
+            else if (dgvClientesEliminar.DataSource is DataTable dataTable)
+            {
+                dt = dataTable;
+            }
+            else
+            {
+                // Si no hay DataSource, crear uno nuevo
+                dt = new DataTable();
+                dt.Columns.Add("Id", typeof(int));
+                dt.Columns.Add("Nombre", typeof(string));
+                dt.Columns.Add("Numero_telefonico", typeof(string));
+                dt.Columns.Add("Correo", typeof(string));
+                dt.Columns.Add("Estado", typeof(string));
+                dgvClientesEliminar.DataSource = dt;
+            }
+
+            // Crear un nuevo DataView a partir del DataTable original
+            DataView dv = new DataView(dt);
+
+            // Aplicar el filtro al DataView, solo si el TextBox no está vacío
+            if (!string.IsNullOrEmpty(filtro))
+            {
+                dv.RowFilter = $"Nombre LIKE '%{filtro}%'"; // Filtrar por la columna "Nombre"
+            }
+
+            // Asignar el DataView (filtrado o no) al DataGridView
+            dgvClientesEliminar.DataSource = dv;
+        }
+
         //------------------------------------------------------------------------------------------------------------------------
         //------------------------------------------------ELIMINAR----------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------------------------

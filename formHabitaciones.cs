@@ -41,8 +41,8 @@ namespace Proyecto
             cmbTipo.SelectedIndex = 0;
             // Llenar el ComboBox de Estado con opciones predefinidas
             cmbEstado.Items.Add("Disponible");
-            cmbEstado.Items.Add("En Limpieza");
             cmbEstado.SelectedIndex = 0;
+
         }
         private void LimpiarControles()
         {

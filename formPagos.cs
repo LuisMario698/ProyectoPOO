@@ -29,6 +29,8 @@ namespace Proyecto
         {
             InitializeComponent();
 
+            checkLimpieza.Enabled = false;
+            txtComidas.Enabled = false;
             dgvReservas.AutoGenerateColumns = false; // Desactiva la generación automática
 
             // Configura las columnas y vincúlalas a los nombres del DataTable
@@ -585,6 +587,7 @@ namespace Proyecto
                     ActualizarEstadoCliente(clienteSeleccionado, "Disponible");
                     ActualizarEstadoHabitacion(habitacionSeleccionda, "Disponible");
                     IncrementarReservasCliente(clienteSeleccionado);
+                    
 
                     //dgvClientesEliminar.Rows.Clear();
                     // Aquí puedes refrescar el DataGridView u otras acciones necesarias

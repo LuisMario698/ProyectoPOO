@@ -47,6 +47,33 @@ namespace Proyecto
             //dgvClientes.Columns[0].Width = 30;
 
             dgvClientes.ColumnHeadersHeight = 40;
+
+            dgvHabitaciones.AutoGenerateColumns = false; // Desactiva la generación automática
+
+            // Configura las columnas y vincúlalas a los nombres del DataTable
+            dgvHabitaciones.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Numero",
+                DataPropertyName = "Numero", // Nombre de la columna en el DataTable
+                HeaderText = "Numero"
+            });
+            dgvHabitaciones.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Tipo",
+                DataPropertyName = "Tipo", // Nombre de la columna en el DataTable
+                HeaderText = "Tipo"
+            });
+            dgvHabitaciones.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Estado",
+                DataPropertyName = "Estado", // Nombre de la columna en el DataTable
+                HeaderText = "Estado"
+            });
+
+            dgvHabitaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //dgvClientes.Columns[0].Width = 30;
+
+            dgvHabitaciones.ColumnHeadersHeight = 40;
         }
 
         private void formReportes_Load(object sender, EventArgs e)
@@ -247,35 +274,17 @@ namespace Proyecto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Mostrar opciones para exportar
-            var opcion = MessageBox.Show(
-                "¿Qué reporte deseas exportar?\n\n" +
-                "Sí: Habitaciones\n" +
-                "No: Ingresos\n" +
-                "Cancelar: Clientes",
-                "Seleccionar Reporte",
-                MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question
-            );
+            // Crear un menú contextual con las opciones de los reportes
+            ContextMenuStrip menu = new ContextMenuStrip();
 
-            switch (opcion)
-            {
-                case DialogResult.Yes: // Exportar Habitaciones
-                    ExportarDataGridViewAExcel(dgvHabitaciones, "Reporte_Habitaciones");
-                    break;
+            // Agregar las opciones del menú para los reportes
+            menu.Items.Add("Clientes", null, (senderMenu, eMenu) => ExportarDataGridViewAExcel(dgvClientes, "Reporte_Clientes"));
+            menu.Items.Add("Habitaciones", null, (senderMenu, eMenu) => ExportarDataGridViewAExcel(dgvHabitaciones, "Reporte_Habitaciones"));
+            menu.Items.Add("Reservas", null, (senderMenu, eMenu) => ExportarDataGridViewAExcel(dgvReservas, "Reporte_Reservas"));
 
-                case DialogResult.No: // Exportar Ingresos
-                    ExportarDataGridViewAExcel(dgvReservas, "Reporte_Ingresos");
-                    break;
+            // Mostrar el menú en la posición del cursor (puedes ajustar la posición si lo deseas)
+            menu.Show(Cursor.Position);
 
-                case DialogResult.Cancel: // Exportar Clientes
-                    ExportarDataGridViewAExcel(dgvClientes, "Reporte_Clientes");
-                    break;
-
-                default:
-                    MessageBox.Show("Exportación cancelada.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
-            }
         }
     }
 }
